@@ -1,0 +1,18 @@
+
+Haiku Resource Compiler 1.1
+
+To compile an rdef script into a resource file:
+    rc [options] [-o <file>] <file>...
+
+To convert a resource file back into an rdef script:
+    rc [options] [-o <file>] -d <file>...
+
+Options:
+    -d --decompile       create an rdef script from a resource file
+       --auto-names      construct resource names from ID symbols
+    -h --help            show this message
+    -I --include <dir>   add <dir> to the list of include paths
+    -m --merge           do not erase existing contents of output file
+    -o --output          specify output file name, default is out.xxx
+    -q --quiet           do not display any error messages
+    -V --version         show software version and license

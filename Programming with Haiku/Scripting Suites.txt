@@ -1,0 +1,250 @@
+PropertyName(Message, Specifiers, Return value)
+
+suite/vnd.Be-handler
+---------------------------------
+InternalName (Get, Direct, String)
+	Returns the handler's name
+
+Messenger (Get, Direct, BMessenger)
+	Returns a messenger which points to the handler
+
+Suites (Get, Direct, String array)
+	Returns an array of interfaces the target supports, identified by name
+
+
+suite/vnd.Be-looper
+---------------------------------
+Handlers (Get, Direct, BMessenger)
+**********This needs investigated
+
+Handler (Index/ReverseIndex)
+	The message is forwarded to the specified BHandler
+
+
+suite/vnd.Be-application
+---------------------------------
+Window (Count, Direct, Integer)
+	Returns the number of windows in the application
+
+Window (Name/Index/ReverseIndex)
+	The message is forwarded to the specified BWindow
+
+
+suite/vnd.Be-window
+---------------------------------
+B_WINDOW_MOVE_BY, B_WINDOW_MOVE_TO
+	Moves the window to a relative point. BPoint field: data
+
+Feel (Get/Set, Direct, Integer/None)
+	Returns or sets the window's feel
+
+Flags (Get/Set, Direct, Integer/None)
+	Returns or sets the window's flags
+
+Frame (Get/Set, Direct, BRect/None)
+	Returns or sets the window's frame
+
+Hidden (Get/Set, Direct, Boolean/None)
+	Returns or sets the window's visibility status
+
+Look (Get/Set, Direct, Integer/None)
+	Returns or sets the window's look
+
+MenuBar (Any, Direct)
+	Passes a message to the key menu bar
+
+Minimize (Set, Direct)
+	Minimizes the window (or not). Boolean field: data
+
+Title (Get/Set, Direct, String/None)
+	Returns or sets the window's title
+
+View (Any, Any)
+	Directs a scripting message to the top view
+
+Workspaces (Get/Set, Direct, int32/None)
+	Returns or sets the window's workspaces
+
+
+suite/vnd.Be-view
+---------------------------------
+Frame (Get/Set,Direct, BRect/None)
+	Returns or sets the view's frame
+
+Hidden (Get/Set, Direct, Boolean/None)
+	Returns or sets the view's visibility status
+
+View (Count, Direct)
+	Returns the number of child views
+
+View (Any, Index/ReverseIndex/Name)
+	Directs a scripting message to the top view
+
+
+suite/vnd.Be-container-view
+---------------------------------
+Shelf (any, Direct)
+	Directs the message to the shelf
+
+
+suite/vnd.Be-control
+---------------------------------
+Enabled (Get/Set, Direct, Boolean/None)
+	Returns or sets the control's Enabled status
+
+Label (Get/Set, Direct, String/None)
+	Returns or sets the control's label
+
+Value (Get/Set, Direct, int32/None)
+	Returns or sets the control's value
+
+
+suite/vnd.Be-list-view
+---------------------------------
+Item (Count, Direct, int32)
+	Returns the number of items in the list
+
+Item (Execute, Index/ReverseIndex/Range/ReverseRange)
+	Select and invoke the specified items, removing the previous selection
+
+Selection (Count, Direct, int32)
+	Returns the number of selected items
+
+Selection (Execute, Direct)
+	Invokes the items in the selection
+
+Selection (Get, Direct, int32)
+	Returns the indices of all items in the selection
+
+Selection (Set, Direct/Index/ReverseIndex/Range/ReverseRange)
+	Field: Boolean, data -- extends selection if true
+	Extends current selection or deselects specified items
+
+
+suite/vnd.Be-channel-slider
+---------------------------------
+Orientation (Get/Set, Direct, int32/None)
+	Returns or sets the slider's orientation
+
+
+suite/vnd.Be-channel-control
+---------------------------------
+ChannelCount (Get/Set, Direct, int32/None)
+	Returns or sets the number of channels
+
+CurrentChannel (Get/Set, Direct, int32/None)
+	Returns or sets the current channel
+
+MaxLimitLabel (Get/Set, Direct, int32/None)
+	Returns or sets the maximum label value
+
+MaxLimitLabel (Get/Set, Direct, int32/None)
+	Returns or sets the minimum label value
+
+
+suite/vnd.Be-menu
+---------------------------------
+Enabled (Get/Set, Direct, Boolean/None)
+	Returns or sets the enabled status of the menu
+
+Label (Get/Set, Direct, String/None)
+	Returns or sets the label of the menu
+
+Mark (Get/Set, Direct, Boolean/None)
+	Returns or sets the checked status of the menu
+
+Menu (Create, Name/Index/ReverseIndex)
+	Field: String, data -- The text label of the item
+	Field: int32, what -- The message ID of the item's invocation message
+	Adds a new menu item
+
+Menu (Delete, Name/Index/ReverseIndex)
+	Removes the selected items
+
+MenuItem (Count, Direct)
+	Returns the number of items in the menu
+
+MenuItem (Create, Name/Index/ReverseIndex)
+	Field: String, data -- The text label of the item
+	Field: int32, what -- The message ID of the item's invocation message
+	Adds a new menu item
+
+MenuItem (Delete, Name/Index/ReverseIndex)
+	Removes the selected items
+
+MenuItem (Execute, Name/Index/ReverseIndex)
+	Invokes the selected menu item
+
+MenuItem (All Others, Name/Index/ReverseIndex)
+	Passes message to the specified item, popping off the current specifier
+
+
+suite/vnd.Be-shelf
+---------------------------------
+Replicant (Count, Direct)
+	Returns the number of replicants in the shelf
+
+Replicant (Create, Direct)
+	Field: BMessage, data -- An archived replicant
+	Field: BPoint, location -- The location for the replicant to be created
+	Instantiates a replicant on the shelf
+
+Replicant (Delete, Index/ReverseIndex/Name/ID)
+	Deletes the specified replicant
+
+Replicant (Get, Index/ReverseIndex/Name/ID, BMessage)
+	Archives the specified replicant into the reply as the field "result"
+
+Replicant (All Others, Index/ReverseIndex/Name/ID)
+	Passes message to the specified item, popping off the current specifier
+
+ID (Get, Direct, int32)
+	Returns the ID of the specified replicant
+
+Name (Get, Direct, String)
+	Returns the name of the specified replicant
+
+Signature (Get, Direct, String)
+	Returns the signature of the addon containing the code for the specified replicant.
+
+Suites (Get, Direct, BMessage)
+	Returns "suite/vnd.Be-replicant" and a flattened BPropertyInfo describing the suite in the field "messages".
+
+View (Any, Direct)
+	Redirects messages to the replicant's view
+
+
+suite/vnd.Be-tab-view
+---------------------------------
+Selection (Get/Set, Direct, int32/None)
+	Returns or sets the currently-selected tab
+
+
+suite/vnd.Be-text-view
+---------------------------------
+selection (Get/Set, Direct, int32 x 2/None)
+	Field: int32 (x2), "result" or "data" -- two integers for the beginning and the end of the selection
+	Returns or sets the selection using integers kept in the "result" or "data" array
+
+Text (Count, Direct, int32)
+	Returns the number of bytes occupied by the view's text.
+
+Text (Get, Range/ReverseRange, String)
+	Returns the text in the specified range
+
+Text (Set, Range/ReverseRange)
+	Field: string, "data" -- The string to insert
+	Field: int32, "range" -- The number of bytes to insert
+	Field: int32, "index" -- The location to insert the text
+	Sets or deletes the text in the specified range. If the "data" field is missing, the text is deleted.
+
+Text (Get, Range/ReverseRange, String)
+	Gets the specified text
+
+text_run_array (Get/Set, Range/ReverseRange, Raw)
+	Field: raw, "data" -- The text run data to set
+	Field: int32, "range" -- The number of bytes to set
+	Field: int32, "index" -- The location to insert the text
+	Returns or sets text_run_array info stored in the message as raw data.
+
+

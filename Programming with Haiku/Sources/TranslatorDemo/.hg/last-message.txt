@@ -1,0 +1,13 @@
+Remove some disabled code
+
+HG: 
+HG: All lines starting with HG: will be ignored.
+HG: ----------------------------------------------------
+HG: M MainWindow.cpp
+HG: M TranslatorDemo.pld
+HG: ? (Objects.TranslatorDemo)/App.o
+HG: ? (Objects.TranslatorDemo)/BitmapView.o
+HG: ? (Objects.TranslatorDemo)/BitmapWindow.o
+HG: ? (Objects.TranslatorDemo)/MainWindow.o
+HG: ? TranslatorDemo
+HG: 

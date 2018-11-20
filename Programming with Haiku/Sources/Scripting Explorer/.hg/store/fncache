@@ -1,0 +1,13 @@
+data/PropDump.cpp.i
+data/PropDump.h.i
+data/ScriptView.cpp.i
+data/ScriptView.h.i
+data/ScriptWindow.cpp.i
+data/ScriptWindow.h.i
+data/ScriptWorld.cpp.i
+data/ScriptWorld.h.i
+data/ScriptWorld.rsrc.i
+data/SendPanel.cpp.i
+data/SendPanel.h.i
+data/ScriptWorld.pld.i
+data/.hgignore.i

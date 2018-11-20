@@ -1,0 +1,54 @@
+Common usage: xres -o appname resfilename
+
+Usage: xres ( -h | --help )
+       xres -l <file> ...
+       xres <command> ...
+
+The first form prints this help text and exits.
+
+The second form lists the resources of all given files.
+
+The third form manipulates the resources of one or more files according to
+the given commands.
+
+Valid commands are:
+  <input file>
+         - Add the resources read from file <input file> to the current
+           output file. The file can either be a resource file or an
+           executable file.
+  -a <type>:<id>[:<name>] ( <file> |  -s <data> )
+         - Add a resource to the current output file. The added resource is
+           of type <type> and has the ID <id>. If given the resource will
+           have name <name>, otherwise it won't have a name. The resource
+           data will either be the string <data> provided on the command
+           line or the data read from file <file> (the whole contents).
+  -d <type>[:<id>]
+         - Excludes resources with type <type> and, if given, ID <id> from
+           being written to the output file. This applies to all resources
+           read from input files or directly specified via command "-a"
+           following this command until the next "-d" command.
+  -o <output file>
+         - Changes the output file to <output file>. All resources specified
+           by subsequent <input file> or "-a" commands will be written
+           to this file until the next output file is specified via the
+           "-o" command. Resources specified later overwrite earlier ones
+           with the same type and ID. If <output file> doesn't exist yet, 
+           a resource file with the name will be created. If it exists and
+           is an executable file, the resources will be added to it (if the
+           file already has resources, they will be removed before). If it
+           is a resource file or a file of unknown type, it will be
+           overwritten with a resource file containing the specified
+           resources. The initial output file is "xres.output.rsrc".
+           Note that an output file will only be created or modified, if at
+           least one <input file> or "-a" command is given for it.
+  -x <type>[:<id>]
+         - Only resources with type <type> and, if given, ID <id> will be
+           written to the output file. This applies to all resources
+           read from input files or directly specified via command "-a"
+           following this command until the next "-x" command.
+  --     - All following arguments, even if starting with a "-" character,
+           are treated as input file names.
+
+Parameters:
+  <type> - A type constant consisting of exactly four characters.
+  <id>   - A positive or negative integer.

@@ -1,0 +1,8 @@
+Revert the build fix for Zeta which is not compatible with Haiku
+
+HG: 
+HG: All lines starting with HG: will be ignored.
+HG: ----------------------------------------------------
+HG: M PropDump.cpp
+HG: ? ZetaNotes.txt
+HG: 
