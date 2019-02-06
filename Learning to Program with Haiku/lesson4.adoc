@@ -378,7 +378,7 @@ pi equals 0
 2 * pi equals 0
 ....
 
-=== Bug Hunt Answers
+=== Lesson 3 Bug Hunt Answers
 
 1.  The variable _c_ was not declared. Add a line _int c = 5;_ after the
     one for b and this will compile (and work) properly.
