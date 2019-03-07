@@ -1,0 +1,71 @@
+= Learning to Program with Haiku
+Written by DarkWyrm. All material © 2010 DarkWyrm. CC-BY-NC-SA
+:source-highlighter: pygments
+
+== Unit 1 Review
+
+Let's take a little time to go over what we've learned so far in this
+unit. We've come quite a distance from the very beginning in Lesson 1 to
+our first real project in Lesson 5. Try to answer each of the questions
+below off the top of your head, but don't be afraid to go back and look
+up the answers if you're stumped or a just a little fuzzy on something.
+You can find the answers to all of these questions at the end of Lesson
+6.
+
+=== Review Questions
+
+==== Lesson 1
+
+1.  What is machine code?
+2.  What is source code?
+
+==== Lesson 2
+
+1.  What are the two ways of adding comments to your code?
+2.  What are the four tools used to turn source code into machine code?
+3.  Name and define the two general classes of programming errors.
+
+==== Lesson 3
+
+1.  What is the numerical result of _10 % 4_ ?
+2.  What is the difference between _pass:c[++i]_ and _pass:c[i++]_?
+3.  What is a shorter way of writing _myVar = myVar * 5_ ?
+4.  Why is == used instead of = for comparing two quantities?
+5.  What is the _printf_ placeholder for a _float_?
+6.  What are parameters?
+7.  What is the difference between the types _int_ and _long_?
+8.  What is the numerical result of 10 / 4? 10.0 / 4.0?
+
+==== Lesson 4
+
+1.  In the following code snippet, will anything be printed? Why?
+
+[source,c++]
+....
+int i = 0;
+
+if (i)
+	printf("Spam and eggs.\n");
+....
+
+1.  What operator should replace the word OR in the following code
+in order for the _if_ statement to evaluate as
+true if either condition is true?
+
+[source,c++]
+....
+if (a == b __OR__ a == c) 
+....
+
+2.  What do each of the three sections of a _for_ loop control block do?
+
+==== Lesson 5
+
+1.  What is a segmentation fault?
+2.  What is the last valid index for an array with 10 elements?
+3.  Why is it important to initialize a pointer to a known-good value or
+to NULL?
+4.  Which of these is a string, _'a'_ or _"a"_ ?
+5.  A string is an array of what type?
+6.  Which header file (#include) that we have been using contains helper
+functions for working with strings?
