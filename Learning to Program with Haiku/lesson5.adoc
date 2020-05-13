@@ -31,7 +31,7 @@ a contiguous block of computer memory. If you were able to look at a
 section of memory, the part of the computer's memory which holds our
 array would look a little like this:
 
-[integer0] [integer1] [integer2] [integer3] [integer4]
+integer0 integer1 integer2 integer3 integer4
 
 Using arrays can take a little getting used to, however. Each element in
 an array is assigned a number. Accessing an element in an array is done
