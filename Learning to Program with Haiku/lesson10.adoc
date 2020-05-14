@@ -9,17 +9,15 @@ When calling functions, sometimes there are certain parameters that almost never
 [source,c++]
 ....
 void MakeWindow(int left, int top, int right, int bottom, const char *title,
-
-int type, int look);
+	int type, int look);
 ....
 
 Each time we use this function, we end up having different values for the location, size, and title, but the type and the look don't change – almost all of the time the same numbers for _type_ and _look_ are used because we're making regular windows. This makes for extra typing, so we may want to use a default value for the type. To do this, we change the declaration slightly:
 
 [source,c++]
 ....
-void MakeWindow(int left, int top, int right, int bottom, const char *title,
-
-int type = REGULAR_WINDOW_TYPE, int look = REGULAR_WINDOW_LOOK);
+void MakeWindow(int left, int top, int right, int bottom, const char *title, 
+	int type = REGULAR_WINDOW_TYPE, int look = REGULAR_WINDOW_LOOK);
 ....
 
 We are, in a sense, initializing the parameter so that we don't always have to type in a value when we call the function. Parameters with default values always go at the end of a parameter list in a function call. In this particular case, a lot less typing is involved for the usual case of a “regular” kind of window:
@@ -45,7 +43,6 @@ References, in this case, are not something you would find in the library. Inste
 [source,c++]
 ....
 int myInt;
-
 int &myRef = myInt;
 ....
 
@@ -54,33 +51,23 @@ The ampersand (_&_) in between _int_ and _myRef_ is the difference between decla
 [source,c++]
 ....
 #include <stdio.h>
-
 #include <malloc.h>
 
-int
+int main(void)
+{
+	// Create a pointer with some heap memory and initialize it
+	int *myPointer = (int*) malloc(sizeof(int));
+	*myPointer = 1;
 
-main(void)
+	// Create a reference to the myPointer's location.
+	int &myRef = *myPointer;
+	myRef++;
 
-\{
+	printf("The value at myPointer's location is %d**\n**",*myPointer);
 
-// Create a pointer with some heap memory and initialize it
+	free(myPointer);
 
-int *myPointer = (int*) malloc(sizeof(int));
-
-*myPointer = 1;
-
-// Create a reference to the myPointer's location.
-
-int &myRef = *myPointer;
-
-myRef++;
-
-printf("The value at myPointer's location is %d**\n**",*myPointer);
-
-free(myPointer);
-
-return 0;
-
+	return 0;
 }
 ....
 
@@ -93,7 +80,6 @@ There is more than one way to get data out of a function. The usual way is the v
 [source,c++]
 ....
 const char * someFunction(int &integerByReference);
-
 float someOtherFunction(const double &doubleByReference);
 ....
 
@@ -106,41 +92,28 @@ Just to make sure that we have a pretty good handle on the difference between pa
 #include <stdio.h>
 
 // This function passes x by reference and y by value
+int myFunction(int &x, int y)
+{
+	x = x * 2;
+	y = y + 5;
 
-int
-
-myFunction(int &x, int y)
-
-\{
-
-x = x * 2;
-
-y = y + 5;
-
-return x * y;
-
+	return x * y;
 }
 
-int
+int main(void)
+{
 
-main(void)
+	// Create a couple of variables for our work
+	int foo = 5;
+	int bar = 10;
 
-\{
+	int outValue = myFunction(foo,bar);
 
-// Create a couple of variables for our work
+	printf("foo is %d, bar is %d, and myFunction(foo,bar) is %d**\n**",
 
-int foo = 5;
+	foo,bar,outValue);
 
-int bar = 10;
-
-int outValue = myFunction(foo,bar);
-
-printf("foo is %d, bar is %d, and myFunction(foo,bar) is %d**\n**",
-
-foo,bar,outValue);
-
-return 0;
-
+	return 0;
 }
 ....
 
@@ -152,7 +125,7 @@ Just when you thought pointers couldn't get any weirder, it gets worse. It is po
 
 [source,c++]
 ....
-void__ __(*_functionPointer_)(int__ value, __int_ anotherValue_);
+void (*functionPointer)(int value, int anotherValue);
 ....
 
 This snippet of code is *not* a function. It is actually a declaration of a pointer called _functionPointer_.
@@ -164,7 +137,6 @@ Types for function pointers are very specific. The return value and the number a
 [source,c++]
 ....
 void (*integerFunction)(int value);
-
 int (*anotherIntegerFunction)(int value);
 ...
 
@@ -191,7 +163,7 @@ Just like functions taking parameters – or arguments... they're the same thing
 
 [source,shell]
 ....
-_$ rm -f --verbose myFile_
+$ rm -f --verbose myFile_
 ....
 
 The command _rm_ has three arguments: a filename and two switches. Command line switches are options that change the behavior of a program without being the information on which it operates. In this case, _rm_ operates on the file _myFile_. The _-f_ switch tells it to force removal, not asking for confirmation, and the _--verbose_ switch tells it to print more information to the screen than it normally does.
@@ -202,10 +174,9 @@ In order for a program to take advantage of command line arguments, the way we u
 
 [source,c++]
 ....
-int main(int argc, char **argv) +
-\{
-
-return 0; +
+int main(int argc, char **argv)
+{
+	return 0;
 }
 ....
 
@@ -215,20 +186,13 @@ Now _main()_ takes two parameters: _argc_, which is the number of arguments from
 ....
 #include <stdio.h>
 
-int
-
-main(int argc, char **argv)
-
-\{
-
-// Iterate through all arguments and print them.
-
-for (int i = 0; i < argc; i++)
-
-printf("Program argument %d: %s**\n**", i, argv[i]);
-
-return 0;
-
+int main(int argc, char **argv)
+{
+	// Iterate through all arguments and print them.
+	for (int i = 0; i < argc; i++)
+		printf("Program argument %d: %s\n", i, argv[i]);
+	
+	return 0;
 }
 ....
 
@@ -243,7 +207,6 @@ For this project, we will need to use two new functions: fread and fwrite.
 [source,c++]
 ....
 size_t fread (void *buffer, size_t size, size_t count, FILE *stream);
-
 size_t fwrite (void *buffer, size_t size, size_t count, FILE *stream);
 ....
 
@@ -273,64 +236,44 @@ Because we haven't done much actual writing of code, I'll do a little to get you
 [source,c++]
 ....
 #include <stdio.h>
-
 #include <malloc.h>
 
 int
-
 main(int argc, char **argv)
-
-\{
-
-for (int i = 1; i < argc; i++)
-
-\{
-
-// open a file handle for reading from argv[i]
-
-// if the file handle is NULL or there is an error, continue to
-
-// the next iteration.
-
-// create a data buffer -- an array to hold our data. Size isn't
-
-// terribly important, but it should be at least a few hundred bytes
-
-// and no more than about 4000 bytes. You can create it on the stack
-
-// or use malloc, whichever you prefer.
-
-// create a variable to store the number of bytes actually read
-
-// read data from the file handle and store the number of bytes
-
-// read into the variable that we just created.
-
-// Start our while() loop. Loop while the number of bytes read is
-
-// greater than zero and if ferror does not indicate an error on
-
-// the file handle
-
-\{
-
-// write the number of bytes read to stdout
-
-// read more data and put the number of bytes actually read
-
-// into the variable we created above.
-
-}
-
-// free the buffer here if you used malloc, never mind if you put
-
-// the buffer on the stack.
-
-// close the file handle here
-
-}
-
-return 0;
-
+{
+	for (int i = 1; i < argc; i++)
+	{
+		// open a file handle for reading from argv[i]
+		
+		// if the file handle is NULL or there is an error, continue to
+		// the next iteration.
+		
+		// create a data buffer -- an array to hold our data. Size isn't
+		// terribly important, but it should be at least a few hundred bytes
+		// and no more than about 4000 bytes. You can create it on the stack
+		// or use malloc, whichever you prefer.
+		
+		// create a variable to store the number of bytes actually read
+		
+		// read data from the file handle and store the number of bytes
+		// read into the variable that we just created.
+		
+		// Start our while() loop. Loop while the number of bytes read is
+		// greater than zero and if ferror does not indicate an error on
+		// the file handle
+		{
+			// write the number of bytes read to stdout
+			
+			// read more data and put the number of bytes actually read
+			// into the variable we created above.
+		}
+		
+		// free the buffer here if you used malloc, never mind if you put
+		// the buffer on the stack.
+		
+		// close the file handle here
+	}
+	
+	return 0;
 }
 ....

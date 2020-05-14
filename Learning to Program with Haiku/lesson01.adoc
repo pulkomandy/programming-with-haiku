@@ -1,10 +1,4 @@
-= Learning to Program with Haiku
-Written by DarkWyrm. All material © 2010 DarkWyrm. CC-BY-NC-SA
-:source-highlighter: pygments
-
-== Lesson 1
-
-
+= Lesson 1
 
 Programming involves communicating your ideas to the computer. The only
 problem is that computers are stupid. They will do exactly what you tell
