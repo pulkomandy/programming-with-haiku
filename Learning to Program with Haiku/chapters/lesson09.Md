@@ -1,13 +1,13 @@
-Lesson 9 [_lesson_9]
+Lesson 9 {#_lesson_9}
 --------
 
-If you haven’t noticed, we’ve come a long way since Lesson 1. We’re steadily getting closer to being done with learning the basics of C and C++. This time around, we’ll expand what we know about arrays and pointers.
+If you haven't noticed, we've come a long way since Lesson 1. We're steadily getting closer to being done with learning the basics of C and C++. This time around, we'll expand what we know about arrays and pointers.
 
-### Arrays: Pointers with Smoke and Mirrors [_arrays_pointers_with_smoke_and_mirrors]
+### Arrays: Pointers with Smoke and Mirrors {#_arrays_pointers_with_smoke_and_mirrors}
 
-When we first looked at strings in Lesson 5, we saw how arrays and pointers are pretty closely related, but we didn’t look close enough to discover how close they really are. Arrays are really just a friendly way of using pointers. Let’s look at two different ways of changing the same string that demonstrate this.
+When we first looked at strings in Lesson 5, we saw how arrays and pointers are pretty closely related, but we didn't look close enough to discover how close they really are. Arrays are really just a friendly way of using pointers. Let's look at two different ways of changing the same string that demonstrate this.
 
-``` c++
+``` {.c++}
 #include <stdio.h>
 
 
@@ -46,9 +46,9 @@ main(void)
 }
 ```
 
-Both loops do the exact same thing except for using capital letters in the second one. The code for the second one looks really strange, though, so let’s pick it apart, starting with *sizeof()*. *sizeof()* is a language feature which works like a function. It can be given a variable or the name of a type and it will return the size, in bytes, that one object of that type takes up in memory. For example, *char* objects are only 1 byte large, but an *int* takes of 4 bytes. Give *sizeof()* an array and it will return the amount of memory the entire array occupies. Because the size of a *char* is 1, we could have skipped the multiplication entirely, but it’s a good idea to get into the habit of avoiding assumptions like this. You’ll have a fewer gray hairs that way.
+Both loops do the exact same thing except for using capital letters in the second one. The code for the second one looks really strange, though, so let's pick it apart, starting with *sizeof()*. *sizeof()* is a language feature which works like a function. It can be given a variable or the name of a type and it will return the size, in bytes, that one object of that type takes up in memory. For example, *char* objects are only 1 byte large, but an *int* takes of 4 bytes. Give *sizeof()* an array and it will return the amount of memory the entire array occupies. Because the size of a *char* is 1, we could have skipped the multiplication entirely, but it's a good idea to get into the habit of avoiding assumptions like this. You'll have a fewer gray hairs that way.
 
-The next strange trick we see in the code above is adding a number to a pointer. Pointers are just variables that contain memory addresses, so adding an integer to a pointer just changes the memory address. We can’t change the array’s address, so we’ve created a pointer that we can change. This allows us to add the size of an array element to it. As we do this over the course of the loop, the pointer will hold the address of each character in the array.
+The next strange trick we see in the code above is adding a number to a pointer. Pointers are just variables that contain memory addresses, so adding an integer to a pointer just changes the memory address. We can't change the array's address, so we've created a pointer that we can change. This allows us to add the size of an array element to it. As we do this over the course of the loop, the pointer will hold the address of each character in the array.
 
 +----------------------+-------------------------+-----------------------+
 | Array Index          | Equivalent Pointer Math | Value                 |
@@ -62,9 +62,9 @@ The next strange trick we see in the code above is adding a number to a pointer.
 | *string\[3\]*        | *index + (size \* 3)*   | *d*                   |
 +----------------------+-------------------------+-----------------------+
 
-We can use this close link between arrays and pointers to pull off other fancy tricks, like initializing an entire *bool* array to true. How? *memset()*, which we haven’t used in quite some time.
+We can use this close link between arrays and pointers to pull off other fancy tricks, like initializing an entire *bool* array to true. How? *memset()*, which we haven't used in quite some time.
 
-``` c++
+``` {.c++}
 int
 MyFunc(void)
 {
@@ -78,13 +78,13 @@ MyFunc(void)
 
 This little function just sets each byte in the array to a 1, which is true for Boolean logic. Not only is it less work, it is much, much faster than using a loop to set each element individually.
 
-### Multidimensional Arrays [_multidimensional_arrays]
+### Multidimensional Arrays {#_multidimensional_arrays}
 
-It’s really inconvenient that we can make arrays of any kind of data except strings. Strings are everywhere in everyday programming, but we can’t make an array of arrays, can we? Actually, yes we can. To have arrays of strings, we must conquer one of the most potentially confusing parts of C and C++: multidimensional arrays. Not to worry, I’m going to make this as simple as possible.
+It's really inconvenient that we can make arrays of any kind of data except strings. Strings are everywhere in everyday programming, but we can't make an array of arrays, can we? Actually, yes we can. To have arrays of strings, we must conquer one of the most potentially confusing parts of C and C++: multidimensional arrays. Not to worry, I'm going to make this as simple as possible.
 
 Regular arrays are best thought of as just a series of elements in a row:
 
-``` c++
+``` {.c++}
 int myArray[10];
 ```
 
@@ -92,9 +92,9 @@ myArray:
 
 <table style="width:100%;"><colgroup><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /></colgroup><tbody><tr class="odd"><td><p><em>0</em></p></td><td><p><em>1</em></p></td><td><p><em>2</em></p></td><td><p><em>3</em></p></td><td><p><em>4</em></p></td><td><p><em>5</em></p></td><td><p><em>6</em></p></td><td><p><em>7</em></p></td><td><p><em>8</em></p></td><td><p><em>9</em></p></td></tr></tbody></table>
 
-Arrays can have more than one dimension – for example, a two dimensional array can be thought of as a grid – a group of rows. This one has two rows with five elements in each row.
+Arrays can have more than one dimension -- for example, a two dimensional array can be thought of as a grid -- a group of rows. This one has two rows with five elements in each row.
 
-``` c++
+``` {.c++}
 int my2DArray[2][5];
 ```
 
@@ -106,7 +106,7 @@ my2DArray:
 | *5*         | *6*         | *7*         | *8*         | *9*         |
 +-------------+-------------+-------------+-------------+-------------+
 
-The easiest way to think of an array with more than one dimension is to think in terms of spatial dimensions, working from right to left as we add another pair of brackets of each dimension. One dimension is a line, two is a rectangle, and three is a cube. Beyond three, it’s better to think of the dimensions as groups of cubes or groups of cube groups. Declaring and accessing an array with more than one dimension is just a matter of adding another set of brackets when declaring and accessing the array.
+The easiest way to think of an array with more than one dimension is to think in terms of spatial dimensions, working from right to left as we add another pair of brackets of each dimension. One dimension is a line, two is a rectangle, and three is a cube. Beyond three, it's better to think of the dimensions as groups of cubes or groups of cube groups. Declaring and accessing an array with more than one dimension is just a matter of adding another set of brackets when declaring and accessing the array.
 
 +-----------------------------------+--------------------------------------------------------------------------------------------------+
 | Number of Dimensions              | Array Declaration                                                                                |
@@ -122,9 +122,9 @@ The easiest way to think of an array with more than one dimension is to think in
 | 5                                 | *my5DArray \[numCubeGroups\] \[cubesInGroup\] \[gridsInCube\] \[rowsInGrid\] \[elementsInRow\];* |
 +-----------------------------------+--------------------------------------------------------------------------------------------------+
 
-Now that we have a handle on how multidimensional arrays are declared, let’s put them to use in some sample code.
+Now that we have a handle on how multidimensional arrays are declared, let's put them to use in some sample code.
 
-``` c++
+``` {.c++}
 #include <stdio.h>
 #include <string.h>
 
@@ -148,7 +148,7 @@ main(void)
 
 This code snippet declares an array and initializes it with a loop. Because the memory for the entire array is allocated in one large block, we can use *memset()* in combination with *sizeof()* to set every byte in the array to the same value. This also means that we can use a pointer to the same address as our two dimensional array to treat the whole thing as one long list.
 
-``` c++
+``` {.c++}
 int
 main(void)
 {
@@ -176,9 +176,9 @@ main(void)
 }
 ```
 
-Even though we have initialized all of our arrays using *memset()* or a loop, it’s possible – and sometimes necessary – to use many different arbitrary values. This is done using a comma-separated list of values inside a pair of curly braces. A pair of braces is needed for each dimension. Here is the same basic code changed to initialize the array without using a loop.
+Even though we have initialized all of our arrays using *memset()* or a loop, it's possible -- and sometimes necessary -- to use many different arbitrary values. This is done using a comma-separated list of values inside a pair of curly braces. A pair of braces is needed for each dimension. Here is the same basic code changed to initialize the array without using a loop.
 
-``` c++
+``` {.c++}
 int
 main(void)
 {
@@ -196,9 +196,9 @@ main(void)
 }
 ```
 
-It’s a lot more typing, but if we had a list of different values that didn’t follow any pattern at all, this would be our only option. One drawback to this method is that we have to set the values for all of the elements – we can’t just pick and choose which ones we want to set. It also gets increasingly difficult to read for arrays having more than two dimensions. If this were just a plain array, we’d just need one set of curly braces and a list of values in it, like this:
+It's a lot more typing, but if we had a list of different values that didn't follow any pattern at all, this would be our only option. One drawback to this method is that we have to set the values for all of the elements -- we can't just pick and choose which ones we want to set. It also gets increasingly difficult to read for arrays having more than two dimensions. If this were just a plain array, we'd just need one set of curly braces and a list of values in it, like this:
 
-``` c++
+``` {.c++}
 float someArray[3] = { 1.1, 2.2, 3.3 };
 ```
 
@@ -206,7 +206,7 @@ This is also one of the few instances where you have to have a semicolon outside
 
 To create a list of strings, we simply create a two dimensional *char* array. Although we could use a series of comma-separated character constants, C and C++ give us a couple of kinds of shortcuts to save a lot of typing and possibly some counting when initializing strings.
 
-``` c++
+``` {.c++}
 // This is the hard way. What a mess!
 char myShortString[15] = { 'a', 'b', 'c', 'd', 'e', '\0' };
 
@@ -227,9 +227,9 @@ int myIntArray[] = { 0, 1, 2, 3, 4, 5 };
 char *anotherLongString = "This is some other really long string.";
 ```
 
-One other useful tip: **don’t** try leaving out the size on arrays with more than one dimension. It can only be done with the leftmost dimension listed when declaring a multidimensional array and mixing the two can only lead to confusion. Trust me on this one.
+One other useful tip: **don't** try leaving out the size on arrays with more than one dimension. It can only be done with the leftmost dimension listed when declaring a multidimensional array and mixing the two can only lead to confusion. Trust me on this one.
 
-Once again, we’ve covered a lot in a short amount of time, so let’s quickly review:
+Once again, we've covered a lot in a short amount of time, so let's quickly review:
 
 -   Integers can be added to or subtracted from the address held by a pointer.
 
@@ -249,6 +249,6 @@ Once again, we’ve covered a lot in a short amount of time, so let’s quickly 
 
 -   You can leave out the size in the brackets on one-dimensional initialized arrays if you just want enough memory reserved to hold the values given to it.
 
-### Answers from Lesson 8’s Bug Hunt [_answers_from_lesson_8s_bug_hunt]
+### Answers from Lesson 8's Bug Hunt {#_answers_from_lesson_8s_bug_hunt}
 
-1.  The problem is that the parameter string is a *const char \** instead of a just *char \**. This means that the string given to *ReverseString()* can’t be changed and the compiler complains when we try to change it in the *for* loop. Remove the *const* keyword and everything is happy.
+1.  The problem is that the parameter string is a *const char \** instead of a just *char \**. This means that the string given to *ReverseString()* can't be changed and the compiler complains when we try to change it in the *for* loop. Remove the *const* keyword and everything is happy.

@@ -8,17 +8,14 @@ All material © 2010 DarkWyrm
 
 What with all of the emphasis on getting the hang of making Haiku applications the last couple of lessons, you might be getting the impression that we're done learning C++, but there are some more aspects of the language still waiting to be learned. We will address them as they are needed while learning to write Haiku programs.
 
-### ***Function and Operator Overloading***
+***Function and Operator Overloading*** {#_function_and_operator_overloading}
+---------------------------------------
 
-Normally you think of overloading as being something you typically don't want to do, like overloading an electrical circuit. In C++, it's something that we do all the time to extend the usefulness of an existing function or language operator. ****Function overloading**** defines several versions of a function which take different sets of parameters. Operators are just functions, so things like plus and minus signs can be extended to better integrate the classes we define with the rest of the API. This gives us the ability to make our objects incredibly flexible and convenient.
+Normally you think of overloading as being something you typically don't want to do, like overloading an electrical circuit. In C++, it's something that we do all the time to extend the usefulness of an existing function or language operator. **Function overloading** defines several versions of a function which take different sets of parameters. Operators are just functions, so things like plus and minus signs can be extended to better integrate the classes we define with the rest of the API. This gives us the ability to make our objects incredibly flexible and convenient.
 
 In last lesson's project we saw our first example of operator overloading with the BString class when we generated the title for the window. It looked like this:
 
-BString labelString("Clicks: ");
-
-// This adds the value of fCount to the end of labelString. More
-
-// on this next lesson.
+BString labelString(\"Clicks: \");
 
 labelString \<\< fCount;
 
@@ -36,7 +33,7 @@ Regular function:
 
 MyClass operator+(const MyClass &first, const MyClass &second);
 
-All other binary operators follow this format. As a general rule, make binary operators regular functions so that you can use the associated objects without having to explicitly typecast them. The only operators that must be methods are assignment ( '*=*' ), function call ( '*()*' ), subscript ( '*\[\]*' ), and member selection ( '→' ). Other assignment operators, such as += and /=, should be methods, but are not required to be.
+All other binary operators follow this format. As a general rule, make binary operators regular functions so that you can use the associated objects without having to explicitly typecast them. The only operators that must be methods are assignment ( \'*=*\' ), function call ( \'*()*\' ), subscript ( \'*\[\]*\' ), and member selection ( \'→\' ). Other assignment operators, such as += and /=, should be methods, but are not required to be.
 
 Unary operators follow this format for implementation:
 
@@ -48,72 +45,67 @@ Regular function:
 
 bool operator!(const MyClass &target);
 
-There are also a couple of special case operators which deserve some attention. First of all, what about the ++ and -- operators? Each of them can be used two different ways. This means that there are two different ways to overload them. When overloaded, both the prefix (*++i*) and postfix (*i++*) versions must be implemented.
+There are also a couple of special case operators which deserve some attention. First of all, what about the and \-- operators? Each of them can be used two different ways. This means that there are two different ways to overload them. When overloaded, both the prefix (\_i\_) and postfix (*i++*) versions must be implemented.
 
 class MyClass:
 
-{
-
-// Preincrement operator
+\\{
 
 MyClass operator++(void);
 
-// Postincrement operator. The integer is just a dummy argument to
-
-// differentiate the two
-
-MyClass operator++(int dummy);  
+MyClass operator++(int dummy);\
 };
 
-The subscript operator ('*\[\]*') also is a special case because it can be on either side of an assignment. It is required to be a method, so there is only one way to implement it:
+The subscript operator (\'*\[\]*\') also is a special case because it can be on either side of an assignment. It is required to be a method, so there is only one way to implement it:
 
 MyClass & operator\[\] (const int index);
 
 As a convenience to keep all of this hard-to-remember information, here is an almost-exhaustive table which organizes it into one place.
 
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *+*              |             | Recommended | *=*         | Required    |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *-*              |             | Recommended | *+=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\**             |             | Recommended | *-=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| */*              |             | Recommended | *\*=*       | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *%*              |             | Recommended | */=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *++*             | Recommended |             | *%=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *--*             | Recommended |             | *\<*        |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\[\]*           | Required    |             | *\<=*       |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\^*             | Recommended |             | *\>*        |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\~*             | Recommended |             | *\>=*       |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *!*              | Recommended |             | *==*        |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *&&*             |             | Recommended | *!=*        |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *||*             |             | Recommended | Bitwise* &* |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\<\<*           |             | Recommended | *|*         |             | Recommended |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\>\>*           |             | Recommended | *\<\<=*     | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *()*             | Required    |             | *\>\>=*     | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *\[\]*           | Required    |             | *&=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| Reference* &*    | Recommended |             | *|=*        | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| Dereference* \** | Recommended |             | *\^=*       | Recommended |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
-| *-\>*            | Required    |             |             |             |             |
-+------------------+-------------+-------------+-------------+-------------+-------------+
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *+*      |             | Recommended | *=*          | Required        |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *-*      |             | Recommended | *+=*         | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\**     |             | Recommended | *-=*         | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| */*      |             | Recommended | *\*=*        | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *%*      |             | Recommended | */=*         | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *++*     | Recommended |             | *%=*         | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\--*    | Recommended |             | *\<*         |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\[\]*   | Required    |             | *⇐*          |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\^*     | Recommended |             | *\>*         |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\~*     | Recommended |             | *\>=*        |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *!*      | Recommended |             | *==*         |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *&&*     |             | Recommended | *!=*         |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| \_       |             | \_          |              | Recommended     | Bitwise*&*  |
++----------+-------------+-------------+--------------+-----------------+-------------+
+|          | Recommended | *\<\<*      |              | Recommended     | \_          |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| \_       |             | Recommended | *\>\>*       |                 | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\<⇐*    | Recommended |             | *()*         | Required        |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *\>\>=*  | Recommended |             | *\[\]*       | Required        |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| *&=*     | Recommended |             | Reference*&* | Recommended     |             |
++----------+-------------+-------------+--------------+-----------------+-------------+
+| \_       | =\_         | Recommended |              | Dereference*\** | Recommended |
++----------+-------------+-------------+--------------+-----------------+-------------+
+|          | *\^=*       | Recommended |              | *→*             | Required    |
++----------+-------------+-------------+--------------+-----------------+-------------+
 
-### ***Copy Constructors***
+***Copy Constructors*** {#_copy_constructors}
+-----------------------
 
 Having learned about constructors and destructors in the last lesson, we've learned about most of the basics, leaving out one related item: the copy constructor, but we're going to address it along the way as we deal with a problem with floating point numbers.
 
@@ -125,7 +117,7 @@ The *float* type isn't terribly accurate. Add together 50 or 100 floating point 
 
 class Fixed
 
-{
+\\{
 
 public:
 
@@ -145,7 +137,7 @@ int64\*fValue;
 
 Fixed::Fixed(void)
 
-{
+\\{
 
 fValue = new int64();
 
@@ -155,7 +147,7 @@ fValue = new int64();
 
 Fixed::\~Fixed(void)
 
-{
+\\{
 
 delete fValue;
 
@@ -165,7 +157,7 @@ float
 
 Fixed::GetValue(void)
 
-{
+\\{
 
 return float(\*fValue) / 100.0;
 
@@ -175,7 +167,7 @@ void
 
 Fixed::SetValue(const int64 &value)
 
-{
+\\{
 
 \*fValue = value \* 100;
 
@@ -185,13 +177,13 @@ int
 
 main(void)
 
-{
+\\{
 
 Fixed f;
 
 f.SetValue(1234);
 
-printf("Value: %f****\\n****",f.GetValue());
+printf(\"Value: %f****\\n****\",f.GetValue());
 
 return 0;
 
@@ -205,13 +197,13 @@ int
 
 main(void)
 
-{
+\\{
 
 Fixed f1;
 
 if (f1.GetValue() == 0)
 
-{
+\\{
 
 Fixed f2;
 
@@ -221,7 +213,7 @@ f1 = f2;
 
 }
 
-printf("Value: %f****\\n****",f1.GetValue());
+printf(\"Value: %f****\\n****\",f1.GetValue());
 
 return 0;
 
@@ -229,9 +221,9 @@ return 0;
 
 If compiled and run under Haiku, once again everything seems to be OK, but there are two devilishly hard-to-find little bugs in the works that will pop up only if our program gets more complicated: the address held by *fValue* in our variable *f1* is deleted twice and there is memory leaked. Double deletes are in some ways worse than memory leaks because they can potentially crash your program and the location of the crash rarely has much to do with the location of the problem. Worse yet, changing the code can cause it to crash in a different place without any apparent reason.
 
-The problem with this code is that the last line of the *if* block doesn't do exactly what we want it to do. What we want is to copy the **value**, but what is copied is the **pointer**. When *f2* goes out of scope at the end of the *if* block, its *fValue* is deleted. The problem is that *f1*'s *fValue* is pointing to the same address. Uh-oh. *f1.fValue* is pointing to a memory location that is now invalid. Anything can happen when *f1* is deleted when our program exits. The memory allocated is also floating out in the ether, never to be deleted until the operating system cleans up our mess for us. If a problem like this should appear in a program under Ubuntu Linux, error information is printed out, but for Haiku, nothing happens. This is actually worse because we're not told about a problem which exists.
+The problem with this code is that the last line of the *if* block doesn't do exactly what we want it to do. What we want is to copy the *value*, but what is copied is the *pointer*. When *f2* goes out of scope at the end of the *if* block, its *fValue* is deleted. The problem is that *f1*\'s *fValue* is pointing to the same address. Uh-oh. *f1.fValue* is pointing to a memory location that is now invalid. Anything can happen when *f1* is deleted when our program exits. The memory allocated is also floating out in the ether, never to be deleted until the operating system cleans up our mess for us. If a problem like this should appear in a program under Ubuntu Linux, error information is printed out, but for Haiku, nothing happens. This is actually worse because we're not told about a problem which exists.
 
-Fixing the bug, fortunately, is pretty easy once we understand it. The problem is that a shallow copy was performed. Shallow object copies dump the exact values of the properties of one object into another. This is fine so long as the objects' properties are allocated on the stack. Heap-allocated properties require a deep copy. This can only be done by implementing our own copy constructor and, while we're at it, overloading the assignment operator.
+Fixing the bug, fortunately, is pretty easy once we understand it. The problem is that a shallow copy was performed. Shallow object copies dump the exact values of the properties of one object into another. This is fine so long as the objects\' properties are allocated on the stack. Heap-allocated properties require a deep copy. This can only be done by implementing our own copy constructor and, while we're at it, overloading the assignment operator.
 
 The copy constructor is a function called whenever an object needs to be duplicated. The default copy constructor performs a shallow copy, which is sufficient in many cases. This isn't one of them, however. We will add these two entries to the class definition:
 
@@ -243,7 +235,7 @@ The implementation of these two functions will look like this:
 
 Fixed::Fixed(const Fixed &from)
 
-{
+\\{
 
 fValue = new int64();
 
@@ -255,7 +247,7 @@ Fixed &
 
 Fixed::operator=(const Fixed &from)
 
-{
+\\{
 
 \*fValue = \*from.fValue;
 
@@ -263,7 +255,8 @@ Fixed::operator=(const Fixed &from)
 
 This copies the values in the addresses kept in *fValue* instead of copying addresses themselves, thus performing a deep copy. All is right with the universe again for a little while longer. Whew!
 
-### ***Project***
+***Project*** {#_project}
+-------------
 
 Let's go one step further and really flesh out this class. It may come in quite handy at some point in the future. Here are the declarations for some more operator overloading that would be useful to integrate our new class into the rest of the programming environment:
 
@@ -275,7 +268,7 @@ bool operator\<(const Fixed &first, const Fixed &second);
 
 bool operator\>(const Fixed &first, const Fixed &second);
 
-bool operator\<=(const Fixed &first, const Fixed &second);
+bool operator⇐(const Fixed &first, const Fixed &second);
 
 bool operator\>=(const Fixed &first, const Fixed &second);
 

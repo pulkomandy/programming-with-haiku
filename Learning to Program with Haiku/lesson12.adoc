@@ -139,7 +139,7 @@ A class has a default constructor if one is not declared in the class definition
 [source,c++]
 ....
 Television(const char *name);
-Television(bool isHD);
+Television(bool isHD);~
 ....
 
 The destructor for a class always looks the same: a tilde (~), the name of the class, and taking no parameters. It is provided if a destructor is not declared in a class' definition. Like the default constructor, it doesn't do anything. The main job for a destructor is to clean up before the object is actually freed. Most of the time, this means freeing heap memory that was allocated somewhere in the object's methods.

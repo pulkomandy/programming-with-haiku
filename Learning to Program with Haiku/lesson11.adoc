@@ -10,7 +10,7 @@ A type is defined using the format _typedef baseType newTypeName_ like the entri
 
 [source,c++]
 ....
-// The type of data 	The new name for the data
+// The type of data 		The new name for the data
 
 typedef signed char 		___haiku_std_int8;
 typedef unsigned char 		__haiku_std_uint8;
