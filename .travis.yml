@@ -35,6 +35,9 @@ before_install:
   - sudo pip3 install --upgrade setuptools
   - sudo pip3 install wheel
 
+  # for converting to mobi
+  - sudo apt-get install calibre
+
   # install python filters
   - pip3 install pandoc-latex-environment
 
