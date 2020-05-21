@@ -9,7 +9,7 @@
 
 ## Lesson 2
 
-## Review
+### Review
 
 1.  One line comments can be added using two forward slashes -- *//* -- and comments which can span multiple lines are placed between these markers: */\* \*/*
 2.  The four tools used to turn source code into machine code are the preprocessor, the compiler, the assembler, and the linker.
