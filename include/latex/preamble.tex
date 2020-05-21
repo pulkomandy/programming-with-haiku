@@ -13,27 +13,27 @@
 
 \newenvironment{assignmentblock}
 {\begin{awesomeblock}[black]{\aweboxrulewidth}{\faPen[regular]}{black}}
-  {\end{awesomeblock}} 
+  {\end{awesomeblock}}
 
 \newenvironment{toughblock}
 {\begin{awesomeblock}[black]{\aweboxrulewidth}{\faCogs[regular]}{black}}
-  {\end{awesomeblock}} 
+  {\end{awesomeblock}}
 
 \newenvironment{errorblock}
 {\begin{awesomeblock}[errorboxcolor]{\aweboxrulewidth}{\faTimes[regular]}{errorboxcolor}}
-  {\end{awesomeblock}} 
+  {\end{awesomeblock}}
 
 \newenvironment{shellerrorblock}
 {\begin{awesomeblock}[errorboxcolor]{\aweboxrulewidth}{\faTimes[regular]}{errorboxcolor}\texttt\bgroup}
-  {\egroup\end{awesomeblock}} 
+  {\egroup\end{awesomeblock}}
 
 \newenvironment{bughuntblock}
 {\begin{awesomeblock}[bughuntboxcolor]{\aweboxrulewidth}{\faBug[regular]}{bughuntboxcolor}\texttt\bgroup}
-  {\egroup\end{awesomeblock}} 
+  {\egroup\end{awesomeblock}}
 
 \newenvironment{bugwarningblock}
 {\begin{awesomeblock}[warningboxcolor]{\aweboxrulewidth}{\faBug[regular]}{warningboxcolor}}
-  {\end{awesomeblock}} 
+  {\end{awesomeblock}}
 
 
 \usepackage{framed,color}
@@ -42,18 +42,6 @@
 \usepackage{fontspec}
 \usepackage{xltxtra,xunicode}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-
-% box drawing characters
-% <https://tex.stackexchange.com/a/333210/6444>
-\usepackage{newunicodechar}
-\newfontfamily{\fallbackfont}{Arial}
-\DeclareTextFontCommand{\textfallback}{\fallbackfont}
-\newunicodechar{█}{\textfallback{█}}
-\newunicodechar{└}{\textfallback{└}}
-\newunicodechar{─}{\textfallback{─}}
-\newunicodechar{├}{\textfallback{├}}
-\newunicodechar{│}{\textfallback{│}}
-\newunicodechar{⇐}{\textfallback{⇐}}
 
 % Place links inline
 \let\oldhref\href
