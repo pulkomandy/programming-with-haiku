@@ -1,9 +1,8 @@
-Lesson 8 {#_lesson_8}
---------
+# Lesson 8
 
 Because we've been focusing on the structure of the C++ language so far, we haven't given much attention to getting information in and out of our program. Today we'll change this, but first, let's take a quick look at a few niggling details that we've been able to ignore until now.
 
-### Scope {#_scope}
+## Scope
 
 This is not to be confused with mouthwash, though considering the personal hygiene habits of some developers, might not be a bad idea, either. Luckily, on the Internet, nobody knows you're a cat.
 
@@ -77,7 +76,7 @@ In case you're too lazy to try this sample out, the value is 2. This could've be
 
 Global and static variables are much like spices in cooking: used sparingly, they can really make writing programs easier, but used too much, all they will do is help you make a big mess. When in doubt, don't use global variables to pass data around -- use function parameters instead. Doing so will make it much easier to reuse code that you've written. Once again, work smarter, not harder.
 
-### Constants {#_constants}
+## Constants
 
 Not everything is subject to being changed in C and C++. Sometimes we want to ensure that some data not be altered at all. There are other times when we want to use a variable to remember some arbitrary value -- we don't care what the value itself happens to be, but we do want to remember its purpose. When we get to writing Haiku programs that use windows and buttons, we will use these quite a lot to specify behavior for controls that we use, such as how they will be resized.
 
@@ -129,7 +128,7 @@ int const * const anotherPtrReallyConstInt = &someVariable;
 
 What a mess! There is a rule of thumb which helps make sense of all of this confusion. **The *const* keyword applies to the element to its left. If there isn't anything there, then it applies to whatever is to the right.** In the first two examples above, every time you see *const int* or *int const*, it means that the pointer itself can be changed, but not the value in the address that it points to. Every time you see *\* const*, it makes the pointer's address fixed, but the value at the pointer's address can be changed. The last two examples above combine these two techniques to make everything constant, both address and value. If you're still confused on this, don't worry too much -- it's not just you. This is a hard topic.
 
-### Using Data From Outside: File Operations {#_using_data_from_outside_file_operations}
+## Using Data From Outside: File Operations
 
 The only way that we know how to get information into our program is *gets()*, and the only way to get it out is *printf()*. While *printf()* is just fine, *gets()* is actually dangerous and whenever the compiler encounters its use, it warns us. The reason is that there is no way to enforce how many characters are placed in the string passed to it. Crashing the program is as easy as typing more characters than the capacity of the array that is given to it. We're going to move on to a much better solution.
 
@@ -171,6 +170,8 @@ FILE * fopen(const char *filePath, const char *mode);
 ```
 
 *fopen()* opens a file as a stream. If successful, it returns a stream handle which is used by other functions and must be eventually closed with *fclose()*. The mode strings are listed below.
+
+: fopen mode strings
 
 +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 | Mode string                       | Function                                                                                                                                          |
@@ -317,11 +318,9 @@ Whew! This is our longest example yet. It's also our closest code to a \"real\" 
 
 There are some small changes in the style, as well. Attention to good style is a quirk of the Haiku ecosystem. The Haiku developers, in particular, are notably picky about code which adheres to the OpenTracker code style guidelines and with good reason. Style is partly a matter of opinion, but good code style can also help with debugging and avoiding errors. Bad code style can make it much, much harder. The style we will use throughout the rest of these lessons does not hold to the official Haiku guidelines in certain ways, but it does follow them pretty closely.
 
-### Bug Hunt {#_bug_hunt}
+## Bug Hunt
 
-#### Hunt \#1 {#_hunt_1}
-
-##### Code {#_code}
+### Hunt \#1 
 
 ``` {.c++}
 #include <stdio.h>
@@ -361,17 +360,9 @@ int main(void)
 }
 ```
 
-##### Errors {#_errors}
-
-    foo.cpp: In function ‘char* ReverseString(const char*)’:
-    foo.cpp:18: error: assignment of read-only location ‘*(string + ((unsigned int)((length + -0x00000000000000001) - i)))’
-
-    foo.cpp:19: error: assignment of read-only location ‘*(string + ((unsigned int)i))’
-
-    foo.cpp:22: error: invalid conversion from ‘const char*’ to ‘char*’
-
-### Answers from Lesson 7's Bug Hunt {#_answers_from_lesson_7s_bug_hunt}
-
-1.  The pointer *combinedString* doesn't point to a valid memory address. It needs to either be given heap memory by *malloc()* -- which is later freed -- or declared on the stack as an array.
-
-2.  The size of *binaryString* array in *main()* is too small. It needs to be at least big enough to hold 1 character per bit in a byte plus 1 for the *NULL* terminator, so *binaryString* must be at least 9 characters instead of 6.
+::: bughunt
+foo.cpp: In function ‘char* ReverseString(const char*)’:
+foo.cpp:18: error: assignment of read-only location ‘*(string + ((unsigned int)((length + -0x00000000000000001) - i)))’
+foo.cpp:19: error: assignment of read-only location ‘*(string + ((unsigned int)i))’
+foo.cpp:22: error: invalid conversion from ‘const char*’ to ‘char*’
+:::

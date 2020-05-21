@@ -1,9 +1,8 @@
-Lesson 7 {#_lesson_7}
---------
+# Lesson 7
 
 Some of the most fun times when learning to program are those instances where a neat idea hits you and, after some playing around, you manage to write a program of your own which does something you want and you think \"Holy smoke! Check this out! I just made the computer *\<insert cool achievement here\>*!\" This lesson is probably not going to inspire any of those moments, but, like eating your vegetables, it's good for you. Make sure you understand this lesson well before moving on.
 
-### Memory: The Heap and The Stack {#_memory_the_heap_and_the_stack}
+## Memory: The Heap and The Stack
 
 You are probably aware that every variable takes up some of the computer's working memory. If weren't aware before, you certainly are now. What you may not know is that each program executed by the operating system has two different pools of memory from which variables are created: the heap and the stack.
 
@@ -74,7 +73,7 @@ int main(void)
 }
 ```
 
-### Beyond Base 10: Binary Math {#_beyond_base_10_binary_math}
+## Beyond Base 10: Binary Math
 
 Now let's take some time to learn some math that we will need in future lessons. Just as computers and people are different in what number they start counting with, the numbering systems that each uses to count are worlds apart.
 
@@ -82,7 +81,7 @@ People use the decimal system, also known as base 10. It is called base 10 becau
 
 +---------------------+--------------------+-----------------+-----------------+
 | \"Thousands Place\" | \"Hundreds Place\" | \"Tens Place\"  | \"Ones Place\"  |
-+---------------------+--------------------+-----------------+-----------------+
++=====================+====================+=================+=================+
 | 1000 = 10^3^        | 100 = 10^2^        | 10 = 10^1^      | 1 = 10^0^       |
 +---------------------+--------------------+-----------------+-----------------+
 
@@ -92,7 +91,7 @@ The math involved at the bare metal level of interaction with computers is far r
 
 +------------------+-----------------+-----------------+-----------------+
 | \"Eights Place\" | \"Fours Place\" | \"Twos Place\"  | \"Ones Place\"  |
-+------------------+-----------------+-----------------+-----------------+
++==================+=================+=================+=================+
 | 8 = 2^3^         | 4 = 2^2^        | 2 = 2^1^        | 1 = 2^0^        |
 +------------------+-----------------+-----------------+-----------------+
 
@@ -104,7 +103,7 @@ To convert a number from binary to decimal, you add up the values in each place.
 
 +---------------+------+------+------+------+------+------+------+-------+
 | Bit Number    | 7    | 6    | 5    | 4    | 3    | 2    | 1    | 0     |
-+---------------+------+------+------+------+------+------+------+-------+
++===============+======+======+======+======+======+======+======+=======+
 | Decimal Value | 128  | 64   | 32   | 16   | 8    | 4    | 2    | 1     |
 +---------------+------+------+------+------+------+------+------+-------+
 
@@ -112,9 +111,11 @@ For each column that has a binary 1 in it, you add the power of 2 that is assign
 
 It's possible to do addition, subtraction, and any other regular mathematical operation in binary, but it's almost never necessary, so we won't cover it here. There are, however, some other operations that are commonly used which are specific to binary math, and C and C++ provide operators for them. They are remarkably similar to the Boolean logic operators we've already learned.
 
+: Bitwise operators
+
 +----------------------+----------------------------+----------------------------+
 | Operator             | Name                       | Description                |
-+----------------------+----------------------------+----------------------------+
++======================+============================+============================+
 | &                    | Bitwise AND                | Turns bits off             |
 +----------------------+----------------------------+----------------------------+
 | |                    | Bitwise OR                 | Turns bits on              |
@@ -126,17 +127,17 @@ It's possible to do addition, subtraction, and any other regular mathematical op
 
 This table doesn't have the space to give all of the information. Much more explanation is required. These are special mathematical operations with specific purposes. The Boolean AND, OR, and NOT operators are used for program logic, i.e. linking together conditions for *if* statements and the like. The bitwise operators in the table above are for manipulating the bits in numbers.
 
-#### Bitwise AND {#_bitwise_and}
+### Bitwise AND
 
 Bitwise AND is used to turn off bits in a number, that is, set certain 1 bits in a number to 0. This is done by comparing the corresponding bits in each number and applying Boolean logic to determine whether or not the bit should be a 1 or 0. Here are two examples that help show how this works.
 
-##### Example 1 {#_example_1}
+#### Example 1
 
 255 & 240 = 240
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 255                  | *11111111*            |
 +----------------------+----------------------+-----------------------+
 | AND                  | 240                  | *11110000*            |
@@ -144,13 +145,13 @@ Bitwise AND is used to turn off bits in a number, that is, set certain 1 bits in
 | =                    | 240                  | *11110000*            |
 +----------------------+----------------------+-----------------------+
 
-##### Example 2 {#_example_2}
+#### Example 2
 
 240 & 170 = 160
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 240                  | *11110000*            |
 +----------------------+----------------------+-----------------------+
 | AND                  | 170                  | *10101010*            |
@@ -168,7 +169,7 @@ Let's say that we have a variable which has the value 199 and we want to turn of
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 199                  | *11000111*            |
 +----------------------+----------------------+-----------------------+
 | AND                  | 251                  | *11111011*            |
@@ -176,17 +177,17 @@ Let's say that we have a variable which has the value 199 and we want to turn of
 | =                    | 195                  | *11000011*            |
 +----------------------+----------------------+-----------------------+
 
-#### Bitwise OR {#_bitwise_or}
+### Bitwise OR
 
 Bitwise OR is used in the opposite way to AND -- its purpose to turn *on* bits in a number, that is, set certain 0 bits in a number to 1.
 
-##### Example 1 {#_example_1_2}
+##### Example 1
 
 192 | 15 = 207
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 192                  | *11000000*            |
 +----------------------+----------------------+-----------------------+
 | OR                   | 15                   | *00001111*            |
@@ -194,13 +195,13 @@ Bitwise OR is used in the opposite way to AND -- its purpose to turn *on* bits i
 | =                    | 207                  | *11001111*            |
 +----------------------+----------------------+-----------------------+
 
-##### Example 2 {#_example_2_2}
+##### Example 2
 
 8 | 64 = 72
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 8                    | *00001000*            |
 +----------------------+----------------------+-----------------------+
 | OR                   | 64                   | *01000000*            |
@@ -210,11 +211,13 @@ Bitwise OR is used in the opposite way to AND -- its purpose to turn *on* bits i
 
 A bit is turned on whenever either bit is a 1. The math is easier when turning on a specific bit. It is merely a matter of ORing the number we want to change with a value of 2 to the power of the number of the bit. If we have a variable containing 36 and we need to turn on bit 1, then we OR our variable with 2^1^, which is 2.
 
+##### Example 3
+
 36 | 2 = 38
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 36                   | *00100100*            |
 +----------------------+----------------------+-----------------------+
 | OR                   | 2                    | *00000010*            |
@@ -222,15 +225,17 @@ A bit is turned on whenever either bit is a 1. The math is easier when turning o
 | =                    | 38                   | *00100110*            |
 +----------------------+----------------------+-----------------------+
 
-#### Bitwise XOR {#_bitwise_xor}
+### Bitwise XOR
 
 Bitwise XOR is probably the weirdest of all of the bitwise operators. XOR stands for eXclusive OR. It is used for inverting bits because it returns 1 if either bit is a 1, but 0 if they have the same value.
+
+##### Example 1
 
 36 \^ 255 = 219
 
 +----------------------+----------------------+-----------------------+
 |                      | Decimal              | Binary                |
-+----------------------+----------------------+-----------------------+
++======================+======================+=======================+
 |                      | 36                   | *00100100*            |
 +----------------------+----------------------+-----------------------+
 | XOR                  | 255                  | *11111111*            |
@@ -240,7 +245,7 @@ Bitwise XOR is probably the weirdest of all of the bitwise operators. XOR stands
 
 XOR sets the output bits to 1 whenever the two input bits are different. So it is the bitwise equivalent to the != operator.
 
-#### Bitwise NOT {#_bitwise_not}
+#### Bitwise NOT
 
 Bitwise NOT also flips bits like XOR does, but with less control. It flips all of the bits in a number, just like the example above, but it does not require a second value. Here is an example of how it can be used:
 
@@ -249,7 +254,7 @@ int a = 5;
 printf("The value of ~%d is %d**\n**", a, ~a);
 ```
 
-#### Shift Operations {#_shift_operations}
+### Shift Operations
 
 In addition to flipping bits on and off, C and C++ provide shift operators which let us quickly do some fast and fancy multiplication and division.
 
@@ -267,9 +272,11 @@ Shift the value of *a* to the right by *b* places. This divides *a* by 2^b^
 
 It's a little easier to figure out why it's called shifting by seeing what it actually does to the bits themselves.
 
+: Bitwise shifting operators
+
 +-------------+-------------------------+-------------+--------------------------+-------------------------+
 | Code        | Mathematical Equivalent | Result      | Value in Binary (before) | Value in Binary (after) |
-+-------------+-------------------------+-------------+--------------------------+-------------------------+
++=============+=========================+=============+==========================+=========================+
 | *5 \<\< 2*  | 5 \* 2^2^               | 20          | *00000101*               | *00010100*              |
 +-------------+-------------------------+-------------+--------------------------+-------------------------+
 | *32 \<\< 1* | 32 \* 2^1^              | 64          | *00010000*               | *00100000*              |
@@ -281,11 +288,9 @@ It's a little easier to figure out why it's called shifting by seeing what it ac
 
 Knowing shift operations is especially handy when operating with values at the bit level because they allow us to do specific kinds math very, very quickly. Multiplying or dividing by a power of 2 is common in these situations and the equivalent calls to *pow()* or using regular division are far slower.
 
-### Bug Hunt {#_bug_hunt}
+### Bug Hunt
 
-#### Hunt \#1 {#_hunt_1}
-
-##### Code {#_code}
+#### Hunt \#1
 
 ``` {.c++}
 #include <stdio.h>
@@ -331,13 +336,11 @@ int main(void)
 }
 ```
 
-##### Errors {#_errors}
-
+::: bugwarning
 When run, the program prints \"*segmentation fault*\" and nothing else.
+:::
 
-#### Hunt \#2 {#_hunt_2}
-
-##### Code {#_code_2}
+#### Hunt \#2
 
 ``` {.c++}
 #include <stdio.h>
@@ -375,43 +378,6 @@ int main(void)
 }
 ```
 
-##### Errors {#_errors_2}
-
-When run, the program prints the following:
-
-    The binary equivalent of 48 is 00000101
-    Segmentation fault
-
-### Lesson 6 Bug Hunt Answers {#_lesson_6_bug_hunt_answers}
-
-There was only one hunt because of how hard it was. It's a kind of error called an off-by-1 error. These are sometimes are to track down, like this one was. The errors and corrections are commented.
-
-``` {.c++}
-char *ReverseString(char *string)
-{
-    // This function rearranges a string so that it is backwards
-    // i.e. abcdef -> fedcba
-
-    if (!string)
-        return NULL;
-
-    int length = strlen(string);
-    int count = length / 2;
-
-    for (int i = 0; i < count; i++)
-    {
-        // This line from Lesson 6 is incorrect
-        //char temp = string[length - i];
-        char temp = string[length - 1 - i];
-
-        // So is this one
-        //string[length - i] = string[i];
-        string[length - 1 - i] = string[i];
-        string[i] = temp;
-    }
-
-    return string;
-}
-```
-
-The reason why this causes the program to not print anything requires a little thought. The first line in the loop is supposed to save the last character of the string. By not subtracting 1 from the length, it saves the *NULL* terminator for the string into *temp* instead. The rest of the loop continues on pretty much as it should. *abcdef\\0* becomes *\\0fedcba*. Because the *NULL* terminator is at the very beginning of the string, when *printf()* goes to print it, it sees the terminator and stops, resulting in the reversed string not getting printed.
+::: bugwarning
+When run, the program prints the following: The binary equivalent of 48 is 00000101 Segmentation fault
+:::

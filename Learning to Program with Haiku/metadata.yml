@@ -1,8 +1,22 @@
 ---
-title: Learning to program with Haiku
+title: Programming with Haiku
+subtitle: Volume 1
 author: Jon Yoder
 rights:  Creative Commons Attribution 4.0 International
 language: en-US
 abstract: |
   Lorem ipsum dolor sic amet
----
+pandoc-latex-environment:
+  noteblock: [note]
+  tipblock: [tip]
+  warningblock: [warning]
+  cautionblock: [caution]
+  importantblock: [important]
+  questionblock: [question]
+  errorblock: [error]
+  shellerrorblock: [shellerror]
+  assignmentblock: [assignment]
+  toughblock: [tough]
+  bughuntblock: [bughunt]
+  bugwarningblock: [bugwarning]
+...

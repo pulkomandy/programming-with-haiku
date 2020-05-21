@@ -1,5 +1,4 @@
-Lesson 2 {#_lesson_2}
---------
+# Lesson 2
 
 Our first couple of programs weren't all that useful, but as we go along, you'll find that you can do more and more with your programs. This time around we're going to look at two main concepts: comments, and the different stages the compiler goes through to generate your program, and we'll also learn a little about debugging your code.
 
@@ -43,6 +42,8 @@ Now we're going to take a step back and look at the process the compiler goes th
 
 When a program is built from source code, there are four tools that operate on it before it is an executable: the preprocessor, the compiler, the assembler, and the linker.
 
+## The building process
+
 ### Stage 1: The Preprocessor
 
 The preprocessor accepts raw source code as input and does a little massaging before the code is sent to the compiler. It removes comments and handles `#include` directives by inserting the contents of the included header file into the code. There are other directives which it handles that will be discussed later.
@@ -59,7 +60,7 @@ The assembler creates **object code** from the Assembly code created by the comp
 
 The linker pieces together your object files along with any libraries that they use into an executable program.
 
-### Debugging
+## Debugging
 
 By nature of programmers being human, they make mistakes and lots of them. Writing code and debugging go hand-in-hand and often done at the same time. As such, we will be learning about how to debug programs as we learn about writing them.
 
@@ -67,9 +68,7 @@ Bugs come in two types: syntactic and semantic. Syntactic bugs are easy to find 
 
 Let's take a look at a few simplified examples of common errors:
 
-#### Example 1
-
-**Code.**
+### Example 1
 
 ``` {.c++}
 #include <stdio.h>
@@ -81,17 +80,15 @@ int main(void)
 }
 ```
 
-**Errors.**
-
+::: shellerror
 foo.cpp:6: error: expected declaration before '}' token
+:::
 
 What we have here is an extra curly brace. `gcc` has given us a fairly cryptic error, as usual, but it has also given us two clues: the file name and the line number. The line number given by `gcc` and the actual location of the error are not always the same, but in this case they are.
 
 At this point, you might be wondering, "What in the world is a token, genius?" A **token** is any language element. Just as a regular written language has words and punctuation, so do computer languages. Just as two commas in a row are a punctuation error in the English language, having an extra curly brace is a C++ punctuation error.
 
-#### Example 2
-
-**Code.**
+### Example 2
 
 ``` {.c++}
 /*-----------------------------------------------------------------------
@@ -113,9 +110,9 @@ int main(void)
 }
 ```
 
-**Errors.**
-
+::: shellerror
 foo.cpp:7: error: expected unqualified-id before '\--' token
+:::
 
 This is an example of how the line number for the error is not the same place as the actual error. The complaint is about the dashes at the end of the multiline comment at the top. It is caused, however by nesting a multiline comment inside another one. The preprocessor removes all comments, so what the compiler sees is this:
 
@@ -132,9 +129,7 @@ int main(void)
 
 The compiler doesn't know what to do with the dashed line and complains.
 
-#### Example 3
-
-**Code.**
+### Example 3
 
 ``` {.c++}
 int Main(void)
@@ -143,10 +138,17 @@ int Main(void)
 }
 ```
 
-**Errors.**
-
+::: shellerror
 /usr/lib/gcc/i486-linux-gnu/4.4.1/../../../../lib/crt1.o: In function \`\_start\': /build/buildd/eglibc-2.10.1/csu/../sysdeps/i386/elf/start.S:115: undefined reference to \`main\' /tmp/ccv39Cuo.o:(.eh\_frame+0x12): undefined reference to \`\_\_gxx\_personality\_v0\' collect2: ld returned 1 exit status
+:::
 
 This is an error of a different kind. Remember that `main()` needs to be defined in every program? We didn't -- we defined `Main()`. The program is otherwise valid, so it compiled just fine, but when the linker attempted to piece it all together, it couldn't find the one required function and threw a hissyfit. Any time you see an error containing `undefined reference to`, you have a linker error.
 
 Resolving *undefined reference* linker errors isn't generally difficult. It usually means one of two things: you forgot to link in a library that you used, or a source code file was accidentally left out when your program was built.
+
+## Review
+
+1.  What are the two ways of adding comments to your code?
+2.  What are the four tools used to turn source code into machine code?
+3.  Name and define the two general classes of programming errors.
+

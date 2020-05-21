@@ -1,9 +1,8 @@
-Lesson 5 {#_lesson_5}
---------
+# Lesson 5 
 
 Computer languages are a funny lot in that some of them are closer to human language and others are closer to machine code. Assembly is one step removed from machine code, yet COBOL is about as close to human language as it gets. C++ is somewhere in the middle, as you will get a hint of in this lesson.
 
-### Arrays {#_arrays}
+## Arrays
 
 In addition to single variables, C++ also gives us the ability to use collections of variables called **arrays**. The individual members of these groups, called **elements**, are all the same type and are clustered together in the computer's memory. You could say that arrays are a little like egg cartons -- containers of a bunch of little items of the same kind. Arrays are declared just like regular variables except for a pair of square brackets with a number inside that states how many items the array contains.
 
@@ -43,7 +42,7 @@ In this example, we took our 5-element array and set the value of each element t
 
 Arrays require some special care and feeding. The memory used to hold them is set aside in chunks and arrays declared this way have a fixed size. The size of the array doesn't magically increase if we try to set *intArray\[6\]* to 16. The results are unpredictable, but most often the operating system aborts our program. Using a negative index will also have the same result. This particular kind of error is called a **segmentation fault**, or segfault for short. Anyone who remembers the days of Windows 95 probably saw the occasional \"General Protection Fault\" that commonly appeared. A GPF was just another name for a segfault.
 
-### Pointers {#_pointers}
+## Pointers
 
 No discussion of arrays would be complete without also talking about pointers. Pointers are a fundamental concept of C and C++ which can initially sound even crazier than counting from 0. A **pointer** is a variable which contains (or *points to*) a memory address. You can always recognize the declaration of a pointer because its name is preceded by an asterisk (\*).
 
@@ -83,7 +82,7 @@ int main(void)
 
 Pointers, like arrays, require care when used because they can make it really easy for a programmer to segfault a program. **Always initialize a pointer to NULL or a known-good address**. What's NULL, you ask? It's just another word for zero when referring to pointers. Even though a NULL pointer is just as unusable as an uninitialized pointer -- one which points to a random address -- you know for certain that it's unusable.
 
-### Strings {#_strings}
+## Strings
 
 In the Lesson 3, we learned about the different kinds of information that can be stored in variables -- types -- but we left out an important one: strings. We have been using them in *printf()* statements -- everything in between a pair of double quotes is a string.
 
@@ -93,7 +92,7 @@ In addition to regular letters, there are also some special characters. These sp
 
 +-----------------------------------+-----------------------------------+
 | Character                         | Character Code                    |
-+-----------------------------------+-----------------------------------+
++===================================+===================================+
 | Backspace                         | \\b                               |
 +-----------------------------------+-----------------------------------+
 | Carriage Return                   | \\r                               |
@@ -185,32 +184,20 @@ The reason for using *memset()* in this example needs a little more explanation.
 Whew! That was a lot of stuff about arrays, pointers, and strings. Lets quickly recap:
 
 -   Arrays are declared with a fixed size using square brackets
-
 -   Array elements start counting up from 0
-
 -   Accessing memory outside the bounds of an array's allocated memory block will cause a segmentation fault (crash).
-
 -   An array can be used like a pointer by using the name of the array without the brackets or an index.
-
 -   Pointers are variables which hold memory addresses
-
 -   Pointers are declared with an asterisk in front: *int \*myPointer*
-
 -   Pointers should always be initialized either to *NULL* (zero) or a known-good address
-
 -   The address of a variable can be obtained with an ampersand: *&myVariable*
-
 -   Character constants are enclosed in single quotes: \'a\' or \'X\'
-
 -   Char variables can be initialized with a character constant or a number from 0 to 255.
-
 -   There are special character constants that take more than one character to type, but are treated as one character, such as *\\n*, which starts a new line.
-
 -   Strings are enclosed in double quotes: \"This is a string\"
-
 -   Strings are arrays of type *char* whose final character is a *NULL* (0) end-marker
 
-### Project {#_project}
+## Assignment
 
 One advantage programmers have over other trades is being able to make tools to help them in their work. Let's make a program which asks for a word from the user and it prints out the integer value of each character.
 
@@ -231,11 +218,8 @@ int strlen(char *inString);
 Here are the basic steps for how we will write our program:
 
 1.  Make a *char* array to hold the information from the user
-
 2.  Call *gets()* to get the information from the user and store it into our array.
-
 3.  Make an *int* variable and set it to the string's length
-
 4.  Use a *for* loop to print each character in the string both as a character and its numerical value
 
 ``` {.c++}
@@ -258,19 +242,21 @@ int main(void)
 }
 ```
 
-> **Bonus:**Make your project print the character code as hexadecimal (base 16) numbers and/or octal (base 8) in addition to regular (base 10) numbers. See Lesson 3 for more information.
+::: infobox
+Make your project print the character code as hexadecimal (base 16) numbers and/or octal (base 8) in addition to regular (base 10) numbers. See Lesson 3 for more information.
+:::
 
-> **Hints:**Closely look over the code examples in the earlier section on strings for hints on how to do step 4. Also, have a second look at the list of placeholders used in *printf()* from Lesson 3.
+::: tipbox
+Closely look over the code examples in the earlier section on strings for hints on how to do step 4. Also, have a second look at the list of placeholders used in *printf()* from Lesson 3.
+:::
 
-#### Going Further {#_going_further}
-
+::: question
 Whenever the compiler builds this project, it complains that *gets()* is dangerous and shouldn't be used. Why do you think this might be?
+:::
 
-### Bug Hunt {#_bug_hunt}
+## Bug Hunt
 
-#### Hunt \#1 {#_hunt_1}
-
-##### Code {#_code}
+### Hunt \#1
 
 ``` {.c++}
 #include <stdio.h>
@@ -288,13 +274,11 @@ int main(void)
 }
 ```
 
-##### Errors {#_errors}
-
+::: bugwarning
 The code builds just fine, but it won't stop running printing stuff on the screen and the only way to stop it is either press Ctrl+C or close the Terminal window.
+:::
 
-#### Hunt \#2 {#_hunt_2}
-
-##### Code {#_code_2}
+### Hunt \#2
 
 ``` {.c++}
 #include <stdio.h>
@@ -315,13 +299,17 @@ int main(void)
 }
 ```
 
-##### Errors {#_errors_2}
+::: bughunt
+foo.cpp: In function ‘int main()’:
+foo.cpp:12: warning: too few arguments for format
+:::
 
-    foo.cpp: In function ‘int main()’:
-    foo.cpp:12: warning: too few arguments for format
+## Lesson Review
 
-#### Lesson 4 Bug Hunt Answers {#_lesson_4_bug_hunt_answers}
+1.  What is a segmentation fault?
+2.  What is the last valid index for an array with 10 elements?
+3.  Why is it important to initialize a pointer to a known-good value or to NULL?
+4.  Which of these is a string, _'a'_ or _"a"_ ?
+5.  A string is an array of what type?
+6.  Which header file (#include) that we have been using contains helper functions for working with strings?
 
-1.  The *i++* in the for loop needs to be *i += 2*
-
-2.  The warnings come from using the *%d* -- used for integers -- for a *float* variable. Change the *%d* placeholders in the *printf* statements to *%f* and they'll go away.

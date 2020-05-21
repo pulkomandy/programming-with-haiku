@@ -1,9 +1,8 @@
-Lesson 6 {#_lesson_6}
---------
+# Lesson 6
 
 This time around we are mostly going to expand on things we already know. Back in Lesson 4, we learned about executing pieces of code only if certain conditions are met with *if* statements and we also saw how to repeat a set of instructions with *for* loops. Let's add a few more tools to our kit.
 
-### More Loops {#_more_loops}
+## More Loops
 
 Although they are probably the most common, there are more kinds of loops than just *for* loops. In fact, there are two other closely-related loops: the *while* loop, and the *do-while* loop.
 
@@ -74,7 +73,7 @@ The *if* condition here checks to see if the current character is zero -- by usi
 
 Using *continue* this way, though, is not something you'd normally see. Cases like this normally would call for a *break* statement, which jumps immediately out of the current code block. *break* would skip checking the loop condition and just exit the loop. We'll use *break* statements almost all of the time with our next concept: the *switch* block.
 
-### *switch* blocks {#_switch_blocks}
+## *switch* blocks
 
 Sometimes we have to deal with making a decision based on one of several possible values for a variable. This could be handled with a series of *if-else* statements, but C and C++ give us *switch* statements to do the job much more elegantly. Let's expand our string-printing project to provide a way to print characters that don't show anything when printed, like spaces and tabs.
 
@@ -135,7 +134,7 @@ case valueForCase:
 
 The *default* case is a catch-all for all values which don't fit one of the specified cases.
 
-### Conditional assignment {#_conditional_assignment}
+## Conditional assignment
 
 We've seen some of the ways that C and C++ offer the programmer shortcuts to do certain common tasks, such as adding 1 to a variable. Another such shortcut is the only operator which has three sections. Here's one way to assign a value to a variable based on a condition.
 
@@ -160,9 +159,9 @@ Right now, you might be thinking, *\"Hold on there, cowboy! What's this here non
 
 Parentheses aren't required around the condition, but some people (like me) prefer to have them even if unnecessary to set the condition apart from the rest. If the condition is true, then the value between the question mark and the colon is returned, otherwise the value after the colon is returned. Its use can be limited, but it does come in handy now and then.
 
-### Bug Hunt {#_bug_hunt}
+## Bug Hunt
 
-#### Code {#_code}
+### Hunt \#1
 
 ``` {.c++}
 #include <stdio.h>
@@ -202,114 +201,10 @@ int main(void)
 }
 ```
 
-#### Errors {#_errors}
-
+::: bugwarning
 The program compiles just fine, but nothing is printed.
+:::
 
-#### Help {#_help}
-
+::: tip
 Normally no help is given for Bug Hunt sections, but this is harder than many. The bug itself is somewhere in *ReverseString()*. Try using *printf()* calls to print values in certain places to give yourself more information on what the program is doing, like printing the length, the count, etc.
-
-### Lesson 5 Bug Hunt Answers {#_lesson_5_bug_hunt_answers}
-
-1.  The last section of the *for* loop has just an *i*. It should be *i++*.
-
-2.  The variable *c* is missing from the end of the argument list in the *printf* statement.
-
-### Lesson 5 Project Review {#_lesson_5_project_review}
-
-In the last lesson we were trying to make a program which asks for a word from the user and it prints out the integer value of each character.
-
-We were given these steps to follow to write it:
-
-1.  Make a *char* array to hold the user input.
-
-2.  Call *gets()* to get the string from the user.
-
-3.  Make an *int* variable and set it to the string's length
-
-4.  Use a *for* loop to print each character in the string both as a character and its numerical value
-
-``` {.c++}
-#include <stdio.h>
-#include <string.h>
-
-int main(void)
-{
-    char inString[1024];
-
-    printf("Type the text to convert and press Enter: ");
-    gets(inString);
-
-    // Here was the part we needed to fill in, so here's one way to do it.
-    // Step 3.
-    int strLength = strlen(inString);
-
-    // Just some fluff to make this program a little nicer
-    printf("The character codes for the string \'%s\'\n",inString);
-
-    // Step 4.
-    for (int i = 0; i < strLength; i++)
-        printf("[%d]: %c\t%d (0x%x)\n", i, inString[i], inString[i], inString[i]);
-
-    return 0;
-}
-```
-
-This example even includes printing the character code in both decimal and hexadecimal.
-
-### Unit 1 Review Answers {#_unit_1_review_answers}
-
-#### Lesson 1 {#_lesson_1}
-
-1.  Machine code is the computer's native language -- a set of numerical instructions which the computer executes.
-
-2.  Source code is the human-readable text used to create a program.
-
-#### Lesson 2 {#_lesson_2}
-
-1.  One line comments can be added using two forward slashes -- *//* -- and comments which can span multiple lines are placed between these markers: */\* \*/*
-
-2.  The four tools used to turn source code into machine code are the preprocessor, the compiler, the assembler, and the linker.
-
-3.  The two classes of programming errors are syntactic and semantic. Syntactic errors are mistakes in the construction of the computer language, such as having the wrong number of parentheses in a statement. Semantic errors are mistakes in the program logic of code that has correct syntax -- bugs in the meaning of the code.
-
-#### Lesson 3 {#_lesson_3}
-
-1.  The *%* operator returns the remainder of the division of the two arguments. *10 % 4* is 2.
-
-2.  *i\_ adds one before the rest of the expression is evaluated. \_i* does the addition afterward.
-
-3.  myVar \*= 5
-
-4.  *==* is used for comparison because *=* is used for assigning a value to a variable.
-
-5.  *%f*is the placeholder for a float when using *printf*.
-
-6.  Parameters are information given to a function which it requires to perform its task.
-
-7.  The difference between int and long is that long typically can hold bigger values.
-
-8.  *10 / 4* is integer division, so the result is 2. *10.0 / 4.0* is floating point division, so the result is 2.5.
-
-#### Lesson 4 {#_lesson_4}
-
-1.  Nothing will be printed. *i* has a value of zero, which, for the purposes of logic, is treated as false.
-
-2.  The boolean OR operator, *||*, should be used here.
-
-3.  The first section of the control block of a *for* loop sets the value of the index variable. The second section is the test to see if another iteration is called for, and the third modifies the index variable.
-
-#### Lesson 5 {#_lesson_5}
-
-1.  A segmentation fault is an attempt to access memory that doesn't belong to your program.
-
-2.  Because array indices start at 0, the last valid index for a 10-element array is 9.
-
-3.  Pointers should be initialized to NULL or a known-good address so that you always can tell whether or not a pointer is valid and can, thus, avoid segfaults.
-
-4.  *\'a\'* is a character constant. *\"a\"* is a string, which amounts to the *\'a\'* character constant plus a NULL string terminator.
-
-5.  A string is an array of the type *char*.
-
-6.  *string.h* is the header which we have been using that contains helper functions for working with strings.
+:::

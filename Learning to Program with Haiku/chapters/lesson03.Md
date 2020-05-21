@@ -1,5 +1,4 @@
-Lesson 3 {#_lesson_3}
---------
+# Lesson 3
 
 So far we've been learning about programming basics, such as how to write a function and how to start looking for bugs in our code. This time we'll be learning about different types of data and ways to store and pass it around.
 
@@ -54,9 +53,11 @@ When we call a function with parameters, such as `MultiplyNumbers()` in the abov
 
 Speaking of types, there are more types of data than just integers in C++. Each type takes up a different amount of space in memory, measured in bytes. This is important to remember because the number of bytes a variable occupies has a direct impact on how much information it can hold. This difference is evident in the range of values a `char` can hold as opposed to a `short`. Type sizes vary from platform to platform, but here is a pretty good list for Haiku on a 32-bit processor.
 
+: C++ Types
+
 +--------------------+-----------------+----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
 | Type               | Size (bytes)    | Range                                                    | Description                                                                                                       |
-+--------------------+-----------------+----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
++====================+=================+==========================================================+===================================================================================================================+
 | char               | 1               | -128 to 127                                              | Letters -- each char variable only holds 1 letter                                                                 |
 +--------------------+-----------------+----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
 | unsigned char      | 1               | 0 to 255                                                 | Letters -- each char variable only holds 1 letter                                                                 |
@@ -86,7 +87,7 @@ Speaking of types, there are more types of data than just integers in C++. Each 
 | wchar\_t           | 2 or 4          | As either `short` or `int`                               | "Wide" characters, which can support international characters. As with `char`, each variable only holds 1 letter. |
 +--------------------+-----------------+----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
 
-### Using printf() {#_using_printf}
+## Using printf()
 
 Now do you remember the weirdness that we saw a little bit ago with `printf()`? Let's take another look at it.
 
@@ -110,9 +111,11 @@ int main(void)
 
 `printf` is one of a few functions which take a variable number of arguments. Its first parameter is always a string. Depending on the number of placeholders in the string, though, it may or may not have additional parameters following the string. For example, in our above example, the string has three `%d` placeholders, one each for `a`, `b`, and `c`. Three placeholders, three "extra" parameters. Here are some other possible placeholders for `printf` that we'll use later on. Note that this is not an exhaustive list to `printf` -- there are many more options, but these will suffice for now.
 
+: printf placeholders
+
 +----------------------+---------------------------------+-----------------------+
 | Placeholder          | Type                            | Sample output         |
-+----------------------+---------------------------------+-----------------------+
++======================+=================================+=======================+
 | %c                   | Character                       | a                     |
 +----------------------+---------------------------------+-----------------------+
 | %d, %i               | Signed decimal integer          | 234                   |
@@ -132,13 +135,17 @@ int main(void)
 | %%                   | Percent sign                    | \%                    |
 +----------------------+---------------------------------+-----------------------+
 
-### Operators {#_operators}
+## Operators
 
 Operators give us ways of working with variables and numbers without calling functions. `+`, `-`, and `*` are all examples of operators, but C++ has many more than just these. Here are the arithmetic operators that we'll need for now.
 
+: Operators
+
 +----------------------+----------------------------+-------------------------------------------------------------------+
-| a + b                | addition                   | adds b to a                                                       |
+| Expression           | Name                       | Effect                                                            |
 +======================+============================+===================================================================+
+| a + b                | addition                   | adds b to a                                                       |
++----------------------+----------------------------+-------------------------------------------------------------------+
 | a - b                | subtraction                | subtracts b from a                                                |
 +----------------------+----------------------------+-------------------------------------------------------------------+
 | a \* b               | multiplication             | multiplies a by b                                                 |
@@ -168,7 +175,7 @@ Operators give us ways of working with variables and numbers without calling fun
 | a %= b               | assign with modulo         | Short for a = a % b                                               |
 +----------------------+----------------------------+-------------------------------------------------------------------+
 
-The --- and ++ operators need a little more explanation than is possible in the table. Let's take a look at some code to explain it best.
+The --- and ++ operators need a little more explanation than is possible in the table. Let's take a look at some code to explain it best.
 
 ``` {.c++}
 #include <stdio.h>
@@ -222,11 +229,13 @@ int main(void)
 
 `hypotenuse()` returns a `double` because we want some sort of precision beyond whole numbers. It is also the return type for `sqrt()`.
 
-### Bug Hunt {#_bug_hunt}
+## Assignment
 
-#### Hunt \#1 {#_hunt_1}
+Using the equation *Interest = Principal \* rate \* time*, calculate and print the simple interest incurred on a principal of \$20000 at a rate of 5% per month for 24 months. Use a function to do the actual interest calculations.
 
-**Code.**
+## Bug Hunt
+
+### Bug Hunt \#1
 
 ``` {.c++}
 int sum(int first, int second, int third)
@@ -246,14 +255,12 @@ int main(void)
 }
 ```
 
-**Errors.**
+::: bughunt
+foo.cpp: In function ‘int main()’:
+foo.cpp:14: error: ‘c’ was not declared in this scope
+:::
 
-    foo.cpp: In function ‘int main()’:
-    foo.cpp:14: error: ‘c’ was not declared in this scope
-
-#### Hunt \#2 {#_hunt_2}
-
-**Code.**
+### Bug Hunt \#2
 
 ``` {.c++}
 #include <stdio.h>
@@ -284,12 +291,19 @@ int main(void)
     return 0;
 }
 ```
+::: bughunt
+foo.cpp: In function ‘double distance(int, int, int, int)’:
+foo.cpp:8: error: ‘sqrt’ was not declared in this scope
+:::
 
-**Errors.**
+## Review
 
-    foo.cpp: In function ‘double distance(int, int, int, int)’:
-    foo.cpp:8: error: ‘sqrt’ was not declared in this scope
+1.  What is the numerical result of _10 % 4_ ?
+2.  What is the difference between _pass:c[++i]_ and _pass:c[i++]_?
+3.  What is a shorter way of writing _myVar = myVar * 5_ ?
+4.  Why is == used instead of = for comparing two quantities?
+5.  What is the _printf_ placeholder for a _float_?
+6.  What are parameters?
+7.  What is the difference between the types _int_ and _long_?
+8.  What is the numerical result of 10 / 4? 10.0 / 4.0?
 
-### Project {#_project}
-
-Using the equation *Interest = Principal \* rate \* time*, calculate and print the simple interest incurred on a principal of \$20000 at a rate of 5% per month for 24 months. Use a function to do the actual interest calculations.

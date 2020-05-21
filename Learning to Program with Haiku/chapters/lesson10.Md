@@ -1,38 +1,41 @@
+# Lesson 10
+
 Back when we first took a look at pointers, I mentioned that they are a powerful tool. Today we'll see how they can be used with functions and learn some different ways of passing variables to functions.
 
-Default Values for Parameters {#_default_values_for_parameters}
------------------------------
+## Default Values for Parameters
 
 When calling functions, sometimes there are certain parameters that almost never change. Let's say that in a program we're writing we have a function to create a window on the screen that looks like this:
 
 ``` {.c++}
-void MakeWindow(int left, int top, int right, int bottom, const char *title,
-    int type, int look);
+void MakeWindow(int left, int top, int right, int bottom,
+    const char *title, int type, int look);
 ```
 
 Each time we use this function, we end up having different values for the location, size, and title, but the type and the look don't change -- almost all of the time the same numbers for *type* and *look* are used because we're making regular windows. This makes for extra typing, so we may want to use a default value for the type. To do this, we change the declaration slightly:
 
 ``` {.c++}
-void MakeWindow(int left, int top, int right, int bottom, const char *title,
-    int type = REGULAR_WINDOW_TYPE, int look = REGULAR_WINDOW_LOOK);
+void MakeWindow(int left, int top, int right, int bottom,
+    const char *title, int type = REGULAR_WINDOW_TYPE,
+    int look = REGULAR_WINDOW_LOOK);
+
 ```
 
 We are, in a sense, initializing the parameter so that we don't always have to type in a value when we call the function. Parameters with default values always go at the end of a parameter list in a function call. In this particular case, a lot less typing is involved for the usual case of a "regular" kind of window:
 
 ``` {.c++}
-MakeWindow(100,100,500,400, “MyWindow”,REGULAR_WINDOW_TYPE,REGULAR_WINDOW_LOOK);
+MakeWindow(100,100,500,400,MyWindow”,REGULAR_WINDOW_TYPE, REGULAR_WINDOW_LOOK);
+
 ```
 
 becomes
 
 ``` {.c++}
-MakeWindow(100,100,500,400, “MyWindow”);
+MakeWindow(100,100,500,400, MyWindow”);
 ```
 
 We won't see too many instances of default parameter values until we start writing programs that use Haiku's graphical toolkit, but it's good to know about these beforehand.
 
-References {#_references}
-----------
+## References
 
 References, in this case, are not something you would find in the library. Instead, they are a hybrid of a pointer and a regular variable. They are treated like a regular variable in terms of not having to use the an asterisk to get its value, but they don't have their own memory for storing data. Instead, they use another variable's space. Here is an example of a reference declaration:
 
@@ -67,8 +70,7 @@ int main(void)
 
 References are a feature that makes you want to say, \"OK, that's nice. Let's move along now,\" but there's more than meets the eye here. First of all, you can't change the location that a reference points to, so *myRef* will always refer to the address that *myPointer* points to -- even if *myPointer* changes -- so trying to use *myRef* after *myPointer* has been freed will cause a segmentation fault. This unchangeability is actually a good thing. A reference has to be initialized and can't be uninitialized, so it will always be valid unless the memory it refers to has been freed or if the variable it refers to goes out of scope. This makes references a great deal safer than pointers at the expense of some flexibility.
 
-Parameter Use: by Reference or by Value {#_parameter_use_by_reference_or_by_value}
----------------------------------------
+## Parameter Use: by Reference or by Value
 
 There is more than one way to get data out of a function. The usual way is the value it returns, but references provide another. Normally, when a parameter is passed to a function, a copy of the variable is passed to the function -- the *value* of the parameter has been sent to the function, not the variable itself. This means that you can change the parameter without causing trouble outside the function. When a reference to a parameter is given to a function, any changes that the function makes to it continue on after it exits. Changing a function to pass a parameter by reference is as simple as adding an ampersand (&) in front of the parameter's name.
 
@@ -112,8 +114,7 @@ int main(void)
 
 In this example *foo* starts with a value of 5, but because *myFunction()* changes it, its value is 10 when it is printed. *bar* is not changed because *myFunction()* changes a *copy* of *bar*.
 
-Pointers to Functions {#_pointers_to_functions}
----------------------
+## Pointers to Functions
 
 Just when you thought pointers couldn't get any weirder, it gets worse. It is possible to not only have a pointer whose address holds a value, pointers can point to an address containing code.
 
@@ -130,91 +131,89 @@ Types for function pointers are very specific. The return value and the number a
 ``` {.c++}
 void (*integerFunction)(int value);
 int (*anotherIntegerFunction)(int value);
-...
+```
 
 Executing a function by way of a pointer is dead easy: Treat the pointer as the name of the function. This example calls the function held by the _integerFunction_ pointer:
 
+``` {.c++}
 _integerFunction_(5);
+```
 
 Like references, the uses of function pointers are not immediately obvious. They add incredible flexibility to a program. Code can be bolted on or changed out just like parts on a car. Interpreted languages, such as Python or Perl, make it very easy to change a program on the fly, but this is not very easy at all for a compiled language like C++. Although normally pretty rare, we'll use function pointers quite a bit when we look at program addons later on. For now, don't worry too much about them.
 
-== Pointers to pointers
+## Pointers to pointers
 
 Yes, pointers can point to pointers. The address a pointer holds can easily be the address of another pointer. This is just a matter of adding a second asterisk when declaring a pointer.
 
-[source,c++]
+``` {.c++}
+char \*\*somePointerToAPointer;
 ```
 
-char \*\*somePointerToAPointer;
+Don't forget that a pointer's declaration doesn't allocate any memory! The only thing that exists after this declaration is _somePointerToAPointer_. We can use it for different things, such as getting a pointer from a function without using a return value or creating a list of strings. Yes, this is the way you create a fixed list of strings on the heap. This is also how we get arguments from the command line.
 
-    Don't forget that a pointer's declaration doesn't allocate any memory! The only thing that exists after this declaration is _somePointerToAPointer_. We can use it for different things, such as getting a pointer from a function without using a return value or creating a list of strings. Yes, this is the way you create a fixed list of strings on the heap. This is also how we get arguments from the command line.
+## Command Line Arguments
 
-    == Command Line Arguments
+Just like functions taking parameters – or arguments... they're the same thing – programs themselves can have information passed to them. Take, for example, this Terminal command:
 
-    Just like functions taking parameters – or arguments... they're the same thing – programs themselves can have information passed to them. Take, for example, this Terminal command:
-
-    [source,shell]
-
+``` {.sh}
 \$ rm -f \--verbose myFile\_
+```
 
-    The command _rm_ has three arguments: a filename and two switches. Command line switches are options that change the behavior of a program without being the information on which it operates. In this case, _rm_ operates on the file _myFile_. The _-f_ switch tells it to force removal, not asking for confirmation, and the _--verbose_ switch tells it to print more information to the screen than it normally does.
+The command _rm_ has three arguments: a filename and two switches. Command line switches are options that change the behavior of a program without being the information on which it operates. In this case, _rm_ operates on the file _myFile_. The _-f_ switch tells it to force removal, not asking for confirmation, and the _--verbose_ switch tells it to print more information to the screen than it normally does.
 
-    Switches in Windows begin with a slash, but for Linux, OS X, and Haiku, they begin with a dash. As a general rule, switches with only one dash have only one letter and switches with two dashes are generally words and phrases separated by a dash. We're not going to focus too much on command line switches for the purposes of these lessons just because our projects will not be complex enough to warrant using them.
+Switches in Windows begin with a slash, but for Linux, OS X, and Haiku, they begin with a dash. As a general rule, switches with only one dash have only one letter and switches with two dashes are generally words and phrases separated by a dash. We're not going to focus too much on command line switches for the purposes of these lessons just because our projects will not be complex enough to warrant using them.
 
-    In order for a program to take advantage of command line arguments, the way we use _main()_ must change a little bit:
+In order for a program to take advantage of command line arguments, the way we use _main()_ must change a little bit:
 
-    [source,c++]
-
+``` {.c++}
 int main(int argc, char \*\*argv) { return 0; }
+```
 
-    Now _main()_ takes two parameters: _argc_, which is the number of arguments from the command line and _argv_, which is a list of strings which contain the command line arguments. Treat _argv_ like an array – if _argc_ is 2, then _argv_ will have elements numbered 0 and 1. _argv[0]_ always contains the name of the program when it was run. This program will print the command line arguments passed to it.
+Now _main()_ takes two parameters: _argc_, which is the number of arguments from the command line and _argv_, which is a list of strings which contain the command line arguments. Treat _argv_ like an array – if _argc_ is 2, then _argv_ will have elements numbered 0 and 1. _argv[0]_ always contains the name of the program when it was run. This program will print the command line arguments passed to it.
 
-    [source,c++]
-
+``` {.c++}
 \#include \<stdio.h\>
 
 int main(int argc, char \*\*argv) { // Iterate through all arguments and print them. for (int i = 0; i \< argc; i++) printf(\"Program argument %d: %s\\n\", i, argv\[i\]);
 
       return 0;
     }
+```
 
-    The place to look closely is the end of the _printf()_ statement. Using a pointer to a pointer is literally just like using a multidimensional array. Strings are just special _char_ arrays, so we are accessing lists of characters individually here. If we wanted to use just the second character of the first argument, we'd use _argv[0][1]_. In case it's a little fuzzy, bracket order goes from the largest group to the smallest from left to right, so we would be accessing element 0 in the list of lists and choosing element 1 – the second character – from that list.
+The place to look closely is the end of the _printf()_ statement. Using a pointer to a pointer is literally just like using a multidimensional array. Strings are just special _char_ arrays, so we are accessing lists of characters individually here. If we wanted to use just the second character of the first argument, we'd use _argv[0][1]_. In case it's a little fuzzy, bracket order goes from the largest group to the smallest from left to right, so we would be accessing element 0 in the list of lists and choosing element 1 – the second character – from that list.
 
-    == Project
+## Assignment
 
-    With everything we've learned in these ten lessons thus far, we have the capacity to do a great deal. This will be our first project of notable value. We are going to write a simple version of the command line utility _cat_, which concatenates, or joins together, files by printing them to _stdout_ in the order that they are specified from the command line.
+ With everything we've learned in these ten lessons thus far, we have the capacity to do a great deal. This will be our first project of notable value. We are going to write a simple version of the command line utility _cat_, which concatenates, or joins together, files by printing them to _stdout_ in the order that they are specified from the command line.
 
-    For this project, we will need to use two new functions: fread and fwrite.
+For this project, we will need to use two new functions: fread and fwrite.
 
-    [source,c++]
-
+``` {.c++}
 size\_t fread (void \*buffer, size\_t size, size\_t count, FILE \*stream); size\_t fwrite (void \*buffer, size\_t size, size\_t count, FILE \*stream);
+```
 
-    _fread_ reads in data from a file stream. This function will try to read in _size * count_ bytes and place the data into _buffer_. This is really handy because you can allocate any kind of array for _buffer_, use the _sizeof()_ function on its type for _size_, and send the number of elements in the array as _count_. _fread_ returns the number of elements actually read. If it is not the same as what was requested, there was either an error or the end of the file was reached.
+_fread_ reads in data from a file stream. This function will try to read in _size * count_ bytes and place the data into _buffer_. This is really handy because you can allocate any kind of array for _buffer_, use the _sizeof()_ function on its type for _size_, and send the number of elements in the array as _count_. _fread_ returns the number of elements actually read. If it is not the same as what was requested, there was either an error or the end of the file was reached.
 
-    _fwrite_ works the same way as _fread_, but in reverse. Data in _buffer_ is written to _stream_ and the number of elements written are returned.
+_fwrite_ works the same way as _fread_, but in reverse. Data in _buffer_ is written to _stream_ and the number of elements written are returned.
 
-    Conceptually, this will involve what we have just learned about using command line arguments in combination with file operations from Lesson 8 plus _fread_ and _fwrite_. Use a _for_ loop to execute the following set of steps on each argument.
+Conceptually, this will involve what we have just learned about using command line arguments in combination with file operations from Lesson 8 plus _fread_ and _fwrite_. Use a _for_ loop to execute the following set of steps on each argument.
 
-    [arabic]
-    . Try to open the argument for reading as a file.
-    . If the open fails, skip to the next iteration.
-    . If the open succeeds, try to read a chunk of data from the file, storing the number of bytes read into a variable.
-    . Use a _while_ loop to read sections of data from the file, repeating while the number of bytes read is greater than 0.
-    [loweralpha]
-    .. Write the number of bytes read to _stdout_.
-    .. Try reading some more data from the file handle, storing the number of bytes read.
-    . Close the file's handle
+- Try to open the argument for reading as a file.
+- If the open fails, skip to the next iteration.
+- If the open succeeds, try to read a chunk of data from the file, storing the number of bytes read into a variable.
+- Use a _while_ loop to read sections of data from the file, repeating while the number of bytes read is greater than 0.
+    - Write the number of bytes read to _stdout_.
+    - Try reading some more data from the file handle, storing the number of bytes read.
+    - Close the file's handle
 
-    === Hints, Warnings, and Advice
+::: tip
+Printing file errors using _ferror_ might be a nice touch. 
+The chunk of memory you store the file data in can be from the stack or from the heap.
+:::
 
-    * Printing file errors using _ferror_ might be a nice touch.
-    * The chunk of memory you store the file data in can be from the stack or from the heap.
+Because we haven't done much actual writing of code, I'll do a little to get you going. All you'll have to do is replace each of the comments with the corresponding code. It might be a good idea to write a little bit at a time and recompile. Writing code incrementally and testing it helps keep bugs small and easy to locate.
 
-    Because we haven't done much actual writing of code, I'll do a little to get you going. All you'll have to do is replace each of the comments with the corresponding code. It might be a good idea to write a little bit at a time and recompile. Writing code incrementally and testing it helps keep bugs small and easy to locate.
-
-    [source,c++]
-
+``` {.c++}
 \#include \<stdio.h\> \#include \<malloc.h\>
 
 int main(int argc, char \*\*argv) { for (int i = 1; i \< argc; i++) { // open a file handle for reading from argv\[i\]
@@ -237,8 +236,7 @@ int main(int argc, char \*\*argv) { for (int i = 1; i \< argc; i++) { // open a 
     // the file handle
     {
         // write the number of bytes read to stdout
-
-      // read more data and put the number of bytes actually read
+        // read more data and put the number of bytes actually read
         // into the variable we created above.
     }
 
@@ -250,3 +248,4 @@ int main(int argc, char \*\*argv) { for (int i = 1; i \< argc; i++) { // open a 
 
       return 0;
     }
+```

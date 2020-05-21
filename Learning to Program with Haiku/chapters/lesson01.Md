@@ -1,5 +1,4 @@
-Lesson 1 {#_lesson_1}
---------
+# Lesson 1
 
 Programming involves communicating your ideas to the computer. The only problem is that computers are stupid. They will do exactly what you tell them and NOT what you mean unless what you mean is, in fact, what you have told them. If you don't completely understand that -- believe me -- you will soon enough.
 
@@ -110,13 +109,13 @@ There are two parts that are unfamiliar here. The line starting with \#include t
 
 The other unfamiliar part here is the part inside the parentheses for `printf()`. Everything in the quotes will be printed on the screen if you run this program from the Terminal. This kind of data is called a **string** (as in string of characters).
 
-### Question:
+::: question
+What happens if you remove the backslash and the letter n from the end of the string so that it looks like this: `"Hello world!"`?
+:::
 
-What happens if you remove the backslash and the letter n from the end of the string so that it looks like this: `"Hello world!"`
+## Assignment
 
-### Assignment:
-
-Write a program which prints a box on the Terminal using minuses and pipe symbols like this:
+Write a program which prints a box on the Terminal using minuses and pipe symbols.
 
     ----------
     |        |
@@ -125,6 +124,11 @@ Write a program which prints a box on the Terminal using minuses and pipe symbol
     |        |
     ----------
 
-### Question for thought:
-
+::: tough
 How could you write a program which draws two boxes without having to do a ton of typing?
+:::
+
+## Review
+
+1.  What is machine code?
+2.  What is source code?

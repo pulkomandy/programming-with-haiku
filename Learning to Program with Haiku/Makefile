@@ -3,30 +3,24 @@
 BUILD = build
 MAKEFILE = Makefile
 OUTPUT_FILENAME = ProgrammingHaiku
-METADATA = metadata.yml
-TOC = --toc --toc-depth=2
-IMAGES_DIR = images
+
+INCLUDE_DIR = ../include
+IMAGES_DIR = ./images
 IMAGES = $(IMAGES_DIR)/*
 COVER_IMAGE = $(IMAGES_DIR)/cover.jpg
-LATEX_CLASS = book
-PDF_ENGINE=xelatex
-MATH_FORMULAS = --webtex
-CSS_FILE = ../style.css
-CSS_ARG = --css=$(CSS_FILE)
+
+METADATA = metadata.yml
+TOC = --toc --toc-depth=2 -V toc-title='Table of contents' -V toc-own-page:true
+CSS_ARG = --css=$(INCLUDE_DIR)/css/style.css
 METADATA_ARG = --metadata-file=$(METADATA)
-ARGS = $(TOC) $(MATH_FORMULAS) $(CSS_ARG) $(METADATA_ARG)
-MARKDOWN_FORMAT = markdown-pipe_tables+backtick_code_blocks+fancy_lists+table_captions+smart
-CHAPTERS_DIR = chapters
-INCLUDE_DIR = ../include
+MATH_FORMULAS = --webtex
 
-all: book
+PDF_ENGINE=xelatex
+ARGS = $(MATH_FORMULAS) $(CSS_ARG) $(METADATA_ARG)
 
-book: epub html pdf mobi
+MARKDOWN_FORMAT = markdown-pipe_tables+backtick_code_blocks+fancy_lists+table_captions+smart+fenced_divs
 
-clean:
-	rm -rf $(BUILD)
-	rm -rf $(CHAPTERS_DIR)
-
+CHAPTERS_DIR = ./chapters
 CHAPTERS := lesson01.Md lesson02.Md lesson03.Md lesson04.Md  \
 	lesson05.Md lesson06.Md lesson07.Md lesson08.Md \
 	lesson09.Md lesson10.Md lesson11.Md lesson12.Md \
@@ -35,6 +29,13 @@ CHAPTERS := lesson01.Md lesson02.Md lesson03.Md lesson04.Md  \
 	lesson21.Md lesson22.Md lesson23.Md
 
 CHAPTERS_TARGETS = $(addprefix $(CHAPTERS_DIR)/,$(CHAPTERS))
+
+all: book
+
+book: epub html pdf mobi
+
+clean:
+	rm -rf $(BUILD)
 
 markdown: $(BUILD)/markdown/$(OUTPUT_FILENAME).Md
 
@@ -65,35 +66,30 @@ $(BUILD)/html/$(OUTPUT_FILENAME).html: $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGET
 	cp -R $(IMAGES_DIR)/ $(BUILD)/html/$(IMAGES_DIR)/
 	cp $(CSS_FILE) $(BUILD)/html/$(CSS_FILE)
 
-$(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CHAPTERS_TARGETS) $(CSS_FILE)
+$(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 	mkdir -p $(BUILD)/markdown
 	mkdir -p $(BUILD)/pdf
 	pandoc $(ARGS) \
-			--template=$(INCLUDE_DIR)/pandoc/eisvogel_mod.latex \
+			$(TOC) \
+			--template=$(INCLUDE_DIR)/pandoc/eisvogel.latex \
 			--metadata=abstract:" " \
-			-V documentclass=$(LATEX_CLASS) \
-			-V geometry:a4paper \
-    		-V toc-title='Table of contents' \
-    		-V titlepage:true \
-			-V titlepage-color:"FFFFFF" \
-			-V titlepage-text-color:"000000" \
-			-V titlepage-rule-color:"CCCCCC" \
-			-V titlepage-rule-height:4 \
-			-V geometry:"left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm" \
-			-V subtitle:"Lorem ipsum dolor sic amet" \
+			-V geometry:a4paper -V geometry:"left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm" \
+			-V titlepage:true -V titlepage-color:"FFFFFF" -V titlepage-rule-height:4 \
+			-V logo:$(INCLUDE_DIR)/haiku/haikulogov2.png -V logo-width:200 \
 			-V links-as-notes:true \
- 			-V lot:true \
- 			-V logo:$(INCLUDE_DIR)/haiku/haikulogov2.png \
- 			-V logo-width:200 \
- 			-M date="`date "+%d %B %Y"`" \
-    		--listing \
-    		--number-section \
+			-V lot:true \
+			-V footnotes-pretty:true \
+			--listing -V listings-disable-line-numbers:true \
+			-V book:true --top-level-division=chapter \
 			--pdf-engine=$(PDF_ENGINE) \
-			--include-in-header $(INCLUDE_DIR)/latex/chapter_break.tex \
+			--include-in-header $(INCLUDE_DIR)/latex/preamble.tex \
 			--include-before-body $(INCLUDE_DIR)/latex/before_body.tex \
 			--include-after-body $(INCLUDE_DIR)/latex/after_body.tex \
-			-o $@ -f $(MARKDOWN_FORMAT) \
-			-s $(CHAPTERS_TARGETS)
+			--filter pandoc-latex-environment \
+			--number-offset=1 \
+			-f $(MARKDOWN_FORMAT) \
+			-s $(CHAPTERS_TARGETS) \
+			-o $@
 
 %.xml : %.adoc
 	asciidoctor -v -d book -b docbook -s $< -o $@

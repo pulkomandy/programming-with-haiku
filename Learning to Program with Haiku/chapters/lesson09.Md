@@ -1,9 +1,8 @@
-Lesson 9 {#_lesson_9}
---------
+# Lesson 9
 
 If you haven't noticed, we've come a long way since Lesson 1. We're steadily getting closer to being done with learning the basics of C and C++. This time around, we'll expand what we know about arrays and pointers.
 
-### Arrays: Pointers with Smoke and Mirrors {#_arrays_pointers_with_smoke_and_mirrors}
+## Arrays: Pointers with Smoke and Mirrors
 
 When we first looked at strings in Lesson 5, we saw how arrays and pointers are pretty closely related, but we didn't look close enough to discover how close they really are. Arrays are really just a friendly way of using pointers. Let's look at two different ways of changing the same string that demonstrate this.
 
@@ -50,9 +49,11 @@ Both loops do the exact same thing except for using capital letters in the secon
 
 The next strange trick we see in the code above is adding a number to a pointer. Pointers are just variables that contain memory addresses, so adding an integer to a pointer just changes the memory address. We can't change the array's address, so we've created a pointer that we can change. This allows us to add the size of an array element to it. As we do this over the course of the loop, the pointer will hold the address of each character in the array.
 
+: Array and pointers corrispondences
+
 +----------------------+-------------------------+-----------------------+
 | Array Index          | Equivalent Pointer Math | Value                 |
-+----------------------+-------------------------+-----------------------+
++======================+=========================+=======================+
 | *string\[0\]*        | *index*                 | *a*                   |
 +----------------------+-------------------------+-----------------------+
 | *string\[1\]*        | *index + (size \* 1)*   | *b*                   |
@@ -78,7 +79,7 @@ MyFunc(void)
 
 This little function just sets each byte in the array to a 1, which is true for Boolean logic. Not only is it less work, it is much, much faster than using a loop to set each element individually.
 
-### Multidimensional Arrays {#_multidimensional_arrays}
+## Multidimensional Arrays
 
 It's really inconvenient that we can make arrays of any kind of data except strings. Strings are everywhere in everyday programming, but we can't make an array of arrays, can we? Actually, yes we can. To have arrays of strings, we must conquer one of the most potentially confusing parts of C and C++: multidimensional arrays. Not to worry, I'm going to make this as simple as possible.
 
@@ -90,7 +91,9 @@ int myArray[10];
 
 myArray:
 
-<table style="width:100%;"><colgroup><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /><col style="width: 10%" /></colgroup><tbody><tr class="odd"><td><p><em>0</em></p></td><td><p><em>1</em></p></td><td><p><em>2</em></p></td><td><p><em>3</em></p></td><td><p><em>4</em></p></td><td><p><em>5</em></p></td><td><p><em>6</em></p></td><td><p><em>7</em></p></td><td><p><em>8</em></p></td><td><p><em>9</em></p></td></tr></tbody></table>
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+| *0*    | *1*    | *2*    | *3*    | *4*    | *5*    | *6*    | *7*    | *8*    | *9*    |
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
 
 Arrays can have more than one dimension -- for example, a two dimensional array can be thought of as a grid -- a group of rows. This one has two rows with five elements in each row.
 
@@ -232,23 +235,11 @@ One other useful tip: **don't** try leaving out the size on arrays with more tha
 Once again, we've covered a lot in a short amount of time, so let's quickly review:
 
 -   Integers can be added to or subtracted from the address held by a pointer.
-
 -   *sizeof()* returns the size of a type, variable, or array, measured in bytes.
-
 -   You can use pointer math to get the value of an element in an array.
-
 -   The memory allocated for an array is contiguous.
-
 -   Arrays can be declared to have more than one dimension and accessed that way or reinterpreted as one long list of elements using a pointer.
-
 -   *char* arrays (strings) can be initialized using a regular string.
-
 -   Non-string arrays are initialized using curly braces.
-
 -   All elements in an array must be given a value when it is initialized.
-
 -   You can leave out the size in the brackets on one-dimensional initialized arrays if you just want enough memory reserved to hold the values given to it.
-
-### Answers from Lesson 8's Bug Hunt {#_answers_from_lesson_8s_bug_hunt}
-
-1.  The problem is that the parameter string is a *const char \** instead of a just *char \**. This means that the string given to *ReverseString()* can't be changed and the compiler complains when we try to change it in the *for* loop. Remove the *const* keyword and everything is happy.
