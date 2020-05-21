@@ -7,7 +7,7 @@ OUTPUT_FILENAME = "Programming_with_Haiku_vol1"
 INCLUDE_DIR = ../include
 IMAGES_DIR = ./images
 IMAGES = $(IMAGES_DIR)/*
-COVER_IMAGE = $(IMAGES_DIR)/cover.jpg
+COVER_IMAGE = $(IMAGES_DIR)/cover.png
 
 METADATA = metadata.yml
 TOC = --toc --toc-depth=2 -V toc-title='Table of contents' -V toc-own-page:true
@@ -74,8 +74,9 @@ $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 			--template=$(INCLUDE_DIR)/pandoc/eisvogel.latex \
 			--metadata=abstract:" " \
 			-V geometry:a4paper -V geometry:"left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm" \
-			-V titlepage:true -V titlepage-color:"FFFFFF" -V titlepage-rule-height:4 \
-			-V logo:$(INCLUDE_DIR)/haiku/haikulogov2.png -V logo-width:200 \
+			-V titlepage:true -V titlepage-color:"FFFFFF" -V titlepage-rule-height:0 -V titlepage-rule-color:"d8dbdc" \
+			-V titlepage-background:$(COVER_IMAGE) \
+			-V title:"" -V subtitle:"" -V author:"" \
 			-V links-as-notes:true \
 			-V lot:true \
 			-V footnotes-pretty:true \

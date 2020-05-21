@@ -361,8 +361,22 @@ int main(void)
 ```
 
 ::: bughunt
-foo.cpp: In function ‘char* ReverseString(const char*)’:
-foo.cpp:18: error: assignment of read-only location ‘*(string + ((unsigned int)((length + -0x00000000000000001) - i)))’
-foo.cpp:19: error: assignment of read-only location ‘*(string + ((unsigned int)i))’
-foo.cpp:22: error: invalid conversion from ‘const char*’ to ‘char*’
+foo.cpp: In function ‘char* ReverseString(const char\*)’:
+foo.cpp:18: error: assignment of read-only location ‘\*(string + ((unsigned int)((length + -0x00000000000000001) - i)))’
+foo.cpp:19: error: assignment of read-only location ‘\*(string + ((unsigned int)i))’
+foo.cpp:22: error: invalid conversion from ‘const char\*’ to ‘char\*’
 :::
+
+## Review
+
+1.  What is the scope of a variable?
+2.  What are the three types of scope?
+3.  What part(s) of the following pointer declaration is constant: the value, the pointer's address, or both?
+
+``` {.c++}
+int * const myPointer;
+```
+
+4.  Where does anything written to stderr normally go?
+5.  What is a handle?
+6.  If you want to write data to the end of an existing file, what mode must be specified in a call to fopen()?

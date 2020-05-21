@@ -249,3 +249,14 @@ int main(int argc, char \*\*argv) { for (int i = 1; i \< argc; i++) { // open a 
       return 0;
     }
 ```
+
+## Review
+
+1.  What do default values for function parameters enable you to do?
+2.  What advantages do references have over pointers?
+3.  How is a reference declared?
+4.  What is the difference between passing a parameter by value and passing one by reference?
+5.  Which of these declares a function pointer:
+    a.  void (\*myFunction)(int someInteger);
+    b.  void \*myFunction(int someInteger);
+    c.  (void \*)myFunction(int someInteger);

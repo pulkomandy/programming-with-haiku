@@ -1,3 +1,4 @@
 build/
 *.log
 .DS_Store
+~*.odt

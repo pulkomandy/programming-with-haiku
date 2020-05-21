@@ -1,0 +1,77 @@
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{awesomebox}
+
+\definecolor{errorboxcolor}{RGB}{188,0,0}
+\definecolor{bughuntboxcolor}{RGB}{188,0,0}
+\definecolor{warningboxcolor}{RGB}{188,50,0}
+
+\newenvironment{questionblock}
+{\begin{awesomeblock}[black]{\aweboxrulewidth}{\faQuestion[regular]}{black}}
+  {\end{awesomeblock}}
+
+\newenvironment{assignmentblock}
+{\begin{awesomeblock}[black]{\aweboxrulewidth}{\faPen[regular]}{black}}
+  {\end{awesomeblock}} 
+
+\newenvironment{toughblock}
+{\begin{awesomeblock}[black]{\aweboxrulewidth}{\faCogs[regular]}{black}}
+  {\end{awesomeblock}} 
+
+\newenvironment{errorblock}
+{\begin{awesomeblock}[errorboxcolor]{\aweboxrulewidth}{\faTimes[regular]}{errorboxcolor}}
+  {\end{awesomeblock}} 
+
+\newenvironment{shellerrorblock}
+{\begin{awesomeblock}[errorboxcolor]{\aweboxrulewidth}{\faTimes[regular]}{errorboxcolor}\texttt\bgroup}
+  {\egroup\end{awesomeblock}} 
+
+\newenvironment{bughuntblock}
+{\begin{awesomeblock}[bughuntboxcolor]{\aweboxrulewidth}{\faBug[regular]}{bughuntboxcolor}\texttt\bgroup}
+  {\egroup\end{awesomeblock}} 
+
+\newenvironment{bugwarningblock}
+{\begin{awesomeblock}[warningboxcolor]{\aweboxrulewidth}{\faBug[regular]}{warningboxcolor}}
+  {\end{awesomeblock}} 
+
+
+\usepackage{framed,color}
+
+% tweak deafult fonts
+\usepackage{fontspec}
+\usepackage{xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+
+% box drawing characters
+% <https://tex.stackexchange.com/a/333210/6444>
+\usepackage{newunicodechar}
+\newfontfamily{\fallbackfont}{Arial}
+\DeclareTextFontCommand{\textfallback}{\fallbackfont}
+\newunicodechar{█}{\textfallback{█}}
+\newunicodechar{└}{\textfallback{└}}
+\newunicodechar{─}{\textfallback{─}}
+\newunicodechar{├}{\textfallback{├}}
+\newunicodechar{│}{\textfallback{│}}
+\newunicodechar{⇐}{\textfallback{⇐}}
+
+% Place links inline
+\let\oldhref\href
+\renewcommand{\href}[2]{#2 (\url{#1})}
+
+\renewenvironment{quote}%
+  {\list{}{\leftmargin=0.5in\rightmargin=0.5in}\item[]\begin{itshape}}%
+  {\end{itshape}\endlist}
+
+% No widow lines
+\widowpenalty=10000
+\clubpenalty=10000
+
+\usepackage{makeidx}
+\newcommand{\indexc}[1]{\index{#1@\texttt{#1}}}
+\makeindex
+
+\urlstyle{tt}
+
+
+\frontmatter

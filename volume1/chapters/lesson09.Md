@@ -243,3 +243,7 @@ Once again, we've covered a lot in a short amount of time, so let's quickly revi
 -   Non-string arrays are initialized using curly braces.
 -   All elements in an array must be given a value when it is initialized.
 -   You can leave out the size in the brackets on one-dimensional initialized arrays if you just want enough memory reserved to hold the values given to it.
+
+## Review
+
+1.  How many rows are in the following multidimensional array: float myFloatArray[10][20];

@@ -164,6 +164,14 @@ char *ReverseString(char *string)
 
 The reason why this causes the program to not print anything requires a little thought. The first line in the loop is supposed to save the last character of the string. By not subtracting 1 from the length, it saves the *NULL* terminator for the string into *temp* instead. The rest of the loop continues on pretty much as it should. *abcdef\\0* becomes *\\0fedcba*. Because the *NULL* terminator is at the very beginning of the string, when *printf()* goes to print it, it sees the terminator and stops, resulting in the reversed string not getting printed.
 
+### Review
+
+1.  for, while, and do.
+2.  A switch is better than if when there needs to be a choice made from several possible options.
+3.  Any cases in a switch after the default case will never be executed.
+4.  myVariable = (myInt > 5) ? 50 : 100
+
+
 ## Lesson 7
 
 ### Bug Hunt
@@ -171,8 +179,81 @@ The reason why this causes the program to not print anything requires a little t
 1.  The pointer *combinedString* doesn't point to a valid memory address. It needs to either be given heap memory by *malloc()* -- which is later freed -- or declared on the stack as an array.
 2.  The size of *binaryString* array in *main()* is too small. It needs to be at least big enough to hold 1 character per bit in a byte plus 1 for the *NULL* terminator, so *binaryString* must be at least 9 characters instead of 6.
 
+### Review
+
+1.  The heap is bigger.
+2.  A memory leak is when memory is allocated from the heap and is not freed.
+3.  Portability is the quality of being able to compile your code on more than one operating system with as little modification as possible, preferably without any.
+4.  Typecasting when you tell the compiler to treat one type as another.
+5.  malloc just allocates memory from the heap. calloc allocates memory and fills it with 0's.
+6.  The result of 7 & 0 is 0.
+7.  The result of 7 | 8 is 15.
+8.  33 looks like 100001 in binary?
+9.  The binary number 1000010 is 66 in regular decimal notation?
+10. The result of 1 << 5 is 32.
+
 ## Lesson 8
 
 ### Bug Hunt
 
 1.  The problem is that the parameter string is a *const char \** instead of a just *char \**. This means that the string given to *ReverseString()* can't be changed and the compiler complains when we try to change it in the *for* loop. Remove the *const* keyword and everything is happy.
+
+### Review
+
+1.  A variable's scope is its lifespan from when it is allocated and declared to when it is freed and how it can be accessed by code.
+2.  The three types of scope are local, global, and static.
+3.  The declaration int * const myPointer; is a pointer whose value can be changed but whose address cannot be changed.
+4.  Data written to stderr normally is printed to the screen.
+5.  A handle is an arbitrary number used to uniquely identify an object, such as a file.
+6.  If you want to write data to the end of an existing file, you must use the "a" or "a+" modes in fopen().
+
+## Lesson 9
+
+### Review
+
+1.  There are ten rows in the array float myFloatArray[10][20].
+
+## Lesson 10
+
+### Review
+
+1.  Default parameter values let you leave out one or more parameters when calling a function.
+2.  References have an advantage over pointers in that they are always initialized and can't be uninitialized.
+3.  A reference is declared like this: int &reference = someOtherInteger;
+4.  The difference between passing a parameter by value and passing one by reference is that when a parameter is passed by value, a copy of the parameter is given to the function. This allows the function to change the parameter given to it without changing the variable that was passed to it.
+5.  Declaration A is for a function pointer
+
+## Lesson 11
+
+### Review
+
+1.  An enumerated type is one whose value is one of a set of specified values.
+2.  By specifying an integer value for an identifier in an enumerated type, it is possible to use the enumerated type for case values in a switch statement.
+3.  A variable inside a struct is accessed using the dot operator or the arrow operator. The form is like this: myStruct.someVariable or myStructPtr->someVariable.
+4.  The dot operator is used for structures allocated on the stack and the arrow operator is used for structures allocated on the heap.
+
+## Lesson 12
+
+### Review
+
+1.  Object-oriented programming is a programming paradigm which thinks in terms of the interaction of objects as a means to accomplish a task.
+2.  A class is a C++ object definition which consists of a name, inheritance, and a list of methods and properties.
+3.  A method is a function which belongs to a class.
+4.  A property is a data variable which belongs to a class.
+5.  A class' constructor is for initializing its properties and allocating memory for heap-allocated properties. The destructor is for freeing pointers and performing any other tear-down for an object before it is freed.
+6.  new and delete are the C++ counterparts to malloc() and free().
+7.  If malloc() is used to allocate an object, its constructor is never called. If free() is used to free an object, its destructor is never called.
+8.  A public method can be called by functions outside the object. A private method can only be called by other methods owned by the class.
+9.  Arrays allocated with new are properly freed by calling delete [] on the array pointer.
+10. Data abstraction is the practice of using hiding properties from public access using methods.
+
+## Lesson 13
+
+### Review
+
+1.  Inheritance is the practice of creating a class by extending another one.
+2.  Private methods and properties can be accessed from within the class' methods. Protected methods and properties can be accessed from the class' methods and those of any child classes.
+3.  A virtual function is one whose behavior can be redefined by a child class.
+4.  A static function is one which can be called without having an instance of its owning class.
+5.  Function overloading is the practice of declaring and implementing more than one function with the same name and different parameter lists.
+6.  Protected inheritance forces all public methods and properties of the parent class to have protected access in the child class, restricting outside access but allowing access from its methods and those of its child classes.

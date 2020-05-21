@@ -381,3 +381,17 @@ int main(void)
 ::: bugwarning
 When run, the program prints the following: The binary equivalent of 48 is 00000101 Segmentation fault
 :::
+
+## Review
+
+1.  Which memory pool is bigger, the stack or the heap?
+2.  What is a memory leak?
+3.  What is portability?
+4.  What is it called when you tell the compiler to treat one type as another?
+5.  What is the difference between malloc() and calloc()?
+6.  What is the numerical result of 7 & 0 ?
+7.  What is the numerical result of 7 | 8 ?
+8.  What does 33 look like in binary?
+9.  What is the binary number 1000010 in regular decimal notation?
+10. What is the numerical result of 1 << 5 ?
+

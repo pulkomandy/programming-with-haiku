@@ -441,3 +441,11 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
+
+## Review
+
+1.  What is an enumerated type?
+2.  What is the advantage of specifying a value for one or more elements in an enumerated type?
+3.  How is a variable inside a struct accessed?
+4.  What is the difference between the dot operator and the arrow operator?
+

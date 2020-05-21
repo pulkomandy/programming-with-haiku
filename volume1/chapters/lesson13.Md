@@ -243,3 +243,13 @@ Why doesn't this work? If you leave out the *optionalString* parameter, the comp
 ## Assignment
 
 Read through the sections of the BeBook on BApplication, BWindow, and BView. You don't have to understand everything, but try to get a feel for each class -- in the next lesson we will be writing our first *real* program for Haiku.
+
+## Review
+
+1.	What is inheritance?
+2.	What is the difference between protected access and private access?
+3.	What is a virtual function?
+4.	What is a static function?
+5.	What is function overloading?
+6.	With respect to access the parent class' methods, what are the implications of a child class using protected inheritance?
+

@@ -158,3 +158,16 @@ Practice thinking about object-oriented programming by writing down what a sampl
 -   Car
 -   Stove
 -   Washing machine
+
+## Review
+
+1.  What is object-oriented programming (OOP)?
+2.  What is a class?
+3.  What is a method?
+4.  What is a property?
+5.  What is a class' constructor for? Its destructor?
+6.  What are the C++ counterparts to C's malloc() and free()?
+7.  Why shouldn't malloc() and free() be used to allocate and free class objects?
+8.  What is the difference between a method with public access and one with private access?
+9.  How are arrays allocated with new properly freed?
+10. What is data abstraction?

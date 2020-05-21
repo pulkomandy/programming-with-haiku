@@ -208,3 +208,17 @@ The program compiles just fine, but nothing is printed.
 ::: tip
 Normally no help is given for Bug Hunt sections, but this is harder than many. The bug itself is somewhere in *ReverseString()*. Try using *printf()* calls to print values in certain places to give yourself more information on what the program is doing, like printing the length, the count, etc.
 :::
+
+## Review
+
+1.  What are the three types of loops?
+2.  When is a switch statement better suited to making a decision than an if statement?
+3.  What happens when the default case in a switch statement is not the last case in the list?
+4.  Rewrite the following code to use the conditional assignment operator to set the value of myVariable.
+
+``` {.c++}
+if (myInt > 5)
+    myVariable = 50;
+else
+    myVariable = 100;
+```
