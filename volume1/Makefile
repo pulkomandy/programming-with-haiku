@@ -5,13 +5,14 @@ MAKEFILE = Makefile
 OUTPUT_FILENAME = "Programming_with_Haiku_vol1"
 
 INCLUDE_DIR = ../include
-IMAGES_DIR = ./images
+IMAGES_DIR = images
 IMAGES = $(IMAGES_DIR)/*
 COVER_IMAGE = $(IMAGES_DIR)/cover.png
 
 METADATA = metadata.yml
 TOC = --toc --toc-depth=2 -V toc-title='Table of contents' -V toc-own-page:true
-CSS_ARG = --css=$(INCLUDE_DIR)/css/style.css
+CSS_FILE = $(INCLUDE_DIR)/css/style.css
+CSS_ARG = --css=$(CSS_FILE)
 METADATA_ARG = --metadata-file=$(METADATA)
 MATH_FORMULAS = --webtex
 
@@ -64,7 +65,6 @@ $(BUILD)/html/$(OUTPUT_FILENAME).html: $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGET
 	mkdir -p $(BUILD)/html
 	pandoc $(ARGS) --standalone --to=html5 -o $@ $(CHAPTERS_TARGETS)
 	cp -R $(IMAGES_DIR)/ $(BUILD)/html/$(IMAGES_DIR)/
-	cp $(CSS_FILE) $(BUILD)/html/$(CSS_FILE)
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 	mkdir -p $(BUILD)/markdown
@@ -77,6 +77,8 @@ $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 			-V titlepage:true -V titlepage-color:"FFFFFF" -V titlepage-rule-height:0 -V titlepage-rule-color:"d8dbdc" \
 			-V titlepage-background:$(COVER_IMAGE) \
 			-V title:"" -V subtitle:"" -V author:"" \
+			-V header-left:"Programming with Haiku" -V header-right:"Volume 1" \
+			-V footer-left:"Jon Yoder" \
 			-V links-as-notes:true \
 			-V lot:true \
 			-V footnotes-pretty:true \
