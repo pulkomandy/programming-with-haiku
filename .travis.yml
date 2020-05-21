@@ -49,7 +49,7 @@ before_install:
   # packages needed for the template
   - tlmgr install xecjk filehook unicode-math ucharcat ly1 mweights mdframed needspace
 
-  # optional packages
-  - tlmgr install awesomebox fontawesome5
+  # packages needed for the books
+  - tlmgr install awesomebox fontawesome5 newunicodechar
 script:
   - make -C volume1 all
