@@ -50,6 +50,6 @@ before_install:
   - tlmgr install xecjk filehook unicode-math ucharcat ly1 mweights mdframed needspace
 
   # packages needed for the books
-  - tlmgr install awesomebox fontawesome5 newunicodechar makeidx
+  - tlmgr install awesomebox fontawesome5 newunicodechar
 script:
   - make -C volume1 all
