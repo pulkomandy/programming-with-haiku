@@ -41,7 +41,6 @@ before_install:
 
   - sudo chown -hR $(whoami) "$TEXLIVE_DIR"
   # packages specified in the template
-  - tlmgr install afterpage amsmath amssymb babel bookmark booktabs caption etoolbox fancyhdr fancyvrb float fontenc footnote footnotehyper geometry graphicx grffile hyperref ifluatex ifxetex inputenc listings lmodern longtable luatexja-fontspec luatexja-preset mathspec microtype natbib parskip pgfpages polyglossia setspace textcomp tikz url xcolor xeCJK
   - tlmgr install adjustbox background bidi csquotes footmisc footnotebackref fvextra mdframed pagecolor sourcecodepro sourcesanspro titling ulem upquote xurl
 
   # trial and error
