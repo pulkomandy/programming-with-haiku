@@ -26,7 +26,7 @@ CHAPTERS := lesson01.Md lesson02.Md lesson03.Md lesson04.Md  \
 	lesson09.Md lesson10.Md lesson11.Md lesson12.Md \
 	lesson13.Md lesson14.Md lesson15.Md lesson16.Md \
 	lesson17.Md lesson18.Md lesson19.Md lesson20.Md \
-	lesson21.Md lesson22.Md lesson23.Md
+	lesson21.Md lesson22.Md lesson23.Md answers.Md conclusions.Md
 
 CHAPTERS_TARGETS = $(addprefix $(CHAPTERS_DIR)/,$(CHAPTERS))
 

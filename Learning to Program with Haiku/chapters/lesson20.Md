@@ -6,6 +6,8 @@ Although our focus in the last few lessons has been on the Interface Kit, anothe
 
 The kit can be divided into six basic groups of classes.
 
+: Storage Kit classes
+
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | BFilePanel                        | A GUI control used to navigate the filesystem and select a file or folder                                                                                                                                                                                                                                                                                                              |
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -54,7 +56,7 @@ The kit can be divided into six basic groups of classes.
 | The Node Monitor                  | Not actually a class, the Node Monitor is a service of the Storage Kit which can notify you of changes in the filesystem, such as when a volume is mounted or unmounted, when a file is created or deleted, or when the contents of a directory changes.                                                                                                                               |
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-# Assignment
+## Assignment
 
 Using the Interface Kit does have one drawback: if you use one part of it, you almost always have to use the whole paradigm. For example, if you want to load a BBitmap from disk, you have to have a valid BApplication, even if you don't use it. The Storage Kit doesn't have this limitation. In fact, today's project is a simple console application which is simple enough for a lesson but is coded in a style that you would find in a regular Haiku application.
 
