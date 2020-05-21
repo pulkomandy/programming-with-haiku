@@ -2,7 +2,7 @@
 
 BUILD = build
 MAKEFILE = Makefile
-OUTPUT_FILENAME = ProgrammingHaiku
+OUTPUT_FILENAME = "Programming_with_Haiku_vol1"
 
 INCLUDE_DIR = ../include
 IMAGES_DIR = ./images
