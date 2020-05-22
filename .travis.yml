@@ -56,3 +56,4 @@ before_install:
   - tlmgr install awesomebox fontawesome5 newunicodechar
 script:
   - make -C volume1 all
+  - make -C volume1 png

@@ -48,6 +48,10 @@ html: $(BUILD)/html/$(OUTPUT_FILENAME).html
 
 pdf: $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
 
+png: pdf
+	mkdir -p $(BUILD)/png
+	pdftoppm -png -r 42 -aa yes $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf $(BUILD)/png/$(OUTPUT_FILENAME)
+
 $(BUILD)/markdown/$(OUTPUT_FILENAME).Md: $(CHAPTERS_TARGETS)
 	mkdir -p $(BUILD)/markdown
 	mdmerge $(CHAPTERS_TARGETS) -o $(BUILD)/markdown/$(OUTPUT_FILENAME).Md
