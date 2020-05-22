@@ -2,7 +2,7 @@
 
 BUILD = build
 MAKEFILE = Makefile
-OUTPUT_FILENAME = "Programming_with_Haiku_vol1"
+OUTPUT_FILENAME = Jon_Yoder_-_Programming_with_Haiku_Volume_1
 
 INCLUDE_DIR = ../include
 IMAGES_DIR = images
@@ -22,7 +22,7 @@ ARGS = $(MATH_FORMULAS) $(CSS_ARG) $(METADATA_ARG)
 MARKDOWN_FORMAT = markdown-pipe_tables+backtick_code_blocks+fancy_lists+table_captions+smart+fenced_divs
 
 CHAPTERS_DIR = ./chapters
-CHAPTERS := lesson01.Md lesson02.Md lesson03.Md lesson04.Md  \
+CHAPTERS := disclaimer.Md lesson01.Md lesson02.Md lesson03.Md lesson04.Md  \
 	lesson05.Md lesson06.Md lesson07.Md lesson08.Md \
 	lesson09.Md lesson10.Md lesson11.Md lesson12.Md \
 	lesson13.Md lesson14.Md lesson15.Md lesson16.Md \
@@ -65,6 +65,7 @@ $(BUILD)/html/$(OUTPUT_FILENAME).html: $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGET
 	mkdir -p $(BUILD)/html
 	pandoc $(ARGS) --standalone --to=html5 -o $@ $(CHAPTERS_TARGETS)
 	cp -R $(IMAGES_DIR)/ $(BUILD)/html/$(IMAGES_DIR)/
+	tar -zcvf $(BUILD)/$(OUTPUT_FILENAME).html.tar.gz $(BUILD)/html
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 	mkdir -p $(BUILD)/markdown
