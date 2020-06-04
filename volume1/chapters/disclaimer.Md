@@ -4,10 +4,6 @@
 
 *Copyright © 2010 by Jon Yoder*
 
-### Notice of rights {.unnumbered}
-
-All rights reserved. No part of this book may be reproduced or retransmitted in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior written permission of the publisher.
-
 ### Notice of liability {.unnumbered}
 
 Every effort has been made to make this book as complete and as accurate as possible, but no warranty or fitness is implied. The information provided is on an "as is" basis. The author and Lulu.com shall have neither liability nor responsibility to any person or entity with respect to any loss or damages arising from the information contained in this book.

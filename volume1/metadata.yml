@@ -5,7 +5,18 @@ author: Jon Yoder
 rights:  Creative Commons Attribution 4.0 International
 language: en-US
 abstract: |
-  Lorem ipsum dolor sic amet
+  This beginning programming guide takes the reader from know next to nothing
+  about developing applications for the Haiku operating system to knowing the
+  basics and having the skills to go beyond the fundamentals. It begins with
+  a traditional "Hello, world! approach, moves through C programming, and
+  expands into C++ and programming graphical applications for Haiku.
+  Instead of attempting to be an exhaustive C/C++ programming book using Haiku,
+  it focuses on application development using the C++ language.
+  The Haiku operating system is a great platform for aspiring developers.
+  Those who have struggled with learning application development under Linux,
+  Microsoft Windows, or Macintosh will find writing programs under Haiku to be
+  sensible and easy. The free Paladin integrated development environment for
+  Haiku is used for examples in the book.
 pandoc-latex-environment:
   noteblock: [note]
   tipblock: [tip]

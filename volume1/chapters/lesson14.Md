@@ -71,7 +71,7 @@ App::App(void)
 {
 	// Create a rectangle to define the size and location of the window
 	BRect frame(100,100,500,400);
-	
+
 	// Our window will have the regular style and the title My First
 	// App”. When we close it, it will tell our program to quit.
 	BWindow *myWindow = new BWindow(frame,"My First App",
@@ -80,18 +80,18 @@ App::App(void)
 	// We'll reuse our BRect variable to set the location of our label.
 	// The actual width and height don't actually matter, though.
 	frame.Set(10,10,11,11);
-	
+
 	// Create a static text label which has the text "Haiku Rocks!"
 	BStringView *label = new BstringView(frame,"mylabel",
 							"Haiku Rocks!");
-	
+
 	// Tell the label to resize itself to fit the text that we've given
 	// it, saving us a lot of work in having to figure it out
 	// ourselves.
 	label->ResizeToPreferred();
 	// Attach the label to our window
 	myWindow->AddChild(label);
-	
+
 	// Show our window
 	myWindow->Show();
 }
@@ -103,17 +103,17 @@ main(void)
 	// Create the instance of our App class. Each Haiku program has
 	// just one. Creating it sets up the connection to the app_server.
 	App *app = new App();
-	
+
 	// This actually puts our application into motion. We will not be
 	// exiting this function until our program quits.
 	app->Run();
 
-	
+
 	// Free the memory that we got off the heap. We could create it on
 	// the stack, but BApplication objects can get kinda big, so it's
 	// better to use the heap.
 	delete app;
-	
+
 
 	// Token return call to quiet the compiler. ;-)
 	return 0;
@@ -135,6 +135,6 @@ App::App(void)
   :	BApplication("application/x-vnd.test-MyFirstApp")
 ```
 
-The part inside the quotation marks doesn't seem at all familiar. This is what's called a MIME type. MIME stands for **M**ultipurpose **I**nternet **M**ail **E**xtensions. Every file in Haiku has a type, including all Haiku programs. Graphical Haiku programs like ours have a unique type. Substitute your company's name, your online handle, or your initials for the *dw* and the name of your program for *MyFirstApp* -- just make sure that the signature begins with \_\"application/x-vnd.\" \_ This will ensure no mixups with any programs you publish online.
+The part inside the quotation marks doesn't seem at all familiar. This is what's called a MIME type. MIME stands for **M**ultipurpose **I**nternet **M**ail **E**xtensions. Every file in Haiku has a type, including all Haiku programs. Graphical Haiku programs like ours have a unique type. Substitute your company's name, your online handle, or your initials for the *dw* and the name of your program for *MyFirstApp* -- just make sure that the signature begins with _"application/x-vnd."_ This will ensure no mixups with any programs you publish online.
 
-This project was a barebones application to show the minimum code needed to create a simple window. It might seem like a lot, but in comparison to a Windows program written in C++, it's quite short. Next time, we'll make a window that does more, but for now, play around with the code and see what kinds of things you can do with it -- tinkering leads to better understanding.
+This project was a barebones application to show the minimum code needed to create a simple window. It might seem like a lot, but in comparison to a Windows program written in C++, it's quite short. Next time, we'll make a window that does more, but for now, play around with the code and see what kinds of things you can do with it - tinkering leads to better understanding.

@@ -136,7 +136,7 @@ int (*anotherIntegerFunction)(int value);
 Executing a function by way of a pointer is dead easy: Treat the pointer as the name of the function. This example calls the function held by the _integerFunction_ pointer:
 
 ``` {.c++}
-_integerFunction_(5);
+integerFunction(5);
 ```
 
 Like references, the uses of function pointers are not immediately obvious. They add incredible flexibility to a program. Code can be bolted on or changed out just like parts on a car. Interpreted languages, such as Python or Perl, make it very easy to change a program on the fly, but this is not very easy at all for a compiled language like C++. Although normally pretty rare, we'll use function pointers quite a bit when we look at program addons later on. For now, don't worry too much about them.
@@ -146,7 +146,7 @@ Like references, the uses of function pointers are not immediately obvious. They
 Yes, pointers can point to pointers. The address a pointer holds can easily be the address of another pointer. This is just a matter of adding a second asterisk when declaring a pointer.
 
 ``` {.c++}
-char \*\*somePointerToAPointer;
+char **somePointerToAPointer;
 ```
 
 Don't forget that a pointer's declaration doesn't allocate any memory! The only thing that exists after this declaration is _somePointerToAPointer_. We can use it for different things, such as getting a pointer from a function without using a return value or creating a list of strings. Yes, this is the way you create a fixed list of strings on the heap. This is also how we get arguments from the command line.
@@ -156,7 +156,7 @@ Don't forget that a pointer's declaration doesn't allocate any memory! The only 
 Just like functions taking parameters – or arguments... they're the same thing – programs themselves can have information passed to them. Take, for example, this Terminal command:
 
 ``` {.sh}
-\$ rm -f \--verbose myFile\_
+$ rm -f --verbose myFile
 ```
 
 The command _rm_ has three arguments: a filename and two switches. Command line switches are options that change the behavior of a program without being the information on which it operates. In this case, _rm_ operates on the file _myFile_. The _-f_ switch tells it to force removal, not asking for confirmation, and the _--verbose_ switch tells it to print more information to the screen than it normally does.
@@ -166,18 +166,24 @@ Switches in Windows begin with a slash, but for Linux, OS X, and Haiku, they beg
 In order for a program to take advantage of command line arguments, the way we use _main()_ must change a little bit:
 
 ``` {.c++}
-int main(int argc, char \*\*argv) { return 0; }
+int main(int argc, char **argv)
+{
+    return 0;
+}
 ```
 
 Now _main()_ takes two parameters: _argc_, which is the number of arguments from the command line and _argv_, which is a list of strings which contain the command line arguments. Treat _argv_ like an array – if _argc_ is 2, then _argv_ will have elements numbered 0 and 1. _argv[0]_ always contains the name of the program when it was run. This program will print the command line arguments passed to it.
 
 ``` {.c++}
-\#include \<stdio.h\>
+#include <stdio.h>
 
-int main(int argc, char \*\*argv) { // Iterate through all arguments and print them. for (int i = 0; i \< argc; i++) printf(\"Program argument %d: %s\\n\", i, argv\[i\]);
+int main(int argc, char \*\*argv)
+{
+    // Iterate through all arguments and print them.
+    for (int i = 0; i < argc; i++) printf("Program argument %d: %s\n", i, argv[i]);
 
-      return 0;
-    }
+    return 0;
+}
 ```
 
 The place to look closely is the end of the _printf()_ statement. Using a pointer to a pointer is literally just like using a multidimensional array. Strings are just special _char_ arrays, so we are accessing lists of characters individually here. If we wanted to use just the second character of the first argument, we'd use _argv[0][1]_. In case it's a little fuzzy, bracket order goes from the largest group to the smallest from left to right, so we would be accessing element 0 in the list of lists and choosing element 1 – the second character – from that list.
@@ -189,7 +195,8 @@ The place to look closely is the end of the _printf()_ statement. Using a pointe
 For this project, we will need to use two new functions: fread and fwrite.
 
 ``` {.c++}
-size\_t fread (void \*buffer, size\_t size, size\_t count, FILE \*stream); size\_t fwrite (void \*buffer, size\_t size, size\_t count, FILE \*stream);
+size_t fread (void *buffer, size_t size, size_t count, FILE *stream);
+size_t fwrite (void *buffer, size_t size, size_t count, FILE *stream);
 ```
 
 _fread_ reads in data from a file stream. This function will try to read in _size * count_ bytes and place the data into _buffer_. This is really handy because you can allocate any kind of array for _buffer_, use the _sizeof()_ function on its type for _size_, and send the number of elements in the array as _count_. _fread_ returns the number of elements actually read. If it is not the same as what was requested, there was either an error or the end of the file was reached.
@@ -207,46 +214,51 @@ Conceptually, this will involve what we have just learned about using command li
     - Close the file's handle
 
 ::: tip
-Printing file errors using _ferror_ might be a nice touch. 
+Printing file errors using _ferror_ might be a nice touch.
 The chunk of memory you store the file data in can be from the stack or from the heap.
 :::
 
 Because we haven't done much actual writing of code, I'll do a little to get you going. All you'll have to do is replace each of the comments with the corresponding code. It might be a good idea to write a little bit at a time and recompile. Writing code incrementally and testing it helps keep bugs small and easy to locate.
 
 ``` {.c++}
-\#include \<stdio.h\> \#include \<malloc.h\>
+#include <stdio.h\>
+#include <malloc.h>
 
-int main(int argc, char \*\*argv) { for (int i = 1; i \< argc; i++) { // open a file handle for reading from argv\[i\]
+int main(int argc, char **argv)
+{
+    for (int i = 1; i < argc; i++) {
+        // open a file handle for reading from argv[i]
 
-    // if the file handle is NULL or there is an error, continue to
-    // the next iteration.
+        // if the file handle is NULL or there is an error, continue to
+        // the next iteration.
 
-    // create a data buffer -- an array to hold our data. Size isn't
-    // terribly important, but it should be at least a few hundred bytes
-    // and no more than about 4000 bytes. You can create it on the stack
-    // or use malloc, whichever you prefer.
+        // create a data buffer - an array to hold our data. Size isn't
+        // terribly important, but it should be at least a few hundred bytes
+        // and no more than about 4000 bytes. You can create it on the stack
+        // or use malloc, whichever you prefer.
 
-    // create a variable to store the number of bytes actually read
+        // create a variable to store the number of bytes actually read
 
-    // read data from the file handle and store the number of bytes
-    // read into the variable that we just created.
+        // read data from the file handle and store the number of bytes
+        // read into the variable that we just created.
 
-    // Start our while() loop. Loop while the number of bytes read is
-    // greater than zero and if ferror does not indicate an error on
-    // the file handle
-    {
-        // write the number of bytes read to stdout
-        // read more data and put the number of bytes actually read
-        // into the variable we created above.
+        // Start our while() loop. Loop while the number of bytes read is
+        // greater than zero and if ferror does not indicate an error on
+        // the file handle
+
+        {
+            // write the number of bytes read to stdout
+            // read more data and put the number of bytes actually read
+            // into the variable we created above.
+        }
+
+        // free the buffer here if you used malloc, never mind if you put
+        // the buffer on the stack.
+
+        // close the file handle here
     }
 
-    // free the buffer here if you used malloc, never mind if you put
-    // the buffer on the stack.
-
-      // close the file handle here
-    }
-
-      return 0;
+    return 0;
     }
 ```
 

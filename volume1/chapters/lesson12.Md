@@ -1,6 +1,6 @@
 # Lesson 12
 
-C is the language in which most Haiku programs are written. It is an extension of the C language written by Dennis Ritchie at Bell labs in the 1970s. The language fundamentals that we have been learning are common to both languages, but from here on out we will be learning the parts of C that C cannot do. It is these parts that make it powerful, but to really grasp them well, we must change our perspective of writing code.
+C++ is the language in which most Haiku programs are written. It is an extension of the C language written by Dennis Ritchie at Bell labs in the 1970s. The language fundamentals that we have been learning are common to both languages, but from here on out we will be learning the parts of C that C cannot do. It is these parts that make it powerful, but to really grasp them well, we must change our perspective of writing code.
 
 ## Object-Oriented Programming
 
@@ -25,26 +25,26 @@ public: // All of these functions are accessible by anyone. Without
             // moment.
             Television(void);
 
-            
+
             // This is the destructor function. More on this in a
             // moment, too.
             ~Television(void);
-    
+
     void        SetChannel(uint16 channel);
     uint16  GetChannel(void);
-    
+
     void        SetVolume(uint8 volume);
     uint8       GetVolume(void);
-    
+
     void        TogglePower(void);
     bool        IsTurnedOn(void);
 
 private:    // Everything below this word can't be touched by the
         // outside world
-    
+
     int8        DetectActiveInput(void);
     void        ConnectToSignal(void);
-    
+
     uint16  fChannel;
     uint8       fVolume;
     bool        fPowerState;
@@ -63,14 +63,14 @@ int
 main(void)
 {
     Television tv;
-    
+
     // Watching a TV that is turned off isn't much fun
     if (!tv.IsTurnedOn())
         tv.TogglePower();
-    
+
     // Watch the Channel 8 news :)
     tv.SetChannel(8);
-    
+
     return 0;
 }
 
@@ -90,14 +90,14 @@ main(void)
     // Using new allocates enough memory to hold one Television object
     // and then calls its constructor.
     Television *tv = new Television();
-    
+
     // Like before, it works better when it is turned on
     if (!tv->IsTurnedOn())
         tv->TogglePower();
-    
+
     // The news on 8 is all bad. Maybe Phineas and Ferb is on?
     tv->SetChannel(172);
-    
+
     // Free our TV. Right before its memory is freed, the destructor
     // method for the Television class is called.
     delete tv;
@@ -117,7 +117,7 @@ main(void)
     // store, starting with 100 sets. We're going to need a little
     // retail space. ;-)
     Television *tvArray = new Television[100];
-    
+
     // Like before, it works better when it is turned on, but we'll
     // turn just one on, seeing how they're all the same. ;-)
     if (!tvArray[0].IsTurnedOn())
@@ -125,7 +125,7 @@ main(void)
 
     // We don't care what channel is on so long as we can't hear it.
     tvArray[0].SetVolume(0);
-    
+
     // Free our TV. The brackets are needed when freeing an array we
     // received from new. Leaving out the brackets will cause a memory
     // leak because then only one of the objects will be freed instead

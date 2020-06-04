@@ -77,6 +77,7 @@ enum enumName
     // enumValue4 will have a value of 10
     enumValue4
 };
+```
 
 ## Structures
 
@@ -108,7 +109,7 @@ myStructName **ptrStruct = (myStructName**)malloc(sizeof(myStructName));
 There is a difference, though, in accessing variables inside structures – we use an arrow instead of a dot. The arrow is just a minus sign followed by a greater-than sign.
 
 ``` {.c++}
-ptrStruct→someInt = 5;
+ptrStruct->someInt = 5;
 ```
 
 Lastly, structures can be nested inside structures. Accessing variables inside them is just a matter of chaining together dots or arrows, as the case may be.
@@ -118,7 +119,10 @@ Lastly, structures can be nested inside structures. Accessing variables inside t
 Unions are a data construct left over from the old days of C when memory was expensive. They're pretty rare anymore except in old code. They are declared like a structure, but it takes up only as much memory as the largest variable inside it. Accessing a member is just like a structure. The key difference between unions and structures is that setting the value on one variable inside a union changes the value for all of the variables inside it. Each variable is a different way of interpreting the value in the memory location that the union occupies. Yeah, it's kind of confusing. Don't worry too much about it.
 
 ``` {.c++}
-union myUnion { int32data32; int8data8; };
+union myUnion {
+        int32data32;
+        int8data8;
+};
 
 myUnion onion; onion.data32 = 5000;
 ```
@@ -215,7 +219,7 @@ InitStandardDeck(card *deck)
     // variables in our two for() loops below work their way through
     // the enumerated types for suit and card value.
     uint8 deckIndex = 0;
-    
+
     // Enumerated values can be used just like integers. Instead of
     // just using the letter i like we normally do, we'll use
     // meaningful names for the index variables to make sure that we
@@ -234,7 +238,7 @@ InitStandardDeck(card *deck)
             deckIndex++;
         }
     }
-    
+
     // We have all the number and royalty cards now, so tack on the
     // jokers at the end
     deck[deckIndex].value = CARD_JOKER;
@@ -255,7 +259,7 @@ ShuffleDeck(card *deck, const uint8 &numCards, const uint8 &shuffleCount)
     // We also have extra flexibility by being able to specify how many
     // times to shuffle the deck to give us extra control over how
     // mixed-up the deck gets.
-    
+
     // This loop is to shuffle the deck the specified number of times.
     // We can get away with just using i and j for index variable names
     // because we're not using them in the code inside the loops --
@@ -268,7 +272,7 @@ ShuffleDeck(card *deck, const uint8 &numCards, const uint8 &shuffleCount)
         // we choose random items in the array to swap. The more swaps
         // we do, the better the shuffle, especially with larger decks,
         // so base the number of swaps on the size of the deck.
-        
+
         // ceil() rounds a floating point number up, regardless of
         // how big the fractional part of the number is. It returns a
         // double, so we will need to typecast it to a uint16 to stop
@@ -277,7 +281,7 @@ ShuffleDeck(card *deck, const uint8 &numCards, const uint8 &shuffleCount)
         // rounded that part off using ceil(), we're not losing
         // anything by doing so.
         uint16 swapCount = uint16(ceil(numCards * 1.25));
-        
+
         for (uint16 j = 0; j < swapCount; j++)
         {
             // rand() generates a kind-of-random number between 0
@@ -286,13 +290,13 @@ ShuffleDeck(card *deck, const uint8 &numCards, const uint8 &shuffleCount)
             // randomValue = rand() % rangeOfValues + minimumValue;
             // so making a value from 5 to 12 would be
             // rand() % 7 + 5;
-                        
+
 
             // Here we randomly select the indexes for two cards in
             // the deck
             uint8 firstIndex = uint8(rand() % numCards);
             uint8 secondIndex = uint8(rand() % numCards);
-            
+
             if (firstIndex == secondIndex)
             {
                 // If the two indexes are the same, we don't want
@@ -303,15 +307,15 @@ ShuffleDeck(card *deck, const uint8 &numCards, const uint8 &shuffleCount)
                 j--;
                 continue;
             }
-            
+
             // Do the card swap
             card tempCard;
             tempCard.value = deck[firstIndex].value;
             tempCard.suit = deck[firstIndex].suit;
-            
+
             deck[firstIndex].value = deck[secondIndex].value;
             deck[firstIndex].suit = deck[secondIndex].suit;
-            
+
             deck[secondIndex].value = tempCard.value;
             deck[secondIndex].suit = tempCard.suit;
         }
@@ -348,24 +352,24 @@ main(void)
     // We'll do more with time() much later on, so just ignore this for
     // now.
     srand(time(NULL));
-    
+
     // Our deck of cards
     card deck[54];
-    
+
     // Initialize our deck of cards
     InitStandardDeck(deck);
-    
+
     // Display the deck before it gets shuffled
     printf("Our deck of cards before shuffling:\n");
     PrintDeck(deck,54);
-    
+
     // Shuffle it pretty good -- 5 times should do the trick.
     ShuffleDeck(deck,54,5);
-    
+
     // Show how mixed-up it is now
     printf("Our deck of cards after shuffling:\n");
     PrintDeck(deck,54);
-    
+
     return 0;
 }
 
