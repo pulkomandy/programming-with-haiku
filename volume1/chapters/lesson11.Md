@@ -1,10 +1,10 @@
 # Lesson 11
 
-This lesson marks the end of what I would call the \"training wheels\" of C programming. Once we are done here, we will be getting into what makes C++ powerful and, shortly thereafter, what programming for the Haiku operating system is all about. This lesson's topic is data structures. Even though variables and arrays are great, they are not enough sometimes. Let's get started.
+This lesson marks the end of what I would call the "training wheels" of C programming. Once we are done here, we will be getting into what makes C++ powerful and, shortly thereafter, what programming for the Haiku operating system is all about. This lesson's topic is data structures. Even though variables and arrays are great, they are not enough sometimes. Let's get started.
 
 ## Typedefs: User-Defined Types
 
-It's possible to create your own types in C and C++ using the *typedef* keyword. The *size\_t* type that we used in the last lesson with *fread()* and *fwrite()* was created that way. Once we start looking at the specifics of the Haiku API, we'll be using user-defined types all the time. Because the sizes of *long*, *int*, and the other built-in types have sizes that change depending on which operating system is being used, other types have been defined to ensure that a developer can choose a type with a specific size.
+It's possible to create your own types in C and C++ using the *typedef* keyword. The *size_t* type that we used in the last lesson with *fread()* and *fwrite()* was created that way. Once we start looking at the specifics of the Haiku API, we'll be using user-defined types all the time. Because the sizes of *long*, *int*, and the other built-in types have sizes that change depending on which operating system is being used, other types have been defined to ensure that a developer can choose a type with a specific size.
 
 A type is defined using the format *typedef baseType newTypeName* like the entries that are found below, taken from Haiku's *\<config/types.h\>* header.
 

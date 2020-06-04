@@ -17,21 +17,19 @@ Object definitions in C++ are called **classes**. Classes are defined with code 
 ``` {.c++}
 class Television
 {
-public: // All of these functions are accessible by anyone. Without
-        // the 'public' keyword, all of these would be strictly
-        // internal methods -- the default access mode is private.
+public:
+    // All of these functions are accessible by anyone. Without
+    // the 'public' keyword, all of these would be strictly
+    // internal methods -- the default access mode is private.
 
-            // This is the constructor function. More on this in a
-            // moment.
-            Television(void);
+                // This is the constructor function. More on this in a moment.
+                Television(void);
 
-
-            // This is the destructor function. More on this in a
-            // moment, too.
-            ~Television(void);
+                // This is the destructor function. More on this in a moment, too.
+                ~Television(void);
 
     void        SetChannel(uint16 channel);
-    uint16  GetChannel(void);
+    uint16      GetChannel(void);
 
     void        SetVolume(uint8 volume);
     uint8       GetVolume(void);
@@ -39,13 +37,13 @@ public: // All of these functions are accessible by anyone. Without
     void        TogglePower(void);
     bool        IsTurnedOn(void);
 
-private:    // Everything below this word can't be touched by the
-        // outside world
+private:
+    // Everything below this word can't be touched by the outside world
 
     int8        DetectActiveInput(void);
     void        ConnectToSignal(void);
 
-    uint16  fChannel;
+    uint16      fChannel;
     uint8       fVolume;
     bool        fPowerState;
 };
