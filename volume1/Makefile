@@ -44,7 +44,7 @@ mobi: $(BUILD)/mobi/$(OUTPUT_FILENAME).mobi
 
 epub: $(BUILD)/epub/$(OUTPUT_FILENAME).epub
 
-html: $(BUILD)/html/$(OUTPUT_FILENAME).html
+html: $(BUILD)/html/$(OUTPUT_FILENAME).html.tar.gz
 
 pdf: $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf
 
@@ -65,11 +65,13 @@ $(BUILD)/epub/$(OUTPUT_FILENAME).epub: $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGET
 	mkdir -p $(BUILD)/epub
 	pandoc $(ARGS) --epub-cover-image=$(COVER_IMAGE) -f $(MARKDOWN_FORMAT) -t epub -o $@ -s $(CHAPTERS_TARGETS)
 
-$(BUILD)/html/$(OUTPUT_FILENAME).html: $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGETS) $(CSS_FILE) $(IMAGES)
+$(BUILD)/html/$(OUTPUT_FILENAME).html.tar.gz : $(MAKEFILE) $(METADATA) $(CHAPTERS_TARGETS) $(CSS_FILE) $(IMAGES)
+	mkdir -p $(BUILD)/html_tmp
 	mkdir -p $(BUILD)/html
-	pandoc $(ARGS) --standalone --to=html5 -o $@ $(CHAPTERS_TARGETS)
-	cp -R $(IMAGES_DIR)/ $(BUILD)/html/$(IMAGES_DIR)/
-	tar -zcvf $(BUILD)/$(OUTPUT_FILENAME).html.tar.gz $(BUILD)/html
+	pandoc $(ARGS) --standalone --to=html5 -o $(BUILD)/html_tmp/$(OUTPUT_FILENAME).html $(CHAPTERS_TARGETS)
+	cp -R $(IMAGES_DIR)/ $(BUILD)/html_tmp/$(IMAGES_DIR)/
+	tar -zcvf $(BUILD)/html/$(OUTPUT_FILENAME).html.tar.gz -C $(BUILD)/html_tmp .
+	rm -r $(BUILD)/html_tmp
 
 $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 	mkdir -p $(BUILD)/markdown
