@@ -1,6 +1,6 @@
 # Disclaimer {.unnumbered}
 
-**Original title: Learning to Program with Haiku**
+**Original title: Programming with Haiku**
 
 *Copyright © 2010 by Jon Yoder*
 
@@ -21,4 +21,3 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-
 
 ![](images/cc-by-nc-sa.png)
 
-ISBN: 978-0-557-53969-7
