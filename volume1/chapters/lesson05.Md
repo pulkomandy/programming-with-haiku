@@ -201,13 +201,13 @@ Whew! That was a lot of stuff about arrays, pointers, and strings. Lets quickly 
 
 One advantage programmers have over other trades is being able to make tools to help them in their work. Let's make a program which asks for a word from the user and it prints out the integer value of each character.
 
-In order to get information from the user, we'll need to use two new functions: *gets()* and *strlen()*. Both take a *char* pointer as the only parameter. We'll use a *char* array for both -- remember that arrays can be used like pointers if you leave out the brackets and index number. Here are what the declarations of these two functions look like and a description of each:
+In order to get information from the user, we'll need to use two new functions: *fgets()* and *strlen()*. Both take a *char* pointer as the only parameter. We'll use a *char* array for both -- remember that arrays can be used like pointers if you leave out the brackets and index number. Here are what the declarations of these two functions look like and a description of each:
 
 ``` {.c++}
-char * gets(char *inString);
+char * fgets(char *inString, int count, FILE* stream);
 ```
 
-*gets()* gets a string from the user. The user may type as much as he wants and presses the Enter key when finished. The final *\\n* character the user types is replaced with a 0 to mark the string's end. *inString* is a *char* array which is to hold the user input. When the user finishes typing, *gets()* copies the user input into *inString* and returns it also. This doesn't sound like it makes much sense, but don't worry about it.
+*fgets()* with the "stdin" stream gets a string from the user. The user may type as much as he wants and presses the Enter key when finished. The string ends with a *\\n* character corresponding to the Enter key, and then a 0 to mark the string's end. *inString* is a *char* array which is to hold the user input. When the user finishes typing, *fgets()* copies the user input into *inString* and returns it also. This doesn't sound like it makes much sense, but don't worry about it.
 
 ``` {.c++}
 int strlen(char *inString);
@@ -218,7 +218,7 @@ int strlen(char *inString);
 Here are the basic steps for how we will write our program:
 
 1.  Make a *char* array to hold the information from the user
-2.  Call *gets()* to get the information from the user and store it into our array.
+2.  Call *fgets()* to get the information from the user and store it into our array.
 3.  Make an *int* variable and set it to the string's length
 4.  Use a *for* loop to print each character in the string both as a character and its numerical value
 
@@ -232,7 +232,7 @@ int main(void)
     char inString[1024];
 
     printf("Type the text to convert and press Enter: ");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     // Here's where you come in.
     // Use the steps above to figure out what goes here.
@@ -251,7 +251,7 @@ Closely look over the code examples in the earlier section on strings for hints 
 :::
 
 ::: question
-Whenever the compiler builds this project, it complains that *gets()* is dangerous and shouldn't be used. Why do you think this might be?
+Why does *fgets()* needs the size of the inString buffer passed as a parameter?
 :::
 
 ## Bug Hunt
