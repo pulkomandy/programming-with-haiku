@@ -130,11 +130,11 @@ What a mess! There is a rule of thumb which helps make sense of all of this conf
 
 ## Using Data From Outside: File Operations
 
-The only way that we know how to get information into our program is *gets()*, and the only way to get it out is *printf()*. While *printf()* is just fine, *gets()* is actually dangerous and whenever the compiler encounters its use, it warns us. The reason is that there is no way to enforce how many characters are placed in the string passed to it. Crashing the program is as easy as typing more characters than the capacity of the array that is given to it. We're going to move on to a much better solution.
+The only way that we know how to get information into our program is *fgets()*, and the only way to get it out is *printf()*. So far, we have only communicated with the user console. However, this requires the user to type in all inputs every time the program is run. We're going to move on to a much better solution.
 
 Moving information in and out of programs is normally done using streams. Information flows in or out of your program. Direct input from the user is a stream, and the screen is one also -- one for output. Console programs utilize streams to get and print information, and they can even be linked together: the program that we use when we run Terminal, called bash, features an incredibly powerful ability to take what one program spits out and feed it to another one or dump it into a file.
 
-There are three main streams that are available to every program: *stdin*, the standard input, *stdout*, the standard output, and *stderr*, the error output. Unless changed, a program that gets data from *stdin* will ask for input from the user just like we've done with *gets()* and sending anything to *stdout* or *stderr* will be printed on the screen.
+There are three main streams that are available to every program: *stdin*, the standard input, *stdout*, the standard output, and *stderr*, the error output. Unless changed, a program that gets data from *stdin* will ask for input from the user just like we've done with *fgets()*, and sending anything to *stdout* or *stderr* will be printed on the screen.
 
 Data can be brought into our programs by reading from a stream, and it can be sent out of our program by writing to one. Some streams are read-only, some are write-only, and some allow both reading and writing. *stdin* is read-only, so we can use it only for getting data. *stdout* and *stderr* are write-only, so we can only print to them. If we create a stream to operate on a file, we can choose either or both.
 
@@ -163,7 +163,7 @@ This returns a 0 if everything is OK on the stream indicated by *streamHandle* a
 char * fgets(char *array, int arraySize, FILE *streamHandle);
 ```
 
-*fgets()* is the safe version of *gets()*. It reads in text from the stream handle until it encounters an endline (*\'\\n\'*) character or it reads the number of characters equal to *arraySize*, making a segmentation fault possible if the programmer makes a mistake. As with *gets(),* when successful, *fgets()* returns the same pointer as *array*. If there is an error, it returns a *NULL* pointer. If *fgets()* comes to the end of the file -- only encountered when reading from a file instead of *stdin* -- the contents of the array remain unchanged and a *NULL* pointer is returned. Whenever a *NULL* pointer is returned by *fgets()*, use *feof()* and *ferror()* to figure out whether you have run out of data or something has gone wrong.
+We have already used *fgets()* with the stdin stream, but it can be used with other streams as well. It reads in text from the stream handle until it encounters an endline (*\'\\n\'*) character or it reads the number of characters equal to *arraySize*, making a segmentation fault possible if the programmer makes a mistake. When successful, *fgets()* returns the same pointer as *array*. If there is an error, it returns a *NULL* pointer. If *fgets()* comes to the end of the file -- only encountered when reading from a file instead of *stdin* -- the contents of the array remain unchanged and a *NULL* pointer is returned. Whenever a *NULL* pointer is returned by *fgets()*, use *feof()* and *ferror()* to figure out whether you have run out of data or something has gone wrong.
 
 ``` {.c++}
 FILE * fopen(const char *filePath, const char *mode);
@@ -291,7 +291,7 @@ main(void)
     printf("Printing file %s:\n",filePath);
 
     // We got this far, so it's safe to print the file
-    FILE *file = fopen(filePath,"r");
+    FILE *file = fopen(filePath, "r");
 
     if (!file || ferror(file))
     {
@@ -305,7 +305,7 @@ main(void)
     // file, so this little loop will print the entire file and quit
     // at its end.
 
-    while (fgets(inString,1024,file))
+    while (fgets(inString, 1024, file))
         fprintf(stdout,"%s",inString);
 
     fclose(file);
@@ -316,7 +316,7 @@ main(void)
 
 Whew! This is our longest example yet. It's also our closest code to a \"real\" program. Some idioms, like *if (!file)*, are very common to C and C++ programming, so get used to seeing them. Read over the code in this example and make sure that you understand what each line does.
 
-There are some small changes in the style, as well. Attention to good style is a quirk of the Haiku ecosystem. The Haiku developers, in particular, are notably picky about code which adheres to the OpenTracker code style guidelines and with good reason. Style is partly a matter of opinion, but good code style can also help with debugging and avoiding errors. Bad code style can make it much, much harder. The style we will use throughout the rest of these lessons does not hold to the official Haiku guidelines in certain ways, but it does follow them pretty closely.
+There are some small changes in the style, as well. Attention to good style is a quirk of the Haiku ecosystem. The Haiku developers, in particular, are notably picky about code which adheres to their code style guidelines and with good reason. Style is partly a matter of opinion, but good code style can also help with debugging and avoiding errors. Bad code style can make it much, much harder. The style we will use throughout the rest of these lessons does not hold to the official Haiku guidelines in certain ways, but it does follow them pretty closely.
 
 ## Bug Hunt
 
@@ -353,7 +353,7 @@ int main(void)
     char inString[1024];
 
     printf("Type a string to reverse:");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     printf("The reversed string is %s**\n**",ReverseString(inString));
     return 0;

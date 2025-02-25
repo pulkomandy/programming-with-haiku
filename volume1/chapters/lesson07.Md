@@ -323,10 +323,10 @@ int main(void)
     char *combinedString = NULL;
 
     printf("Enter your first word: ");
-    gets(firstString);
+    fgets(firstString, 100, stdin);
 
     printf("Enter your second word: ");
-    gets(secondString);
+    fgets(secondString, 100, stdin);
 
     sprintf(combinedString,"%s %s",ReverseString(secondString),
 

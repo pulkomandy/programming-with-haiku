@@ -16,7 +16,7 @@ int main(void)
     char inString[1024];
 
     printf("Type some text and hit Enter:\n");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     int i = 0;
     while (inString[i])
@@ -40,7 +40,7 @@ int main(void)
     char inString[1024];
 
     printf("Type some text and hit Enter:\n");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     int i = 0;
     do
@@ -85,7 +85,7 @@ int main(void)
     char inString[1024];
 
     printf("Type some text and hit Enter:\n");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     int i = 0;
     while (inString[i]) {
@@ -193,7 +193,7 @@ int main(void)
     char inString[1024];
 
     printf("Type a string to reverse:");
-    gets(inString);
+    fgets(inString, 1024, stdin);
 
     printf("The reversed string is %s\n", ReverseString(inString));
 
