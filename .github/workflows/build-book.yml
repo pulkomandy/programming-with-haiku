@@ -1,0 +1,12 @@
+name: build-book
+run-name: build-book
+on: [push]
+jobs:
+  build-book:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt update
+      - run: sudo apt install -y calibre pandoc poppler-utils python3 python3-pip texlive texlive-fonts-extra texlive-xetex
+      - run: pip3 install pandoc-latex-environment
+      - run: make -C volume1 all png
