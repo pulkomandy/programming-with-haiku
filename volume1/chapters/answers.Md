@@ -36,7 +36,7 @@ Our job was to use the equation *Interest = Principal \* rate \* time* to calcul
 
 Here's one way to do it:
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -86,7 +86,7 @@ We were given these steps to follow to write it:
 3.  Make an *int* variable and set it to the string's length
 4.  Use a *for* loop to print each character in the string both as a character and its numerical value
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -134,7 +134,7 @@ This example even includes printing the character code in both decimal and hexad
 
 There was only one hunt because of how hard it was. It's a kind of error called an off-by-1 error. These are sometimes are to track down, like this one was. The errors and corrections are commented.
 
-``` {.c++}
+```cpp
 char *ReverseString(char *string)
 {
     // This function rearranges a string so that it is backwards

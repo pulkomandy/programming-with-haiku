@@ -90,7 +90,7 @@ Of all of these classes, the ones that are used in the course of regular applica
 
 Reacting to most events in Haiku programming boils down to one function: *MessageReceived()*. It is a **hook function**, that is, a virtual function intended to be implemented by child classes to react to an event. In this case, *MessageReceived()* is implemented by child classes to handle messages that are not already handled by the parent class. Any child class of BHandler, including BLooper, BApplication, BWindow, and BView, have this hook function. Most of the time, it will look like this:
 
-``` {.c++}
+```cpp
 void
 MyWindow::MessageReceived(BMessage *msg)
 {
@@ -119,7 +119,7 @@ MyWindow::MessageReceived(BMessage *msg)
 
 Understanding how messaging works in Haiku is best learned in code, so we'll look at a second example, very much similar to the one from the last lesson, but which expands on what we know. We will create a window with a button. Clicking the button will change the title of the window to show the number of times the button has been clicked since the program was started. First, let's look at our window class. All of the code here can be found in the file 15ClickMe.zip, but it would still be best to manually type out all of this code to increase your familiarity with it.
 
-``` {.c++}
+```cpp
 // MainWindow.h
 
 #ifndef MAINWINDOW_H
@@ -147,7 +147,7 @@ private:
 
 ```
 
-``` {.c++}
+```cpp
 // MainWindow.cpp
 
 #include "MainWindow.h"
@@ -246,7 +246,7 @@ Creating the title isn't difficult, especially if we use the *BString* class. Th
 
 The rest of the code kept in App.h and App.cpp is almost exactly the same as it was in the last lesson. The main difference is that App.cpp includes MainWindow.h. By including it, we have the definition for the MainWindow class and we can allocate and show one.
 
-``` {.c++}
+```cpp
 // App.h
 
 #ifndef APP_H
@@ -261,7 +261,7 @@ public:
 };
 #endif
 ```
-``` {.c++}
+```cpp
 // App.cpp
 
 #include "App.h"

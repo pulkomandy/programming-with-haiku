@@ -62,7 +62,7 @@ Using the Interface Kit does have one drawback: if you use one part of it, you a
 
 This project, called ListDir, is a simple version of the bash command *ls*. Given a path specified on the command line, our program will list the contents of the directory and the size of each entry in the directory. We will display the \"size\" of any subdirectories by listing how many entries the subdirectory has.
 
-``` {.c++}
+```cpp
 // Main.cpp
 
 #include <Directory.h>

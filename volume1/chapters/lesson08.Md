@@ -12,7 +12,7 @@ There are three types of scope: local, global, and static. Local variables have 
 
 Global and static variables are declared outside of a function. They can always be accessed, but the order in which they are initialized is not certain, so be careful of globals that depend on the values of other globals. Global variables can be accessed from anywhere. Static variables have the same lifetime as global variables, but they can be accessed only from code within the file in which they are declared. In other words, code in other files can't get at them. All of this can get tricky, but it is easier to understand in code, so let's look at an example.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -54,7 +54,7 @@ Having seen the above example, you should be aware of what names you give your v
 
 If you're like me, you're probably wondering what kind of headaches I'm talking about. Take a look at this example and ask yourself what value would be printed.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -82,7 +82,7 @@ Not everything is subject to being changed in C and C++. Sometimes we want to en
 
 The first kind of constant is the preprocessor definition. In case you don't remember from Lesson 2, the preprocessor is the first tool used when compiling source code into an executable. The preprocessor removes comments, includes header files, and other basic text insertion and substitution. They look like this:
 
-``` {.c++}
+```cpp
 #define SOMEDEF "I like cheese!"
 #define STRACE(x) printf x
 ```
@@ -91,7 +91,7 @@ The format is simple: *\#define \<definition\> \<what gets put there\>*. They ar
 
 Even more so than arrays, *\#defines* need to be handled carefully. It is good practice to put them in all capitals so that they do not look like functions. They also are not type-aware, and one other word of caution: no matter how much they beg, no matter how much they cry, never, **NEVER put a semicolon at the end of a preprocessor definition**.
 
-``` {.c++}
+```cpp
 // Do NOT do this
 #define THISISBAD 1;
 ```
@@ -100,13 +100,13 @@ Doing so will result in errors in your code that seemingly have nothing to do wi
 
 Constant variables are the preferred means of remembering an arbitrary value because they have a defined type. This is done by placing the *const* keyword in the declaration of a variable. Because they are not allowed to be modified, you will almost always see a constant initialized when it is declared.
 
-``` {.c++}
+```cpp
 const int someConstantIntValue = 3;
 ```
 
 Pointers can be made constant, as well, but it gets confusing *very* quickly if you're not careful. The *const* keyword can apply to the pointer's address, to the pointer itself, or both.
 
-``` {.c++}
+```cpp
 // This is just a constant integer that we'll use for some of the pointers below.
 const int someVariable = 5;
 
@@ -140,32 +140,32 @@ Data can be brought into our programs by reading from a stream, and it can be se
 
 Each stream has an identifier, called a **handle**. In programming, a handle is just an arbitrary -- but most often unique -- number which is used to identify an object from others of its kind. Operating on a stream is as simple as obtaining a handle for the stream and calling the appropriate function. Let's take a look at the declarations for some of the functions that we will use in day-to-day C programming.
 
-``` {.c++}
+```cpp
 int printf(const char *format, ...);
 int fprintf(FILE *streamHandle, const char *format, ...);
 ```
 
 An old standard. Given a string which defines the format for what is to be printed and an appropriate number of parameters afterward, prints a string to *stdout*. *fprintf()* requires a stream handle to be specified before the format string -- making it possible to \"print\" directly to a file -- but otherwise working exactly like *printf()*. When successful, both functions return the number of characters printed. A negative return value is used to indicate failure.
 
-``` {.c++}
+```cpp
 int ferror(FILE *streamHandle);
 ```
 
 This returns a 0 if everything is OK on the stream indicated by *streamHandle* and some other unspecified value if an error has occurred. Make sure that *streamHandle* is not *NULL* -- it will segfault your program otherwise.
 
-``` {.c++}
+```cpp
 int feof(FILE *streamHandle);
 ```
 
 This returns a 0 if everything is OK on the stream indicated by *streamHandle* and some other unspecified value if the stream has come to the end of the file. Make sure that *streamHandle* is not *NULL* -- it will segfault your program otherwise.
 
-``` {.c++}
+```cpp
 char * fgets(char *array, int arraySize, FILE *streamHandle);
 ```
 
 We have already used *fgets()* with the stdin stream, but it can be used with other streams as well. It reads in text from the stream handle until it encounters an endline (*\'\\n\'*) character or it reads the number of characters equal to *arraySize*, making a segmentation fault possible if the programmer makes a mistake. When successful, *fgets()* returns the same pointer as *array*. If there is an error, it returns a *NULL* pointer. If *fgets()* comes to the end of the file -- only encountered when reading from a file instead of *stdin* -- the contents of the array remain unchanged and a *NULL* pointer is returned. Whenever a *NULL* pointer is returned by *fgets()*, use *feof()* and *ferror()* to figure out whether you have run out of data or something has gone wrong.
 
-``` {.c++}
+```cpp
 FILE * fopen(const char *filePath, const char *mode);
 ```
 
@@ -189,7 +189,7 @@ FILE * fopen(const char *filePath, const char *mode);
 | \"a+\"                            | Open a file for reading and appending. Reading can be done from anywhere in the file, but all writes are tacked onto the end of the file.         |
 +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-``` {.c++}
+```cpp
 int fclose(FILE *streamHandle);
 ```
 
@@ -199,7 +199,7 @@ Wow. That's a lot of different functions! The scary part is that this is only a 
 
 Let's have a look at a program which prints a test file to *stdout* and creates that file if necessary.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int
@@ -322,7 +322,7 @@ There are some small changes in the style, as well. Attention to good style is a
 
 ### Hunt \#1 
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -373,7 +373,7 @@ foo.cpp:22: error: invalid conversion from ‘const char\*’ to ‘char\*’
 2.  What are the three types of scope?
 3.  What part(s) of the following pointer declaration is constant: the value, the pointer's address, or both?
 
-``` {.c++}
+```cpp
 int * const myPointer;
 ```
 

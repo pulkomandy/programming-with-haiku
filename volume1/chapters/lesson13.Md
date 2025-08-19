@@ -28,7 +28,7 @@ Inheritance allows us to reuse code that we've already written. Code reuse is fo
 
 To turn this example into code, we will write two class definitions, one for each class.
 
-``` {.c++}
+```cpp
 class Rectangle
 {
 public:
@@ -68,7 +68,7 @@ private:
 
 The *RectangularSolid* class only declares methods and properties that are new. Writing the code that goes with these classes requires more than what the class definitions would make you think. This is our first code working with classes, so study this code and the comments carefully.
 
-``` {.c++}
+```cpp
 // Rectangle's constructor. This will set the object's properties to what
 // were passed to it. When writing the code for a class' methods, the
 // class name plus two colons must precede the method's name.
@@ -172,7 +172,7 @@ One other point to note is the line which handles the inheritance -- it reads *p
 
 Not only is it possible for a child class to add new methods and properties, but it can also change the behavior of existing methods. This is possible only when the base class says that doing so is allowed. Adding the *virtual* keyword before the return type in a method declaration grants this permission.
 
-``` {.c++}
+```cpp
 // A child class can redefine the behavior of this method
 virtual void MyChangeableMethod(int someInt);
 
@@ -182,7 +182,7 @@ virtual void ThisMethodMustBeDefined(float someFloat) = 0;
 
 Being able to change how a method works does **not** enable us to change the number or types of a method's parameters or its return type, however. The original version found in the parent class doesn't disappear completely either. It can be specified using the scope operator, as exemplified below:
 
-``` {.c++}
+```cpp
 void
 ChildClass::DoSomething(void)
 {
@@ -196,7 +196,7 @@ ChildClass::DoSomething(void)
 
 You usually have to have an instance of an object to call one of its methods. This can be a hassle sometimes, but declaring a method as *static* binds the method to the class, removing this requirement. Static methods are called using the scope operator the same way that we did for calling the parent implementation of a virtual function above.
 
-``` {.c++}
+```cpp
 class MyClass
 {
 public:
@@ -224,7 +224,7 @@ main(void)
 ## Overloading: Functions with the Same Name
 One limitation of programming in C that can be a real pain in the neck is that no two functions can have the same name even if they have different parameters. C++ removes this limitation so long as the compiler is able to figure out which version is being called based on the number and types of arguments given to it. This will work:
 
-``` {.c++}
+```cpp
 int MyFunction(int oneWay);
 int MyFunction(char *anotherWay);
 int MyFunction(float aThirdWay);
@@ -232,7 +232,7 @@ int MyFunction(float aThirdWay);
 
 This, on the other hand, won't work:
 
-``` {.c++}
+```cpp
 int SomeMethod(const char *oneConstString);
 int SomeMethod(const char *anotherString,
 		   const char *optionalString = NULL);

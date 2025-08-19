@@ -8,7 +8,7 @@ Even in programming, nothing is ever certain. One way a program can handle speci
 
 A computer can do the same thing, such as **if** some variable equals 10, **then** set some other variable to false. If we were to write this in code, this is what it would look like:
 
-``` {.c++}
+```cpp
 if (someVariable == 10) {
     someOtherVariable = false;
 }
@@ -16,7 +16,7 @@ if (someVariable == 10) {
 
 The condition for this statement is placed inside the parentheses. Notice that instead of using just one equals sign for checking if the two variables are equal, we have two. In C and C++ a single equals sign is used for assigning a value to a variable and two equals signs are for comparing two values. If you forget, the compiler will warn you. Your program will still compile, but you will be warned about this possible programming error. Following the condition in parentheses, we have a block of instructions inside a pair of curly braces that will be executed if the condition is true. If it is false, the block of instructions is skipped and program execution continues on afterward. We can also specify what to do if the condition is false with an *else* block.
 
-``` {.c++}
+```cpp
 // If the dragon breathes fire
 if (dragonBreathesFire) {
     // Stop and break out the marshmallows. Yum!
@@ -32,7 +32,7 @@ if (dragonBreathesFire) {
 
 *If* statements can be used in many fancy ways. They can be chained together or even **nested**, that is, put inside one another, and if you want to Work Smarter, Not Harder, (a.k.a. be a lazy programmer), you can skip the curly braces if you have only a single instruction to execute. Observe:
 
-``` {.c++}
+```cpp
 // This is the shortcut way of using an if statement - there is only one
 // instruction to possibly run.
 if (someVariable == 10)
@@ -75,7 +75,7 @@ To add one final trick to our bag, we can also use Boolean logical operators to 
 
 Note that if you have more than one condition in an *if* statement, it may be a good idea to enclose each one in parentheses to make your code a little clearer unless the conditions are pretty short.
 
-``` {.c++}
+```cpp
 if ((a == 1 && b == 2) || c)
     DoSomething();
 ```
@@ -88,7 +88,7 @@ Now while all of this might seem like a lot to handle at once, what we have lear
 
 A **loop** is a feature of C and C where the program repeatedly executes a set of instructions while a certain condition is true. C has several kinds of loops, but for today, we will look at just one: the *for* loop. Let's look at one and then examine the details.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -139,7 +139,7 @@ $$A = (P * (r/12)) / (1 - (1 + r/12)^-n)$$
 
 With as complicated as it looks, this is definitely a job for a dedicated function. Let's translate this mathematical mess into something a little easier to wrap our minds around.
 
-``` {.c++}
+```cpp
 #include <math.h>
 
 
@@ -163,13 +163,13 @@ Note that we used 12.0 and not 12 to force the compiler to treat the 12's as flo
 
 We could have done the whole thing in one go, but it would've been harder to read and a real head-scratcher to debug. It would look like this:
 
-``` {.c++}
+```cpp
 return (principal * rate / 12.0) / (1 - pow(1 + (rate / 12.0), -months));
 ```
 
 Yuck. While some expert coders might prefer this because it's more compact, having readable, maintainable code is *far* more important. Now that we have the function to calculate the payment, let's put it to good use by making it calculate the monthly payments for car loans that last one to five years.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <math.h>
 
@@ -214,7 +214,7 @@ Try playing with the numbers and see what happens, such as if the 60 in the loop
 
 ### Hunt \#1
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -232,7 +232,7 @@ It's supposed to print only 2 times the odd numbers (1,3,5,etc.) but it prints a
 
 ### Hunt \#2
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -262,7 +262,7 @@ And when it runs, it prints this:
 
 1.  In the following code snippet, will anything be printed? Why?
 
-``` {.c++}
+```cpp
 int i = 0;
 
 if (i)
@@ -271,7 +271,7 @@ if (i)
 
 2.  What operator should replace the word OR in the following code in order for the _if_ statement to evaluate as true if either condition is true?
 
-``` {.c++}
+```cpp
 if (a == b __OR__ a == c) 
 ```
 

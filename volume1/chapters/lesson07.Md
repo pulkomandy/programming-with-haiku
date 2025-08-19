@@ -14,7 +14,7 @@ Up to now I've mentioned C and C in tandem. Everything we\'ve learned so far is 
 
 The C way of allocating memory is using *malloc()* to get a pointer to some memory for us to use and then calling *free()* on the pointer to return that block of memory to the system. It's also possible to use *realloc()* to change the size of a chunk of RAM originally given to us by *malloc()*. Using these functions properly will take some explanation, so let's have a look at their declarations and handle the details one function at a time.
 
-``` {.c++}
+```cpp
 void * malloc(size_t size);
 void free(void *pointer);
 void * realloc(void *pointer, size_t newSize);
@@ -34,7 +34,7 @@ The other new type we see above is the *void* pointer. *void* pointers don't hav
 
 Working with these memory functions isn't difficult. Let's have a look at some of them in action with a simple example.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 // Another new include! malloc.h contains definitions for
@@ -249,7 +249,7 @@ XOR sets the output bits to 1 whenever the two input bits are different. So it i
 
 Bitwise NOT also flips bits like XOR does, but with less control. It flips all of the bits in a number, just like the example above, but it does not require a second value. Here is an example of how it can be used:
 
-``` {.c++}
+```cpp
 int a = 5;
 printf("The value of ~%d is %d**\n**", a, ~a);
 ```
@@ -258,13 +258,13 @@ printf("The value of ~%d is %d**\n**", a, ~a);
 
 In addition to flipping bits on and off, C and C++ provide shift operators which let us quickly do some fast and fancy multiplication and division.
 
-``` {.c++}
+```cpp
 a << b
 ```
 
 Shift the value of *a* to the left by *b* places. This multiplies *a* by 2^b^
 
-``` {.c++}
+```cpp
 a >> b
 ```
 
@@ -292,7 +292,7 @@ Knowing shift operations is especially handy when operating with values at the b
 
 #### Hunt \#1
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -342,7 +342,7 @@ When run, the program prints \"*segmentation fault*\" and nothing else.
 
 #### Hunt \#2
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <math.h>
 

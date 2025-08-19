@@ -34,7 +34,7 @@ We will only do one thing a couple of different ways, so we should be able to ge
 
 The first thing we should do is find out where the fortunes are being kept. Under BeOS and Zeta, they were kept in /boot/beos/etc/fortunes. Haiku keeps them in a different place: /boot/system/data/fortunes. Rather than try to guess what platform we might be using, we'll use *find\_directory()*.
 
-``` {.c++}
+```cpp
 status_t find_directory(directory_which which, BPath *path,
 				bool and_create_it = false, BVolume *vol = NULL);
 ```
@@ -43,21 +43,21 @@ This call takes a constant -- a list of which can be found in FindDirectory.h --
 
 We are going to make a global variable to hold the path for the fortunes. Using lots of global variables is a bad idea, but one in this program won't hurt anything. Add this line to FortuneFunctions.h:
 
-``` {.c++}
+```cpp
 extern BString gFortunePath;
 ```
 
 Place this somewhere between the includes and your class code in FortuneFunctions.cpp.
 
-``` {.c++}
-BString gFortunePath = \"/boot/beos/etc/fortunes\";
+```cpp
+BString gFortunePath = "/boot/beos/etc/fortunes";
 ```
 
 The *extern* keyword declares *gFortunePath* without defining it. If FortuneFunctions.h is used by more than one file, this will prevent linker problems. We actually define and initialize it in the main sources.
 
 Now that we've made the necessary tweaks to our fortune access class, let's turn our attention to App.cpp. We will need to do a little additional setup before we show our fortune window.
 
-``` {.c++}
+```cpp
 // App.cpp
 
 #include "App.h"
@@ -113,7 +113,7 @@ main(void)
 
 ```
 
-``` {.c++}
+```cpp
 // MainWindow.cpp
 
 #include "MainWindow.h"

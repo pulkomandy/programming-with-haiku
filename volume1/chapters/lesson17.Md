@@ -13,7 +13,7 @@ We're going to learn about several classes this lesson: BMenu, BMenuBar, BMenuIt
 
 Now that we have our files set up, let's bang out some code. First, here is the code for App.h and App.cpp. It would be a good idea to type everything out instead of copying and pasting the text so that you get familiarized with the boilerplate code.
 
-``` {.c++}
+```cpp
 // App.h
 
 #ifndef APP_H
@@ -30,7 +30,7 @@ public:
 #endif
 ```
 
-``` {.c++}
+```cpp
 // App.cpp
 
 #include "App.h"
@@ -54,7 +54,7 @@ main(void)
 
 None of the code in these files is anything new. Note that because we haven't entered in the class definition for MainWindow in its header file, if you try to build your project right now, you get some errors. Don't worry -- we'll have everything working in just a moment. Here is the code for MainWindow.h:
 
-``` {.c++}
+```cpp
 // MainWindow.h
 
 #ifndef MAINWINDOW_H
@@ -74,7 +74,7 @@ public:
 
 This, too, is familiar territory. All of the new code will be in MainWindow.cpp, but let's start with the boilerplate code for MainWindow and add to it bit by bit. The best way to write code is to add a little at a time, compile, and then test what you've written to help you find bugs.
 
-``` {.c++}
+```cpp
 // MainWindow.cpp
 
 #include "MainWindow.h"
@@ -111,7 +111,7 @@ Now that we have all of our baseline code in place, build it just to make sure t
 
 Window controls are all objects which are descended from the BView class. If you take a quick glance at /boot/develop/headers/os/interface/View.h, you'll see that it's a large, complicated class with a lot of methods. Luckily, we don't need to know very many at this point. The BView below will be our colored box. Add this code to the MainWindow constructor:
 
-``` {.c++}
+```cpp
 MainWindow::MainWindow(void)
 	:	BWindow(BRect(100,100,500,400),"MenuColors",B_TITLED_WINDOW,
 				B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE)
@@ -131,7 +131,7 @@ Adding controls to windows in Haiku isn't much different. Most of them have a co
 
 With the exception of pop-up menus, menus in Haiku are normally kept in a menu container of some sort. The Haiku API provides two menu containers: BMenuField and BMenuBar. We'll ignore BMenuField for now and focus on BMenuBar. Change the constructor code to the following:
 
-``` {.c++}
+```cpp
 MainWindow::MainWindow(void)
 	:	BWindow(BRect(100,100,500,400),"MenuColors",B_TITLED_WINDOW,
 				B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE)
@@ -157,7 +157,7 @@ MainWindow::MainWindow(void)
 
 Now that we have a container for our color menu, we can create the menu itself. This will require three components: the menu, the items in the menu, and message identifiers for each menu item. First, let's handle the message identifiers. Add this code just after the *\#include* statements at the top of the file.
 
-``` {.c++}
+```cpp
 enum
 {
 	M_SET_COLOR_RED = 'sred',
@@ -173,7 +173,7 @@ The constants themselves can either be placed at the top of a class\' source fil
 
 Now that the message identifiers have been defined, let's go on to creating and populating the menu. The code looks like this:
 
-``` {.c++}
+```cpp
 MainWindow::MainWindow(void)
 	:	BWindow(BRect(100,100,500,400),"MenuColors",B_TITLED_WINDOW,
 			B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE)
@@ -211,7 +211,7 @@ MainWindow::MainWindow(void)
 
 We're almost done! If you try running your project and clicking in the menu, you'll find that nothing happens. Everything works the way it should. When a menu item is clicked, it sends a message to the window, like clicking on the \'Red\' menu item sends a *M\_SET\_COLOR\_RED* message to the window. The window receives it, but doesn't do anything with it, so all that is needed now is to write the code for when the window receives each of the menu items\' messages.
 
-``` {.c++}
+```cpp
 void
 MainWindow::MessageReceived(BMessage *msg)
 {

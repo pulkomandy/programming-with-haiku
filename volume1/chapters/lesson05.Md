@@ -6,7 +6,7 @@ Computer languages are a funny lot in that some of them are closer to human lang
 
 In addition to single variables, C++ also gives us the ability to use collections of variables called **arrays**. The individual members of these groups, called **elements**, are all the same type and are clustered together in the computer's memory. You could say that arrays are a little like egg cartons -- containers of a bunch of little items of the same kind. Arrays are declared just like regular variables except for a pair of square brackets with a number inside that states how many items the array contains.
 
-``` {.c++}
+```cpp
 int thisIsAnArray[5];
 ```
 
@@ -16,7 +16,7 @@ integer0 integer1 integer2 integer3 integer4
 
 Using arrays can take a little getting used to, however. Each element in an array is assigned a number. Accessing an element in an array is done by using this number inside a pair of square brackets.
 
-``` {.c++}
+```cpp
 int main(void)
 {
     // Declare the array itself, which contains 5 elements.
@@ -46,13 +46,13 @@ Arrays require some special care and feeding. The memory used to hold them is se
 
 No discussion of arrays would be complete without also talking about pointers. Pointers are a fundamental concept of C and C++ which can initially sound even crazier than counting from 0. A **pointer** is a variable which contains (or *points to*) a memory address. You can always recognize the declaration of a pointer because its name is preceded by an asterisk (\*).
 
-``` {.c++}
+```cpp
 char *somePointer;
 ```
 
 Let's look at a code example which demonstrates how to use pointers.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -116,7 +116,7 @@ The first four are not commonly used in Haiku or UNIX/Linux programming. The car
 
 Let's look at an example that uses just single characters.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -133,7 +133,7 @@ int main(void)
 
 There are tons of different ways to work with strings, so let's look at just a few for the moment. The fastest way to understand it all is with some code. Work slowly through this heavily-commented example to get a good handle on it all.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 // A new include! This one has a bunch of functions just for working with strings
@@ -203,7 +203,7 @@ One advantage programmers have over other trades is being able to make tools to 
 
 In order to get information from the user, we'll need to use two new functions: *fgets()* and *strlen()*. Both take a *char* pointer as a parameter. We'll use a *char* array for both -- remember that arrays can be used like pointers if you leave out the brackets and index number. Here are what the declarations of these two functions look like and a description of each:
 
-``` {.c++}
+```cpp
 char * fgets(char *inString, int count, FILE* stream);
 ```
 
@@ -211,7 +211,7 @@ char * fgets(char *inString, int count, FILE* stream);
 
 The usage of *fgets()* with other streams will be explained in later chapters. For this lesson, we will only use it with *stdin*.
 
-``` {.c++}
+```cpp
 int strlen(char *inString);
 ```
 
@@ -224,7 +224,7 @@ Here are the basic steps for how we will write our program:
 3.  Make an *int* variable and set it to the string's length
 4.  Use a *for* loop to print each character in the string both as a character and its numerical value
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -260,7 +260,7 @@ Why does *fgets()* needs the size of the inString buffer passed as a parameter?
 
 ### Hunt \#1
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -282,7 +282,7 @@ The code builds just fine, but it won't stop running printing stuff on the scree
 
 ### Hunt \#2
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 

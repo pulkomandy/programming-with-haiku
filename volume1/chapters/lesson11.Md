@@ -8,7 +8,7 @@ It's possible to create your own types in C and C++ using the *typedef* keyword.
 
 A type is defined using the format *typedef baseType newTypeName* like the entries that are found below, taken from Haiku's *\<config/types.h\>* header.
 
-``` {.c++}
+```cpp
 // The type of data       The new name for the data
 
 typedef signed char         __haiku_std_int8;
@@ -25,7 +25,7 @@ The *signed* and *unsigned* keywords are new only because we haven't needed them
 
 These types really are just different names for the same kind of data, so *\_\_haiku\_std\_uint32* is just another name for an *unsigned int*. The new names created above aren't very friendly, but that's OK. They're not normally used or seen -- they are actually intermediary names that are used in some friendlier name definitions found in *\<SupportDefs.h\>*.
 
-``` {.c++}
+```cpp
 typedef     __haiku_int8    int8;   // an 8-bit signed integer
 typedef     __haiku_uint8   uint8;  // an 8-bit unsigned integer
 typedef     __haiku_int16   int16;  // a 16-bit signed integer
@@ -42,7 +42,7 @@ Ah. Much better. From here on, we'll be using these types instead of the standar
 
 An enumerated type is one which is limited to a specified set of values. For example, if you were making a card game of some kind, you could define a card's suit as an enumerated type that would carry more meaning than an arbitrary integer value. It would look like this:
 
-``` {.c++}
+```cpp
 enum card_suit
 {
     SUIT_CLUBS,
@@ -54,13 +54,13 @@ enum card_suit
 
 This would then make it possible to have a variable *cardSuit* that could have a value that was one of the four in the list. Declaring and initializing it would look like this:
 
-``` {.c++}
+```cpp
 enum card_suit cardSuit = SUIT_HEARTS;
 ```
 
 The format for creating an enumerated type looks like this, with the name and assigning integer values being optional:
 
-``` {.c++}
+```cpp
 enum enumName
 {
     // A value in an enumerated type can have an integer value assigned to it.
@@ -83,32 +83,36 @@ enum enumName
 
 Structures are groups of variables. They can be of any type and while there is a practical limit to how many different items can be placed in one, there is no technical limit. Structures are used to group together closely-associated data. They are defined like this:
 
-``` {.c++}
-struct myStructName { int8someInt; int16someOtherInt; floatsomeFloat; boolaFlagOfSomeKind;\
+```cpp
+struct myStructName {
+    int8 someInt;
+    int16 someOtherInt;
+    float someFloat;
+    bool aFlagOfSomeKind;
 };
 ```
 
 Now that we have a structure, we can treat it just like any other data type.
 
-``` {.c++}
+```cpp
 myStructName someVar; myStructName aSecondVar;
 ```
 
 From here, we access the variables inside the structure using a the structure's name followed by a dot and the name of the variable inside the structure. For example, let's say that we want to set the _someInt_ part of _someVar_ to 5. It would look like this:
 
-``` {.c++}
+```cpp
 someVar.someInt = 5;
 ```
 
 If you want to allocate a structure on the heap, it isn't any different than any other data type.
 
-``` {.c++}
+```cpp
 myStructName **ptrStruct = (myStructName**)malloc(sizeof(myStructName));
 ```
 
 There is a difference, though, in accessing variables inside structures – we use an arrow instead of a dot. The arrow is just a minus sign followed by a greater-than sign.
 
-``` {.c++}
+```cpp
 ptrStruct->someInt = 5;
 ```
 
@@ -118,7 +122,7 @@ Lastly, structures can be nested inside structures. Accessing variables inside t
 
 Unions are a data construct left over from the old days of C when memory was expensive. They're pretty rare anymore except in old code. They are declared like a structure, but it takes up only as much memory as the largest variable inside it. Accessing a member is just like a structure. The key difference between unions and structures is that setting the value on one variable inside a union changes the value for all of the variables inside it. Each variable is a different way of interpreting the value in the memory location that the union occupies. Yeah, it's kind of confusing. Don't worry too much about it.
 
-``` {.c++}
+```cpp
 union myUnion {
         int32data32;
         int8data8;
@@ -131,7 +135,7 @@ myUnion onion; onion.data32 = 5000;
 
 We've seen a lot at once this lesson, so let's take some time to look at some code which puts it to use to get a better grasp of it all. This example is, by far, the longest one we have had. Take the time to slowly go over the code and make sure you understand what each line does before moving on. Go back to previous lessons and look something up if you need to. This is more like "real world" Haiku code than example code from some tutorial. There are some fancy code tricks that we will commonly see in future lessons, but don't worry if you forget them because you'll see them more and more as we go.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
@@ -391,7 +395,7 @@ In the last lesson, we were presented with the task of making a program that tak
     b.  Try reading some more data from the file handle, storing the number of bytes read.
 5.  Close the file's handle.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <malloc.h>
 

@@ -9,13 +9,13 @@ Normally you think of overloading as being something you typically don't want to
 
 In last lesson's project we saw our first example of operator overloading with the BString class when we generated the title for the window. It looked like this:
 
-``` {.c++}
+```cpp
 BString labelString("Clicks: ");
 			
 // This adds the value of fCount to the end of labelString. More
 // on this next lesson.
 labelString << fCount;
-``
+```
 
 Normally the *\<\<* operator does a binary shift left, but it works differently on a BString. The *\<\<* operator has been overloaded to work as a more flexible shortcut for its *Append()* method, converting *fCount* to a string and then tacking it on to the end of *labelString*. Any operator in C++ can be overloaded, including array brackets, parentheses used for function calls, and the arrow operator.
 
@@ -24,12 +24,12 @@ Like many other aspects of C++, having the ability to do something does not mean
 Except for a select few, operator functions may be implemented either as methods, i.e. part of a class, or regular functions. There are benefits and drawbacks to each. For example, here are the two ways that a + operator may be overloaded:
 
 Method:
-``` {.c++}
+```cpp
 MyClass operator+(const MyClass &from);
 ```
 
 Regular function:
-``` {.c++}
+```cpp
 MyClass operator+(const MyClass &first, const MyClass &second);
 ``
 
@@ -38,18 +38,18 @@ All other binary operators follow this format. As a general rule, make binary op
 Unary operators follow this format for implementation:
 
 Method:
-``` {.c++}
+```cpp
 bool operator!(void) const;
 ```
 
 Regular function:
-``` {.c++}
+```cpp
 bool operator!(const MyClass &target);
 ```
 
 There are also a couple of special case operators which deserve some attention. First of all, what about the and \-- operators? Each of them can be used two different ways. This means that there are two different ways to overload them. When overloaded, both the prefix (\_i\_) and postfix (*i++*) versions must be implemented.
 
-``` {.c++}
+```cpp
 class MyClass:
 {
 	// Preincrement operator
@@ -63,7 +63,7 @@ class MyClass:
 
 The subscript operator (\'*\[\]*\') also is a special case because it can be on either side of an assignment. It is required to be a method, so there is only one way to implement it:
 
-``` {.c++}
+```cpp
 MyClass & operator\[\] (const int index);
 ```
 
@@ -155,7 +155,7 @@ Having learned about constructors and destructors in the last lesson, we've lear
 
 The *float* type isn't terribly accurate. Add together 50 or 100 floating point numbers and you won't necessarily have exactly the result you would have if you were to add them up with a calculator. This stems from how they are stored in memory. Normally, this isn't a problem, but if we were going to write a personal finance program, any rounding error would be a major issue. We're going to create a type which is accurate to merely two decimal places and no errors. First, let's start with a basic class definition and a quick *main()* function to test it out.
 
-``` {.c++}
+```cpp
 #include <SupportDefs.h>
 #include <stdio.h>
 
@@ -214,7 +214,7 @@ The code itself isn't terribly complicated. We have four public methods: the con
 
 The idea behind our fixed class is that we're going to use a regular integer to hold a floating point value to avoid any rounding errors. The lowest two digits are reserved for the fractional part, so we will have to multiply any outside numbers by 100 to be able to add them to our Fixed class and divide the value of our Fixed class by 100 to translate to proper values for the outside world. So far everything seems to work properly. Let's tweak our *main()* function a bit:
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -240,7 +240,7 @@ Fixing the bug, fortunately, is pretty easy once we understand it. The problem i
 
 The copy constructor is a function called whenever an object needs to be duplicated. The default copy constructor performs a shallow copy, which is sufficient in many cases. This isn't one of them, however. We will add these two entries to the class definition:
 
-``` {.c++}
+```cpp
 Fixed(const Fixed &from);
 
 Fixed &operator=(const Fixed &from);
@@ -248,7 +248,7 @@ Fixed &operator=(const Fixed &from);
 
 The implementation of these two functions will look like this:
 
-``` {.c++}
+```cpp
 Fixed::Fixed(const Fixed &from)
 {
 	fValue = new int64();
@@ -270,7 +270,7 @@ This copies the values in the addresses kept in *fValue* instead of copying addr
 
 Let's go one step further and really flesh out this class. It may come in quite handy at some point in the future. Here are the declarations for some more operator overloading that would be useful to integrate our new class into the rest of the programming environment:
 
-``` {.c++}
+```cpp
 Fixed operator+(const Fixed &first, const Fixed &second);
 Fixed operator-(const Fixed &first, const Fixed &second);
 bool  operator<(const Fixed &first, const Fixed &second);

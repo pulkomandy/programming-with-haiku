@@ -8,7 +8,7 @@ Although they are probably the most common, there are more kinds of loops than j
 
 *while* loops are simpler, having just a loop condition that causes the code in the loop to be repeated until the loop condition is false. Let's take a look at a way to do our project from Lesson 5 using a *while* loop.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -32,7 +32,7 @@ Aside from the *while* statement and the accompanying condition block, the rest 
 
 The *do-while* loop is not used as often as others, but it does come in handy on occasion. It executes the loop instructions once and then checks afterward to see if they need to be done again. Here is the same example using a *do-while* loop.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -59,7 +59,7 @@ We print a character, check to see if it's zero -- which all proper strings end 
 
 There's a problem with using this loop for this job: if the user just hits Enter without typing anything in, it prints a blank character. If the user didn't effectively enter anything, we should skip printing it entirely. This particular task is better suited to using a *for* loop because it requires less work, but we can make using this one work by adding one more bit of code.
 
-``` {.c++}
+```cpp
 do {
     // This will prevent problems caused by the user not typing anything
     if (!inString[i])
@@ -77,7 +77,7 @@ Using *continue* this way, though, is not something you'd normally see. Cases li
 
 Sometimes we have to deal with making a decision based on one of several possible values for a variable. This could be handled with a series of *if-else* statements, but C and C++ give us *switch* statements to do the job much more elegantly. Let's expand our string-printing project to provide a way to print characters that don't show anything when printed, like spaces and tabs.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -120,7 +120,7 @@ int main(void)
 
 The value we are evaluating is placed in the parentheses for the *switch* statement. Each value that we want to handle is taken care of by *case* blocks. These *case* blocks define the set of instructions to execute when the value we are evaluating matches the value specified for the *case*. The format for *case* blocks is the following:
 
-``` {.c++}
+```cpp
 case valueForCase:
 {
     // block of instructions
@@ -138,7 +138,7 @@ The *default* case is a catch-all for all values which don't fit one of the spec
 
 We've seen some of the ways that C and C++ offer the programmer shortcuts to do certain common tasks, such as adding 1 to a variable. Another such shortcut is the only operator which has three sections. Here's one way to assign a value to a variable based on a condition.
 
-``` {.c++}
+```cpp
 int number;
 
 if (someOtherNumber > 5)
@@ -149,7 +149,7 @@ else
 
 Here's another, much shorter, way to do it.
 
-``` {.c++}
+```cpp
 int number = (someOtherNumber > 5) ? 1 : 10;
 ```
 
@@ -163,7 +163,7 @@ Parentheses aren't required around the condition, but some people (like me) pref
 
 ### Hunt \#1
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -216,7 +216,7 @@ Normally no help is given for Bug Hunt sections, but this is harder than many. T
 3.  What happens when the default case in a switch statement is not the last case in the list?
 4.  Rewrite the following code to use the conditional assignment operator to set the value of myVariable.
 
-``` {.c++}
+```cpp
 if (myInt > 5)
     myVariable = 50;
 else

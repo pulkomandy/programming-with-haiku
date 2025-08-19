@@ -64,26 +64,26 @@ That's a lot of different classes! At first, it seems pretty overwhelming, but i
 
 Way back in lesson 7 we learned about typecasting, i.e. reinterpreting the data in a variable as a different type. One of the problems with casting in C is that it isn't safe -- whenever you cast a variable, it always succeeds. If you choose the wrong class to cast, it still succeeds, typically with unpredictable results. C offers different kinds of casting. Even though C typecasting methods require more typing, they should be preferred unless you're specifically writing code in C. Here they are:
 
-``` {.c++}
-static\_cast\<TypeToCastTo \*\>(pointerToCast);
+```cpp
+static_cast<TypeToCastTo *>(pointerToCast);
 ```
 
 A static cast is used to convert one type to another. It relies upon compile-time information and is often used for the purposes that the regular C casting method is used -- changing pointer types and arithmetic conversions. It works so long as the language supports the conversion between the two types.
 
-``` {.c++}
-dynamic\_cast\<TypeToCastTo \*\>(pointerToCast);
+```cpp
+dynamic_cast<TypeToCastTo *>(pointerToCast);
 ```
 
 Aside from static casts, dynamic casts will be one of your most frequently-used cast types when working with Haiku. They are used to safely navigate an inheritance hierarchy. If no inheritance links together the \"from\" type and the \"to\" type, *NULL* will be returned instead. Thus, you can cast to only those pointer types you're supposed to be able cast. We will use one of these in today's project.
 
-``` {.c++}
-const\_cast\<TypeToCastTo \*\>(pointerToCast);
+```cpp
+const_cast<TypeToCastTo *>(pointerToCast);
 ```
 
 Const casting adds or removes the changeability of a pointer. For example, there are instances where a function will take a non-*const* parameter that it doesn't change. Passing a constant pointer to one of these functions will require a const cast.
 
-``` {.c++}
-reinterpret\_cast\<TypeToCastTo \*\>(pointerToCast);
+```cpp
+reinterpret_cast<TypeToCastTo *>(pointerToCast);
 ```
 
 A reinterpret cast is used only rarely. It converts a pointer from one type to another, regardless of whether the two pointers are related or not. Almost all of the tasks which a reinterpret cast can do can be done with a static cast, and the remaining conversions are almost always not portable, so this kind of cast should be used only when absolutely necessary, such as converting between function pointer types.
@@ -101,7 +101,7 @@ This project, called ListTitle, will be about using list controls, namely the BL
 
 Your App class files and MainWindow.h should look like this now:
 
-``` {.c++}
+```cpp
 // App.h
 
 #ifndef APP_H
@@ -118,7 +118,7 @@ public:
 #endif
 ```
 
-``` {.c++}
+```cpp
 // App.cpp
 
 #include "App.h"
@@ -162,7 +162,7 @@ private:
 
 Now let's get down to business: setting up the MainWindow's controls and making them do something. Open up MainWindow.cpp and change it to this code:
 
-``` {.c++}
+```cpp
 // MainWindow.cpp
 
 #include "MainWindow.h"

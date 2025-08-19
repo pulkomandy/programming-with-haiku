@@ -30,7 +30,7 @@ Each of the pictures has an entry in the file which shows its type, resource ID,
 
 Surprisingly, the Haiku API does not have a view which just displays a picture, but luckily for us, making one isn't much work. First, let's look at the header, PictureView.h:
 
-``` {.c++}
+```cpp
 // PictureView.h
 
 #ifndef PICTUREVIEW_H
@@ -60,7 +60,7 @@ private:
 
 This doesn't appear to be anything particularly special. It's not. The class has an array of five BBitmap pointers and an index which we'll use to point to the current one. It gets only a little more complicated in the main sources for PictureView:
 
-``` {.c++}
+```cpp
 // PictureView.cpp
 
 #include "PictureView.h"

@@ -4,7 +4,7 @@ Our first couple of programs weren't all that useful, but as we go along, you'll
 
 Comments are notes that you put into the code. They have many uses, such as clarifying a certain section of code, providing warnings, or temporarily disabling a section of code. See the below example for how they can be used.
 
-``` {.c++}
+```cpp
 // This is a one-line comment.
 
 // So is this. Everything after the two forward slashes is considered part of it.
@@ -18,7 +18,7 @@ int main(void)
 
 Inherited from C is the multiline comment. They start with /\* and end with \*/ in a way similar to parentheses or curly braces with one difference: you can't put a multiline comment inside another one.
 
-``` {.c++}
+```cpp
 /*-----------------------------------------------------------------------
 RedButton.cpp
 
@@ -70,7 +70,7 @@ Let's take a look at a few simplified examples of common errors:
 
 ### Example 1
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -90,7 +90,7 @@ At this point, you might be wondering, "What in the world is a token, genius?" A
 
 ### Example 2
 
-``` {.c++}
+```cpp
 /*-----------------------------------------------------------------------
 RedButton.cpp
 
@@ -116,7 +116,7 @@ foo.cpp:7: error: expected unqualified-id before '\--' token
 
 This is an example of how the line number for the error is not the same place as the actual error. The complaint is about the dashes at the end of the multiline comment at the top. It is caused, however by nesting a multiline comment inside another one. The preprocessor removes all comments, so what the compiler sees is this:
 
-``` {.c++}
+```cpp
 ------------------------------------------------------------------------*/
 
 
@@ -131,7 +131,7 @@ The compiler doesn't know what to do with the dashed line and complains.
 
 ### Example 3
 
-``` {.c++}
+```cpp
 int Main(void)
 {
     return 1;

@@ -14,7 +14,7 @@ A C++ object is very much like a television. It has functions, called **methods,
 
 Object definitions in C++ are called **classes**. Classes are defined with code very much like the data structures we learned about in the last lesson. Here is an example class definition for our television.
 
-``` {.c++}
+```cpp
 class Television
 {
 public:
@@ -56,7 +56,7 @@ It might seem just a little strange that there are six methods devoted to settin
 
 Calling an object's methods requires you to have access to the object. The dot and arrow operators that we used to get to a structure's variables are used with classes to access its methods and properties.
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -80,7 +80,7 @@ The other oddballs in the class definition are the functions *Television()* and 
 
 To create a new *Television* object, we don't call *malloc()*. In fact, you will hardly ever use it unless you are writing a program in C. Instead, we will be using *new* and *delete*, the C++ counterparts to *malloc()* and *free()*. It's best we look at how they are used in this code example.
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -107,7 +107,7 @@ main(void)
 
 It's much simpler to use *new* and *delete* for allocating memory on the heap. In fact, for objects, they are required. Other methods will cause an object's constructor and/or destructor to never be executed and lead to all kinds of ugly messes. *new* and *delete* can also be used for arrays of objects, as you can see in this code example.
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -141,7 +141,7 @@ The two special functions that we have seen in the definition for our *Televisio
 
 A class has a default constructor if one is not declared in the class definition. The default constructor for an object takes no parameters and does nothing. Our *Television* class defines the default constructor, but this is not a requirement for a class. Doing so, however, replaces the one provided and does something. The constructor for a class can also take parameters, such as either of these possibilities or something else:
 
-``` {.c++}
+```cpp
 Television(const char *name);
 Television(bool isHD);
 ```

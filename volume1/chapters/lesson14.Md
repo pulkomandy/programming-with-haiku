@@ -25,7 +25,7 @@ In general, there is one class per pair of files and the base of the files' name
 
 Let's start with adding what we need to App.h. Click ONCE on App.cpp in the project window to select it, hold Alt and press Tab. You'll notice that App.h appears in the editor. The Alt-Tab key combination is a fast way of jumping between a file's header and its source file, but it only works if both files have the same base name, such as App.cpp and App.h. Start by entering the code below:
 
-``` {.c++}
+```cpp
 // App.h
 
 // This is what is called the header guard. It prevents the header from
@@ -55,7 +55,7 @@ Every GUI program in the Haiku operating system creates a subclass of BApplicati
 
 Save your work if you haven't done so already and switch to App.cpp (Alt + Tab) to enter in this code:
 
-``` {.c++}
+```cpp
 // Include the header containing the definition for our App class. This
 // is done for you by Paladin.
 #include App.h”
@@ -130,7 +130,7 @@ We've written our first working Haiku app! Not only does it show something on th
 
 One small bit of code was not explained in the comments, namely these two lines:
 
-``` {.c++}
+```cpp
 App::App(void)
   :	BApplication("application/x-vnd.test-MyFirstApp")
 ```

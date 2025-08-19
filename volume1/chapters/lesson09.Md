@@ -6,7 +6,7 @@ If you haven't noticed, we've come a long way since Lesson 1. We're steadily get
 
 When we first looked at strings in Lesson 5, we saw how arrays and pointers are pretty closely related, but we didn't look close enough to discover how close they really are. Arrays are really just a friendly way of using pointers. Let's look at two different ways of changing the same string that demonstrate this.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 
@@ -65,7 +65,7 @@ The next strange trick we see in the code above is adding a number to a pointer.
 
 We can use this close link between arrays and pointers to pull off other fancy tricks, like initializing an entire *bool* array to true. How? *memset()*, which we haven't used in quite some time.
 
-``` {.c++}
+```cpp
 int
 MyFunc(void)
 {
@@ -85,7 +85,7 @@ It's really inconvenient that we can make arrays of any kind of data except stri
 
 Regular arrays are best thought of as just a series of elements in a row:
 
-``` {.c++}
+```cpp
 int myArray[10];
 ```
 
@@ -97,7 +97,7 @@ myArray:
 
 Arrays can have more than one dimension -- for example, a two dimensional array can be thought of as a grid -- a group of rows. This one has two rows with five elements in each row.
 
-``` {.c++}
+```cpp
 int my2DArray[2][5];
 ```
 
@@ -127,7 +127,7 @@ The easiest way to think of an array with more than one dimension is to think in
 
 Now that we have a handle on how multidimensional arrays are declared, let's put them to use in some sample code.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -151,7 +151,7 @@ main(void)
 
 This code snippet declares an array and initializes it with a loop. Because the memory for the entire array is allocated in one large block, we can use *memset()* in combination with *sizeof()* to set every byte in the array to the same value. This also means that we can use a pointer to the same address as our two dimensional array to treat the whole thing as one long list.
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -181,7 +181,7 @@ main(void)
 
 Even though we have initialized all of our arrays using *memset()* or a loop, it's possible -- and sometimes necessary -- to use many different arbitrary values. This is done using a comma-separated list of values inside a pair of curly braces. A pair of braces is needed for each dimension. Here is the same basic code changed to initialize the array without using a loop.
 
-``` {.c++}
+```cpp
 int
 main(void)
 {
@@ -201,7 +201,7 @@ main(void)
 
 It's a lot more typing, but if we had a list of different values that didn't follow any pattern at all, this would be our only option. One drawback to this method is that we have to set the values for all of the elements -- we can't just pick and choose which ones we want to set. It also gets increasingly difficult to read for arrays having more than two dimensions. If this were just a plain array, we'd just need one set of curly braces and a list of values in it, like this:
 
-``` {.c++}
+```cpp
 float someArray[3] = { 1.1, 2.2, 3.3 };
 ```
 
@@ -209,7 +209,7 @@ This is also one of the few instances where you have to have a semicolon outside
 
 To create a list of strings, we simply create a two dimensional *char* array. Although we could use a series of comma-separated character constants, C and C++ give us a couple of kinds of shortcuts to save a lot of typing and possibly some counting when initializing strings.
 
-``` {.c++}
+```cpp
 // This is the hard way. What a mess!
 char myShortString[15] = { 'a', 'b', 'c', 'd', 'e', '\0' };
 

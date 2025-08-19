@@ -6,7 +6,7 @@ There is only so much that can be done with direct manipulation like `return 1 +
 
 Creating a variable is merely a matter of declaring its existence, as seen below.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -32,7 +32,7 @@ Variables can be declared one at a time, such as our variable `a`, or several at
 
 Function parameters are declared both in a function's declaration and definition. They are listed in a comma-separated list. Functions which do not take any arguments use the word `void` to say so.
 
-``` {.c++}
+```cpp
 // Declaration of a function with two arguments.
 int SomeFunction(int someNumber, int anotherNumber);
 
@@ -91,7 +91,7 @@ Speaking of types, there are more types of data than just integers in C++. Each 
 
 Now do you remember the weirdness that we saw a little bit ago with `printf()`? Let's take another look at it.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -177,7 +177,7 @@ Operators give us ways of working with variables and numbers without calling fun
 
 The --- and ++ operators need a little more explanation than is possible in the table. Let's take a look at some code to explain it best.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 int main(void)
@@ -202,7 +202,7 @@ int main(void)
 
 Whew! We covered a lot of stuff in this lesson, but using all of it let's us do all sorts of fancy stuff. Let's put it to use.
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 // math.h gives us access to a lot of mathematical functions. We're
@@ -237,7 +237,7 @@ Using the equation *Interest = Principal \* rate \* time*, calculate and print t
 
 ### Bug Hunt \#1
 
-``` {.c++}
+```cpp
 int sum(int first, int second, int third)
 {
     return first + second + third;
@@ -262,7 +262,7 @@ foo.cpp:14: error: ‘c’ was not declared in this scope
 
 ### Bug Hunt \#2
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 

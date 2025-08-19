@@ -6,7 +6,7 @@ The problem with communicating with the computer is that it doesn't speak any hu
 
 In C++, all computer instructions are grouped together into blocks called **functions**. Here is an example:
 
-``` {.c++}
+```cpp
 void myFunction(void)
 {
 
@@ -24,7 +24,7 @@ The input data is always inside a pair of parentheses and all of the function's 
 
 Anyway, the compiler doesn't care how much space is in between all of this stuff, so there is plenty of room to make your code as (un)readable as you like. We could squish all of this together like this:
 
-``` {.c++}
+```cpp
 void myFunction(void){}
 ```
 
@@ -34,7 +34,7 @@ For what it's worth, we will use a style of writing code which is quite similar 
 
 Here is our first function that really does something:
 
-``` {.c++}
+```cpp
 int TwoPlusTwo(void)
 {
     return 2 + 2;
@@ -45,7 +45,7 @@ This function, called `TwoPlusTwo`, needs no input data, but returns a result. T
 
 Every program has one function which needs to be defined: main. It can be defined (as in telling the computer what to do for the `main()` function) in a couple of different ways, but we'll use the simplest:
 
-``` {.c++}
+```cpp
 int main(void)
 {
     return 1;
@@ -64,7 +64,7 @@ This tells `gcc` (GNU Compiler Collection) that you're going to make a program c
 
 Functions can call other functions, too, but only if the computer knows about them. This will generate an error when compiled:
 
-``` {.c++}
+```cpp
 int main(void)
 {
     PushTheRedButton();
@@ -80,7 +80,7 @@ gcc -o RedButton RedButton.cpp
 
 The computer doesn't recognize the function `PushTheRedButton()`, so it doesn't know what to do when it sees it and complains. If we tell the computer what it does, it will compile the program properly. Change RedButton.cpp to look like this and compile:
 
-``` {.c++}
+```cpp
 void PushTheRedButton(void)
 {
 }
@@ -94,7 +94,7 @@ int main(void)
 
 PushTheRedButton doesn't do anything, but the computer doesn't care. The other way to call other functions is to use libraries built into the system. We do this by linking a library with our program and telling the compiler what functions are in the library. Now we will do something almost useful. Save the below code into HelloWorld.cpp and compile with `gcc -o HelloWorld HelloWorld.cpp`
 
-``` {.c++}
+```cpp
 #include <stdio.h>
 
 

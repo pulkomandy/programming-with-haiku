@@ -56,13 +56,15 @@ Setting a BFile to a location involves a little more than just giving it a file 
 | *B\_OPEN\_AT\_END*                | Set the read/write pointer to the file's end.           |
 +-----------------------------------+---------------------------------------------------------+
 
+: BFile flags
+
 The constructors for BFile have the same arguments as their respective *SetTo()* calls, but they don't return any error codes. Anything can go wrong when dealing with files, so make sure you check the error status returned from *SetTo()* or call *InitCheck()* after creating a BFile. Also, there are a limited number of file handles available on the system at any given time. Each BEntry, BFile, BNode, or BDirectory uses one when set to a path, so *Unset()* or delete them when you're done with them.
 
 ## Reading and Writing Files with BFile
 
 BFile makes reading files really easy. *Read()* takes an untyped buffer of bytes to receive data from the file and the amount of data to read. When working with text data, normally you will use either a *char* array or, even better, a BString. Here's the way to read a file using BFile and BString:
 
-``` {.c++}
+```cpp
 status_t
 ReadFile(const char *path)
 {
@@ -112,7 +114,7 @@ ReadFile(const char *path)
 
 Writing files is even easier. Write() has the same parameters as Read(), but instead of copying from the file to the buffer, data is copied from the buffer to the file.
 
-``` {.c++}
+```cpp
 void
 WriteFile(const char *path)
 {
@@ -144,7 +146,7 @@ WriteFile(const char *path)
 
 The first thing we're going to do is design the class which will get the fortune from the fortune directory.
 
-``` {.c++}
+```cpp
 #ifndef FORTUNEFUNCTIONS_H
 #define FORTUNEFUNCTIONS_H
 
@@ -180,7 +182,7 @@ There is a reason for each method that we have in this class. First, both versio
 
 Below is the skeleton code for our class along with what each function needs to do. Your job is to write the code.
 
-``` {.c++}
+```cpp
 #include "FortuneFunctions.h"
 
 #include <Directory.h>
