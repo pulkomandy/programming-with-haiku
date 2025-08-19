@@ -10,3 +10,7 @@ jobs:
       - run: sudo apt install -y calibre pandoc poppler-utils python3 python3-pip texlive texlive-fonts-extra texlive-xetex
       - run: pip3 install pandoc-latex-environment
       - run: make -C volume1 all png
+      - uses: actions/upload-artifact@v4
+        with:
+          path: "volume1/build/"
+          if-no-files-found: error
