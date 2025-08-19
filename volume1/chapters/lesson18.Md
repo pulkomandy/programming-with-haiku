@@ -2,61 +2,83 @@
 
 With buttons and menus out of the way, we will start learning more about some of the other kinds of window controls available to us, such as the following controls:
 
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Control                            | Description                                                                      |
-+===================================+===============================================================================================================================================================================================================+
-| BAlert                            | A pop-up message. They're great for the occasional error message, but they are also very easy to overuse and abuse. Use them sparingly.                                                                      |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BBox                              | A BView which draws a box around other child controls to visually group related controls together. It also can optionally have a text label in the top left corner.                                          |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BButton                           | A button with a text label which sends a message when clicked.                                                                                                                                               |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BChannelSlider                    | A slider class which supports multiple channels. It's mostly used with the Media Kit.                                                                                                                        |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BCheckBox                         | A standard-issue checkbox which can send a message when clicked.                                                                                                                                             |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BColorControl                     | A customizable color picker. The main drawback is that it takes up quite a lot of space.                                                                                                                     |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BListView                         | A list of items. The items themselves are sufficiently customizable to show just about anything but are often BStringItems to display a list of names.                                                       |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BMenu                             | A container for menu items.                                                                                                                                                                                  |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BMenuBar                          | A container for menus intended to be placed at the top of a window.                                                                                                                                          |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BMenuField                        | A button-like menu container which shows a pop-up menu. Getting them to resize properly can be problematic.                                                                                                  |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BMenuItem                         | A clickable item in a menu.                                                                                                                                                                                  |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BOptionPopUp                      | A convenience class which quickly sets up a BMenuField.                                                                                                                                                      |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BOutlineListView                  | A hierarchical list, but otherwise no different from BListView.                                                                                                                                              |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BPictureButton                    | A button which uses a BPicture vector graphic to draw a picture for a label. They can be one-state buttons like BButton or two-state buttons that stay down when clicked and pop back up when clicked again. |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BPopUpMenu                        | A special type of menu that can be shown anywhere on the screen.                                                                                                                                             |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BRadioButton                      | The circular \"checkbox\" that enables the user to choose one from several options.                                                                                                                          |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BScrollBar                        | A single scrollbar used to scroll BViews.                                                                                                                                                                    |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BScrollView                       | A convenience class for attaching scrollbars to BViews and associated controls.                                                                                                                              |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BSeparatorItem                    | A menu item which displays a horizontal line. They are used to separate groups of menu items.                                                                                                                |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BSlider                           | A highly-customizable horizontal slider.                                                                                                                                                                     |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BStatusBar                        | A progress bar class.                                                                                                                                                                                        |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BStringView                       | A static text label.                                                                                                                                                                                         |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BTabView                          | Group together sheets of controls on tabs. It requires a little more care to use them than what it might initially seem.                                                                                     |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BTextControl                      | A single line text editing control.                                                                                                                                                                          |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BTextView                         | A multiline text editing control with limited word processing capabilities.                                                                                                                                  |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| BView                             | The base class from which all controls are derived. It has a lot of methods and it can be a little overwhelming, but it's powerful and flexible.                                                             |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+BAlert
+: A pop-up message. They're great for the occasional error message, but they are also very easy to overuse and abuse. Use them sparingly.
+
+BBox
+: A BView which draws a box around other child controls to visually group related controls together. It also can optionally have a text label in the top left corner.
+
+BButton
+: A button with a text label which sends a message when clicked.
+
+BChannelSlider
+: A slider class which supports multiple channels. It's mostly used with the Media Kit.
+
+BCheckBox
+: A standard-issue checkbox which can send a message when clicked.
+
+BColorControl
+: A customizable color picker. The main drawback is that it takes up quite a lot of space.
+
+BListView
+: A list of items. The items themselves are sufficiently customizable to show just about anything but are often BStringItems to display a list of names.
+
+BMenu
+: A container for menu items.
+
+BMenuBar
+: A container for menus intended to be placed at the top of a window.
+
+BMenuField
+: A button-like menu container which shows a pop-up menu. Getting them to resize properly can be problematic.
+
+BMenuItem
+: A clickable item in a menu.
+
+BOptionPopUp
+: A convenience class which quickly sets up a BMenuField.
+
+BOutlineListView
+: A hierarchical list, but otherwise no different from BListView.
+
+BPictureButton
+: A button which uses a BPicture vector graphic to draw a picture for a label. They can be one-state buttons like BButton or two-state buttons that stay down when clicked and pop back up when clicked again.
+
+BPopUpMenu
+: A special type of menu that can be shown anywhere on the screen.
+
+BRadioButton
+: The circular \"checkbox\" that enables the user to choose one from several options.
+
+BScrollBar
+: A single scrollbar used to scroll BViews.
+
+BScrollView
+:  A convenience class for attaching scrollbars to BViews and associated controls.
+
+BSeparatorItem
+: A menu item which displays a horizontal line. They are used to separate groups of menu items.
+
+BSlider
+: A highly-customizable horizontal slider.
+
+BStatusBar
+: A progress bar class.
+
+BStringView
+: A static text label.
+
+BTabView
+: Group together sheets of controls on tabs. It requires a little more care to use them than what it might initially seem.
+
+BTextControl
+: A single line text editing control.
+
+BTextView
+: A multiline text editing control with limited word processing capabilities.
+
+BView
+: The base class from which all controls are derived. It has a lot of methods and it can be a little overwhelming, but it's powerful and flexible.
 
 That's a lot of different classes! At first, it seems pretty overwhelming, but it's not too bad after a little tinkering, especially when you consider that there is quite a bit they have in common. You might want to keep this control table handy for your first projects. We're not going to look at every control in detail, but the ones that we skip should be easy enough to pick up on your own.
 

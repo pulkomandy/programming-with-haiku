@@ -104,7 +104,7 @@ int main(void)
 
     int outValue = myFunction(foo,bar);
 
-    printf("foo is %d, bar is %d, and myFunction(foo,bar) is %d**\n**",
+    printf("foo is %d, bar is %d, and myFunction(foo,bar) is %d\n",
 
     foo,bar,outValue);
 
@@ -177,10 +177,11 @@ Now _main()_ takes two parameters: _argc_, which is the number of arguments from
 ```cpp
 #include <stdio.h>
 
-int main(int argc, char \*\*argv)
+int main(int argc, char **argv)
 {
     // Iterate through all arguments and print them.
-    for (int i = 0; i < argc; i++) printf("Program argument %d: %s\n", i, argv[i]);
+    for (int i = 0; i < argc; i++)
+        printf("Program argument %d: %s\n", i, argv[i]);
 
     return 0;
 }
@@ -259,7 +260,7 @@ int main(int argc, char **argv)
     }
 
     return 0;
-    }
+}
 ```
 
 ## Review

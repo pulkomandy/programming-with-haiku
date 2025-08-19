@@ -94,7 +94,7 @@ As a convenience to keep all of this hard-to-remember information, here is an al
 +-----------------+-------------+-------------+
 | *\*=*           | Recommended |             |
 +-----------------+-------------+-------------+
-| */=*            | Recommende  |             |
+| */=*            | Recommended |             |
 +-----------------+-------------+-------------+
 | *%=*            | Recommended |             |
 +-----------------+-------------+-------------+

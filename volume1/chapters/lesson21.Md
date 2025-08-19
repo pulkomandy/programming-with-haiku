@@ -12,31 +12,39 @@ We will organize our code into two main parts: the GUI and the code which gets a
 
 Well, maybe we can't make files act like dogs, but the BFile class is an extremely useful one which gives us one place where we can do just about anything with a file: create files and read, write, append, or even erase data, and because it inherits from BNode, we can also add, remove, or change attributes. For those not familiar, attributes are a BeOS specialty: data about a file that is not part of the file's data, but that is for another lesson. Here is a list of the most commonly-used methods available to us via BFile:
 
-: BFile methods
+`status_t GetSize(off_t *size) const;`
 
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Method             | Description                                                                                                                                                                                                            |
-+========================================================+========================================================================================================================================================================================================================================================================+
-| *status\_t GetSize(off\_t \*size) const;*              | Gets the size of the file and places the value in *size*.                                                                                                                                                                                                             |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *ssize\_t Read(void \*buffer, size\_t size);*          | Attempts to read *size* bytes into *buffer*. The actual number of bytes read is returned.                                                                                                                                                                             |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *ssize\_t Write(const void \*buffer, size\_t size);*   | Attempts to write *size* bytes into *buffer*. The actual number of bytes written is returned.                                                                                                                                                                         |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *off\_t Seek(off\_t offset, int32 seekMode);*          | Moves the file read/write pointer to a different location in the file. seekMode can be *SEEK\_SET*, *SEEK\_CUR*, or *SEEK\_END*. These seek modes move the pointer relative to the beginning of the file, the current position, or the end of the file, respectively. |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *off\_t Position() const;*                             | Returns the location of the read/write pointer relative to the beginning of the file.                                                                                                                                                                                 |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *status\_t SetTo(const char \*path, uint32 openMode);* | Set the BFile object to the path specified in *path*. There are other versions of this method, as well. See below for more information on this method.                                                                                                                |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *void Unset();*                                        | Empties the BFile object, releasing any file handles used. This method is automatically called when the BFile object is destroyed.                                                                                                                                    |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| *status\_t InitCheck() const;*                         | Returns the current error status of the BFile.                                                                                                                                                                                                                        |
-+--------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+: Gets the size of the file and places the value in *size*.
+
+`ssize_t Read(void *buffer, size_t size);`
+
+: Attempts to read *size* bytes into *buffer*. The actual number of bytes read is returned.
+
+`ssize_t Write(const void *buffer, size_t size);`
+
+: Attempts to write *size* bytes into *buffer*. The actual number of bytes written is returned.
+
+`off_t Seek(off_t offset, int32 seekMode);`
+
+: Moves the file read/write pointer to a different location in the file. seekMode can be *SEEK\_SET*, *SEEK\_CUR*, or *SEEK\_END*. These seek modes move the pointer relative to the beginning of the file, the current position, or the end of the file, respectively.
+
+`off_t Position() const;`
+
+: Returns the location of the read/write pointer relative to the beginning of the file.
+
+`status_t SetTo(const char *path, uint32 openMode);`
+
+: Set the BFile object to the path specified in *path*. There are other versions of this method, as well. See below for more information on this method.
+
+`void Unset();`
+
+: Empties the BFile object, releasing any file handles used. This method is automatically called when the BFile object is destroyed.
+
+`status_t InitCheck() const;`
+
+: Returns the current error status of the BFile.
 
 Setting a BFile to a location involves a little more than just giving it a file path. There are actually four different versions of *SetTo()*. They take an open mode and either a string containing the path, a BEntry, an entry\_ref, or a BDirectory with a relative path in a string. The open mode is a combination of the following flags which includes a read or write mode:
-
-: BFile flags
 
 +-----------------------------------+---------------------------------------------------------+
 | Mode Flags                        | Description                                             |

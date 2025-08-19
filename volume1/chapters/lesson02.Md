@@ -7,7 +7,8 @@ Comments are notes that you put into the code. They have many uses, such as clar
 ```cpp
 // This is a one-line comment.
 
-// So is this. Everything after the two forward slashes is considered part of it.
+// So is this. Everything after the two forward slashes is considered part
+// of it.
 
 int main(void)
 {
@@ -29,7 +30,8 @@ a function that it doesn't recognize.
 
 // This is a one-line comment.
 
-// So is this. Everything after the two forward slashes is considered part of it.
+// So is this. Everything after the two forward slashes is considered part
+// of it.
 
 int main(void)
 {
@@ -101,7 +103,8 @@ a function that it doesn't recognize.*/
 
 // This is a one-line comment.
 
-// So is this. Everything after the two forward slashes is considered part of it.
+// So is this. Everything after the two forward slashes is considered part
+// of it.
 
 int main(void)
 {

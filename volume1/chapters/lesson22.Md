@@ -82,9 +82,9 @@ App::App(void)
 	// using a compiler definition. __HAIKU__ is defined under Haiku,
 	// but not BeOS R5 or Zeta. Zeta has its own __ZETA__ definition.
 	#ifdef __HAIKU__
-	find_directory(B_SYSTEM_DATA_DIRECTORY,&path);
+	find_directory(B_SYSTEM_DATA_DIRECTORY, &path);
 	#else
-	find_directory(B_BEOS_ETC_DIRECTORY,&path);
+	find_directory(B_BEOS_ETC_DIRECTORY, &path);
 	#endif
 	
 	path.Append("fortunes");
