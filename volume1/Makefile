@@ -80,7 +80,7 @@ $(BUILD)/pdf/$(OUTPUT_FILENAME).pdf:  $(CHAPTERS_TARGETS) $(CSS_FILE)
 			$(TOC) \
 			--template=$(INCLUDE_DIR)/pandoc/eisvogel.latex \
 			--metadata=abstract:" " \
-			-V geometry:a4paper -V geometry:"left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm" \
+			-V geometry:a4paper -V geometry:"left=1.91cm,right=1.91cm,top=1.91cm,bottom=1.91cm" \
 			-V titlepage:true -V titlepage-color:"FFFFFF" -V titlepage-rule-height:0 -V titlepage-rule-color:"d8dbdc" \
 			-V titlepage-background:$(COVER_IMAGE) \
 			-V title:"" -V subtitle:"" -V author:"" \
