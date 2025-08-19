@@ -86,7 +86,7 @@ Save your work if you haven't done so already and switch to App.cpp (Alt + Tab) 
 ```cpp
 // Include the header containing the definition for our App class. This
 // is done for you by Paladin.
-#include App.h”
+#include "App.h”
 
 // Include the two headers for the controls we're going to put into our
 // window
@@ -110,7 +110,7 @@ App::App(void)
 	frame.Set(10,10,11,11);
 
 	// Create a static text label which has the text "Haiku Rocks!"
-	BStringView *label = new BstringView(frame,"mylabel",
+	BStringView *label = new BStringView(frame,"mylabel",
 							"Haiku Rocks!");
 
 	// Tell the label to resize itself to fit the text that we've given
